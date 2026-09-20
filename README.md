@@ -1,6 +1,6 @@
 # Al-Qur'an Offline (Android)
 
-[![Build Al-Qur'an Offline APK](https://github.com/OWNER/REPOSITORY/actions/workflows/build.yml/badge.svg)](https://github.com/OWNER/REPOSITORY/actions/workflows/build.yml)
+[![Build Al-Qur'an Offline APK](https://github.com/KyuuX444/alquran-offline/actions/workflows/build.yml/badge.svg)](https://github.com/KyuuX444/alquran-offline/actions/workflows/build.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](LICENSE)
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.9.22-blue.svg)](https://kotlinlang.org)
 [![Compose](https://img.shields.io/badge/Jetpack%20Compose-Material%203-green.svg)](https://developer.android.com/jetpack/compose)
@@ -158,8 +158,8 @@ Jika Anda memiliki JDK 17 dan Android SDK di komputer lokal:
 
 1. **Clone repository**:
    ```bash
-   git clone https://github.com/OWNER/REPOSITORY.git
-   cd REPOSITORY
+   git clone https://github.com/KyuuX444/alquran-offline.git
+   cd alquran-offline
    ```
 
 2. **Validasi dataset**:
