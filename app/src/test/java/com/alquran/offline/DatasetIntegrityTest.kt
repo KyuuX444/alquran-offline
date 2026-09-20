@@ -79,4 +79,55 @@ class DatasetIntegrityTest {
             assertEquals("All 30 juz must be present", 30, count)
         }
     }
+
+    @Test
+    fun testRoomMasterTableIdentityHash() {
+        val dbFile = getDbFile()
+        val url = "jdbc:sqlite:${dbFile.absolutePath}"
+        DriverManager.getConnection(url).use { conn ->
+            val statement = conn.createStatement()
+            val rs = statement.executeQuery("SELECT identity_hash FROM room_master_table WHERE id = 42")
+            assertTrue("room_master_table with id=42 must exist", rs.next())
+            val hash = rs.getString("identity_hash")
+            assertEquals("f3978825539f9a5f1f2f66032483629b", hash)
+        }
+    }
+
+    @Test
+    fun testHadithCountIs42() {
+        val dbFile = getDbFile()
+        val url = "jdbc:sqlite:${dbFile.absolutePath}"
+        DriverManager.getConnection(url).use { conn ->
+            val statement = conn.createStatement()
+            val rs = statement.executeQuery("SELECT COUNT(*) FROM hadiths")
+            assertTrue(rs.next())
+            val count = rs.getInt(1)
+            assertEquals("Total hadiths must be 42", 42, count)
+        }
+    }
+
+    @Test
+    fun testTablePrimaryKeysNotNull() {
+        val dbFile = getDbFile()
+        val url = "jdbc:sqlite:${dbFile.absolutePath}"
+        val tables = listOf("surahs", "ayahs", "bookmarks", "hadiths", "hadith_bookmarks")
+        DriverManager.getConnection(url).use { conn ->
+            for (table in tables) {
+                val statement = conn.createStatement()
+                val rs = statement.executeQuery("PRAGMA table_info($table)")
+                var idColumnFound = false
+                while (rs.next()) {
+                    val colName = rs.getString("name")
+                    if (colName == "id") {
+                        idColumnFound = true
+                        val notnull = rs.getInt("notnull")
+                        val pk = rs.getInt("pk")
+                        assertEquals("Column 'id' in '$table' must be NOT NULL for Room schema", 1, notnull)
+                        assertEquals("Column 'id' in '$table' must be PRIMARY KEY", 1, pk)
+                    }
+                }
+                assertTrue("Table '$table' must have an 'id' column", idColumnFound)
+            }
+        }
+    }
 }

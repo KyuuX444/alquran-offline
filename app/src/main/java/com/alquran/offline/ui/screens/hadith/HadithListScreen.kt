@@ -194,7 +194,7 @@ fun HadithListScreen(
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = if (searchQuery.isNotBlank()) "Tidak ada hadits yang cocok dengan \"$searchQuery\"" else "Memuat hadits...",
+                        text = if (searchQuery.isNotBlank()) "Tidak ada hadits yang cocok dengan \"$searchQuery\"" else "Daftar hadits tidak tersedia",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )

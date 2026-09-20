@@ -147,7 +147,7 @@ fun SurahListScreen(
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = if (searchQuery.isNotBlank()) "Tidak ada surah yang cocok dengan \"$searchQuery\"" else "Memuat surah...",
+                        text = if (searchQuery.isNotBlank()) "Tidak ada surah yang cocok dengan \"$searchQuery\"" else "Daftar surah tidak tersedia",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )

@@ -40,7 +40,13 @@ class QuranRepositoryImpl(
             .map { list -> list.map { it.toDomain() } }
             .catch { e ->
                 e.printStackTrace()
-                emit(emptyList())
+                try {
+                    val fallback = surahDao.getAllSurahsList().map { it.toDomain() }
+                    emit(fallback)
+                } catch (fallbackError: Throwable) {
+                    fallbackError.printStackTrace()
+                    emit(emptyList())
+                }
             }
             .flowOn(Dispatchers.IO)
     }
@@ -68,7 +74,15 @@ class QuranRepositoryImpl(
             }
         }.catch { e ->
             e.printStackTrace()
-            emit(emptyList())
+            try {
+                val fallbackList = ayahDao.getAyahsBySurahList(safeSurahId).map { entity ->
+                    entity.toDomain(isBookmarked = false)
+                }
+                emit(fallbackList)
+            } catch (fallbackError: Throwable) {
+                fallbackError.printStackTrace()
+                emit(emptyList())
+            }
         }.flowOn(Dispatchers.IO)
     }
 
@@ -292,7 +306,13 @@ class QuranRepositoryImpl(
             }
         }.catch { e ->
             e.printStackTrace()
-            emit(emptyList())
+            try {
+                val fallbackList = hadithDao.getAllHadithsList().map { it.toDomain() }
+                emit(fallbackList)
+            } catch (fallbackError: Throwable) {
+                fallbackError.printStackTrace()
+                emit(emptyList())
+            }
         }.flowOn(Dispatchers.IO)
     }
 
