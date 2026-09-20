@@ -1,194 +1,272 @@
-# Al-Qur'an Offline (Android)
+<p align="center">
+  <img src="app/src/main/res/drawable/ic_launcher_playstore.png" width="96" height="96" alt="Al-Qur'an Offline Logo" style="border-radius: 20px;">
+</p>
 
-[![Build Al-Qur'an Offline APK](https://github.com/KyuuX444/alquran-offline/actions/workflows/build.yml/badge.svg)](https://github.com/KyuuX444/alquran-offline/actions/workflows/build.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](LICENSE)
-[![Kotlin](https://img.shields.io/badge/Kotlin-1.9.22-blue.svg)](https://kotlinlang.org)
-[![Compose](https://img.shields.io/badge/Jetpack%20Compose-Material%203-green.svg)](https://developer.android.com/jetpack/compose)
-[![Offline First](https://img.shields.io/badge/Offline-100%25%20No%20Internet-success.svg)](#)
+<h1 align="center">Al-Qur'an Offline</h1>
 
-Aplikasi Android modern, ringan, dan bersih untuk membaca Al-Qur’an secara lengkap **30 Juz dan 114 Surah (6.236 Ayat)**. Didesain secara murni **100% Offline First** tanpa membutuhkan koneksi internet, backend/server, API online, maupun proses login/registrasi akun.
+<p align="center">
+  Aplikasi Al-Qur'an dan Hadits untuk Android yang dirancang murni <i>offline-first</i>.<br>
+  Fokus pada ketenangan membaca, tipografi yang nyaman, dan privasi penuh tanpa koneksi internet.
+</p>
+
+<p align="center">
+  <a href="https://github.com/KyuuX444/alquran-offline/releases"><img src="https://img.shields.io/badge/Download-APK%20v1.0-1E5638?style=for-the-badge&logo=android&logoColor=white" alt="Download APK"></a>
+  <a href="https://github.com/KyuuX444/alquran-offline"><img src="https://img.shields.io/badge/GitHub-Repository-24292e?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Repo"></a>
+  <a href="https://github.com/KyuuX444/alquran-offline/issues"><img src="https://img.shields.io/badge/Issues-Report-grey?style=for-the-badge&logo=github" alt="Issues"></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/KyuuX444/alquran-offline/actions/workflows/build.yml"><img src="https://github.com/KyuuX444/alquran-offline/actions/workflows/build.yml/badge.svg" alt="Build Status"></a>
+  <img src="https://img.shields.io/badge/Android-5.0+_(API_21--34)-3DDC84?logo=android&logoColor=white" alt="Android Support">
+  <img src="https://img.shields.io/badge/Kotlin-1.9.22-7F52FF?logo=kotlin&logoColor=white" alt="Kotlin">
+  <img src="https://img.shields.io/badge/Compose-Material_3-4285F4?logo=jetpackcompose&logoColor=white" alt="Jetpack Compose">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-2E7D32.svg" alt="License: MIT"></a>
+</p>
 
 ---
 
-## 📱 Tangkapan Layar (Screenshots)
+## Deskripsi
+
+**Al-Qur'an Offline** adalah aplikasi Android open-source yang memuat seluruh mushaf Al-Qur'an (114 Surah, 30 Juz, 6.236 Ayat) serta 42 Hadits Arbain An-Nawawi secara mandiri di dalam perangkat.
+
+Aplikasi ini tidak memiliki izin akses jaringan (`android.permission.INTERNET`). Tidak ada server pengumpul data, tidak ada pelacakan analitik, dan tidak ada sistem login. Seluruh data teks, terjemahan, penanda baca (bookmark), dan preferensi tersimpan di penyimpanan lokal perangkat Anda.
+
+---
+
+## Features
+
+- 📖 **Al-Qur'an Lengkap** — 114 Surah dan 30 Juz (6.236 ayat) dengan teks Utsmani terverifikasi dan terjemahan bahasa Indonesia Kemenag RI.
+- 📚 **Hadits Offline** — 42 Hadits Arbain An-Nawawi lengkap dengan teks Arab, terjemahan, dan perawi.
+- 🔎 **Pencarian Lokal** — Temukan surah, potongan ayat Arab, maupun kata dalam terjemahan secara instan melalui indexing database internal.
+- 🔖 **Bookmark Ayat** — Simpan ayat-ayat penting ke daftar penanda lokal dengan sekali sentuh.
+- ↩️ **Lanjut Baca (Last Read)** — Melanjutkan tilawah langsung dari ayat dan surah terakhir yang dibuka.
+- 🌙 **Mode Tampilan** — Dukungan tema Terang (Warm Paper), Gelap (Warm Charcoal), serta mengikuti pengaturan sistem.
+- 🔔 **Hadits Harian** — Pengingat notifikasi hadits harian (Senin–Minggu) tanpa membutuhkan akses internet atau server push.
+- ⚡ **App Shortcuts** — Akses instan dari homescreen ke Lanjut Baca, Surah, Juz, dan Hadits.
+- 📡 **100% Offline** — Nol koneksi internet, tanpa API eksternal, dan hemat konsumsi daya.
+
+---
+
+## Screenshots
+
+<p align="center">
+  <i>Pratinjau antarmuka aplikasi (tampilan mode terang dan mode gelap):</i>
+</p>
 
 ```
 ┌─────────────────────────┐  ┌─────────────────────────┐  ┌─────────────────────────┐
-│ Al-Qur'an Offline       │  │ Al-Fatihah (7 Ayat)     │  │ Pengaturan Tampilan     │
-│ ─────────────────────── │  │ ─────────────────────── │  │ ─────────────────────── │
-│ [ Terakhir Dibaca ]     │  │ بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ │  │ [ Pratinjau Teks ]      │
-│ Al-Baqarah — Ayat 25    │  │                         │  │                         │
-│ [▶ Lanjut Baca]         │  │ 1. Dengan nama Allah... │  │ Ukuran Font Arab: 28sp  │
-│                         │  │ [★] [⧉] [➦]             │  │ [───●─────────────]     │
-│ Menu Utama:             │  │                         │  │                         │
-│ [Surah]   [Juz]         │  │ ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ │  │ Ukuran Terjemahan: 15sp │
-│ [Bookmark][Pencarian]   │  │ 2. Segala puji bagi...  │  │ [──────●──────────]     │
-│ [Setting] [Privasi]     │  │                         │  │ [✓] Tampilkan Terjemahan│
+│ Beranda                 │  │ Al-Baqarah (Ayat 255)   │  │ Pengaturan              │
+├─────────────────────────┤  ├─────────────────────────┤  ├─────────────────────────┤
+│ Lanjut membaca          │  │ ٱللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ    │  │ TAMPILAN                │
+│ Al-Baqarah : Ayat 255   │  │ ٱلْحَىُّ ٱلْقَيُّومُ...         │  │ Ukuran Font Arab: 28sp   │
+│ [ Lanjutkan Tilawah ]   │  │                         │  │ Ukuran Terjemahan: 15sp  │
+│ ─────────────────────── │  │ Allah, tidak ada tuhan  │  │ Tema: Ikuti Sistem       │
+│ Al-Qur'an    (114 Surah)│  │ selain Dia. Yang Maha   │  │ ─────────────────────── │
+│ Hadits Arbain (42 Hadits│  │ Hidup...                │  │ NOTIFIKASI               │
+│ Penanda Baca (Bookmark) │  │                         │  │ Hadits Harian: 06:00     │
+│ ─────────────────────── │  │ [ Bookmark ]  [ Salin ] │  │ ─────────────────────── │
+│ Hadits Hari Ini:        │  │ [ Bagikan ]             │  │ DATA & PRIVASI           │
+│ "Innamal a'malu binniyat│  │                         │  │ 100% Offline, Tanpa Izin │
 └─────────────────────────┘  └─────────────────────────┘  └─────────────────────────┘
 ```
 
----
-
-## ✨ Fitur Utama
-
-- **Lengkap 30 Juz & 114 Surah**: Seluruh 6.236 ayat termuat langsung di dalam aplikasi (disimpan lokal).
-- **100% Offline & Aman**: Tidak ada `INTERNET permission` di dalam `AndroidManifest.xml`. Aman digunakan dalam mode pesawat, tanpa sinyal, atau tanpa kuota.
-- **Lanjut Baca (Last Read)**: Otomatis mencatat posisi ayat terakhir yang sedang dibaca dan dapat langsung dibuka kembali melalui tombol "Lanjut Baca".
-- **Daftar Surah & Juz**: Navigasi cepat melalui 114 Surah (dilengkapi arti dan Makkiyah/Madaniyah) serta 30 Juz lengkap dengan batasan ayat awal dan akhir.
-- **Pencarian Cepat (Fast Offline Search)**: Cari surah berdasarkan nama Latin, nama Arab, nomor surah, potongan teks Arab, maupun kata dalam terjemahan bahasa Indonesia dengan indexing database lokal.
-- **Bookmark & Catatan Ayat**: Simpan ayat-ayat favorit ke bookmark lokal dan buka kembali kapan saja.
-- **Fitur Reader Lengkap**:
-  - Salin teks ayat (teks Arab, transliterasi, dan terjemahan).
-  - Bagikan ayat ke media sosial atau aplikasi perpesanan.
-  - Tampilan Basmalah elegan di setiap awal surah (kecuali Surah At-Tawbah).
-- **Kustomisasi Tampilan**:
-  - Pengaturan ukuran font Arab (20sp – 44sp).
-  - Pengaturan ukuran font terjemahan (12sp – 24sp).
-  - Toggle tampilkan/sembunyikan terjemahan.
-  - Pilihan tema: **Mode Terang**, **Mode Gelap**, atau **Ikuti Sistem**.
-- **Jaminan Privasi Penuh**: Tanpa login, tanpa analitik, tanpa pengumpulan data pribadi.
+> **Catatan:** Screenshot tangkapan layar perangkat nyata akan diperbarui secara bertahap pada direktori `docs/screenshots/`.
 
 ---
 
-## 🛠️ Arsitektur & Teknologi
+## Offline First
 
-Aplikasi ini dibangun menggunakan arsitektur modern Android yang modular, bersih, dan mudah dipelihara:
-
-- **Bahasa**: Kotlin (1.9.22)
-- **UI Toolkit**: Jetpack Compose dengan Material 3
-- **Database Lokal**: Room Database (SQLite pre-populated `quran.db` berindeks tinggi)
-- **Penyimpanan Pengaturan**: AndroidX DataStore Preferences
-- **Asinkron & Reaktif**: Kotlin Coroutines & Flow
-- **Navigasi**: Jetpack Navigation Compose
-- **Min SDK**: API 24 (Android 7.0 Nougat) — mencakup >95% perangkat Android aktif.
-- **Target SDK**: API 34 (Android 14)
-- **Build System**: Gradle 8.5 dengan Kotlin DSL (`build.gradle.kts`)
-
----
-
-## 📂 Struktur Repositori
+Arsitektur aplikasi ini mengisolasi seluruh alur data dari jaringan luar:
 
 ```
-Alquran/
-├── .github/
-│   └── workflows/
-│       ├── build.yml                 # CI: Validasi dataset, unit tests, dan build debug APK
-│       └── release.yml               # CD: Release signed APK otomatis saat push Git Tag (v*)
-├── app/
-│   ├── build.gradle.kts              # Konfigurasi modul aplikasi
-│   ├── proguard-rules.pro            # Optimasi dan aturan ProGuard/R8
-│   └── src/
-│       ├── main/
-│       │   ├── AndroidManifest.xml   # Manifest tanpa INTERNET permission
-│       │   ├── assets/
-│       │   │   ├── quran.db          # Database SQLite Al-Qur'an 30 Juz (3.4 MB)
-│       │   │   └── quran_metadata.json # Metadata surah, juz, dan SHA-256 checksum
-│       │   ├── java/com/alquran/offline/
-│       │   │   ├── QuranApplication.kt
-│       │   │   ├── data/
-│       │   │   │   ├── local/        # Room Database, DAOs, Entities
-│       │   │   │   ├── preferences/  # DataStore User Preferences
-│       │   │   │   └── repository/   # QuranRepository & QuranRepositoryImpl
-│       │   │   ├── model/            # Domain models (Surah, Ayah, Juz, Bookmark, LastRead)
-│       │   │   └── ui/               # Jetpack Compose UI (Screens, Theme, Components, Navigation)
-│       │   └── res/                  # Vector icons, colors, strings, adaptive launcher
-│       └── test/java/com/alquran/offline/ # Unit tests (Dataset integrity, Search, Repository)
-├── scripts/
-│   ├── build_and_validate_dataset.py # Generator database dari dataset Tanzil & Kemenag
-│   └── validate_dataset.py           # Validasi integritas ketat (114 surah, 6.236 ayat)
-├── build.gradle.kts                  # Root Gradle build script
-├── settings.gradle.kts               # Gradle settings
-├── gradle.properties                 # Konfigurasi memori JVM & AndroidX
-└── gradlew / gradlew.bat             # Gradle wrapper executable
+                  Koneksi Internet
+                         │
+                         ▼
+                   [ TIDAK ADA ]
+                         │
+  ┌──────────────────────┴──────────────────────┐
+  │              PERANGKAT ANDROID              │
+  │                                             │
+  │  Teks Al-Qur'an (SQLite/Room) ───────┐      │
+  │  Hadits Arbain (SQLite/Room) ────────┼──┐   │
+  │  Riwayat Terakhir Baca (DataStore) ──┤  │   │
+  │  Bookmark Ayat (Room DB) ────────────┤  ▼   │
+  │  Pengaturan Tampilan (DataStore) ────┴──► Jetpack Compose UI
+  └─────────────────────────────────────────────┘
 ```
+
+Tidak ada permintaan HTTP, socket, atau sinkronisasi background ke server pihak ketiga.
 
 ---
 
-## 🔍 Integritas & Validasi Dataset
+## Tech Stack
 
-Integritas teks kitab suci Al-Qur'an adalah prioritas mutlak. Repositori ini dilengkapi script validasi otomatis:
+<p align="left">
+  <img src="https://img.shields.io/badge/Kotlin-1.9.22-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin">
+  <img src="https://img.shields.io/badge/Jetpack_Compose-Material_3-4285F4?style=flat-square&logo=jetpackcompose&logoColor=white" alt="Compose">
+  <img src="https://img.shields.io/badge/Android_SDK-minSdk_21_%7C_targetSdk_34-3DDC84?style=flat-square&logo=android&logoColor=white" alt="Android SDK">
+  <img src="https://img.shields.io/badge/Room_DB-SQLite_3.4MB-003B57?style=flat-square&logo=sqlite&logoColor=white" alt="Room">
+  <img src="https://img.shields.io/badge/DataStore-Preferences-00599C?style=flat-square" alt="DataStore">
+  <img src="https://img.shields.io/badge/Gradle-8.5-02303A?style=flat-square&logo=gradle&logoColor=white" alt="Gradle">
+  <img src="https://img.shields.io/badge/GitHub_Actions-CI%2FCD-2088FF?style=flat-square&logo=githubactions&logoColor=white" alt="GitHub Actions">
+</p>
+
+- **Language:** [Kotlin](https://kotlinlang.org/) (1.9.22) dengan Coroutines & StateFlow
+- **UI Framework:** [Jetpack Compose](https://developer.android.com/jetpack/compose) dengan [Material Design 3](https://m3.material.io/)
+- **Local Database:** Room Persistence Library di atas SQLite berindeks
+- **Preferences:** AndroidX DataStore Preferences (pengganti SharedPreferences)
+- **Background Tasks:** Android AlarmManager (Exact & Idle fallback) + BroadcastReceiver
+- **Build System:** Gradle Kotlin DSL (`build.gradle.kts`) dengan R8 minification
+
+---
+
+## Data Sources
+
+Dataset Al-Qur'an dan Hadits telah melalui pemeriksaan integritas otomatis (114 Surah, 6.236 Ayat, 42 Hadits) sebelum proses build:
+
+1. **Teks Al-Qur'an (Rasm Utsmani)**  
+   Bersumber dari [Tanzil Project](https://tanzil.net), terverifikasi dengan standar mushaf Utsmani internasional.  
+   *Lisensi:* [Creative Commons Attribution 3.0 Unported (CC BY 3.0)](https://creativecommons.org/licenses/by/3.0/).
+
+2. **Terjemahan Bahasa Indonesia**  
+   Bersumber dari Kementerian Agama Republik Indonesia (Kemenag RI), digunakan untuk kepentingan literasi dan dakwah Islam secara terbuka.
+
+3. **Hadits Arbain An-Nawawi**  
+   Kompilasi 42 hadits pilihan karya Imam An-Nawawi dengan sanad, matan Arab, dan terjemahan bahasa Indonesia yang telah terverifikasi.
+
+---
+
+## Installation
+
+### Unduh APK Siap Pakai
+1. Kunjungi halaman [Releases](https://github.com/KyuuX444/alquran-offline/releases).
+2. Unduh file `alquran-offline-v1.apk` dari rilis terbaru.
+3. Buka file APK di perangkat Android Anda (izinkan instalasi dari sumber tidak dikenal jika diminta).
+
+---
+
+## Build from Source
+
+Jika Anda ingin mengompilasi aplikasi ini sendiri:
 
 ```bash
+# 1. Clone repository
+git clone https://github.com/KyuuX444/alquran-offline.git
+cd alquran-offline
+
+# 2. Verifikasi integritas dataset
 python3 scripts/validate_dataset.py
+python3 scripts/validate_hadith_dataset.py
+
+# 3. Jalankan unit test
+./gradlew testDebugUnitTest
+
+# 4. Buat file APK Debug
+./gradlew assembleDebug
 ```
 
-Pemeriksaan mencakup:
-1. **Jumlah Surah**: Wajib tepat 114 surah (berurutan 1 sampai 114).
-2. **Jumlah Ayat**: Wajib tepat 6.236 ayat tanpa ada yang tertinggal atau berlebih.
-3. **Urutan Ayat**: Setiap surah diuji urutan ayatnya 1..N tanpa celah (zero gaps) dan tanpa duplikasi.
-4. **Validasi Karakter**: Memastikan teks Arab Uthmani dan terjemahan utuh dalam UTF-8 tanpa karakter rusak (`\ufffd`).
-5. **Cakupan Juz**: Memastikan ke-30 Juz terpetakan secara sempurna.
-6. **Checksum SHA-256**: Memastikan database `quran.db` tidak termodifikasi secara tidak sengaja.
-
-> **Catatan Penting**: Task `validateDataset` terintegrasi langsung ke dalam Gradle pre-build. Jika data mengalami anomali, proses kompilasi APK akan otomatis digagalkan.
+File APK hasil build akan tersedia pada direktori:  
+`app/build/outputs/apk/debug/app-debug.apk`
 
 ---
 
-## 🚀 Build Otomatis via GitHub Actions
+## Build with GitHub Actions
 
-Anda tidak perlu menginstall Android Studio atau membebani VPS/komputer Anda untuk mengompilasi APK. Cukup push repositori ini ke GitHub:
+Repository ini dilengkapi alur kerja otomasi berbasis [GitHub Actions](.github/workflows):
 
-### 1. Build Debug APK
-- Workflow `.github/workflows/build.yml` berjalan otomatis saat ada `push` atau `pull request` ke branch `main`/`master`, atau melalui pemicu manual **Run workflow**.
-- Output APK otomatis diunggah ke bagian **Artifacts** dengan nama `alquran-offline-debug.apk`.
-
-### 2. Build Signed Release APK
-Untuk merilis versi resmi ber-tag:
-1. Buat tag baru, misalnya `v1.0.0`:
-   ```bash
-   git tag v1.0.0
-   git push origin v1.0.0
-   ```
-2. Workflow `.github/workflows/release.yml` akan berjalan, menandatangani APK (jika secret tersedia), dan otomatis mempublikasikannya ke halaman **Releases** di GitHub repository Anda.
-
-#### Menyiapkan Release Signing (GitHub Secrets):
-Tambahkan Secrets berikut di menu **Settings > Secrets and variables > Actions**:
-- `KEYSTORE_BASE64`: File keystore `.jks` yang di-encode ke format base64 (`base64 -w 0 my-release-key.jks`).
-- `KEYSTORE_PASSWORD`: Password keystore Anda.
-- `KEY_ALIAS`: Alias key yang Anda gunakan.
-- `KEY_PASSWORD`: Password untuk alias key tersebut.
-
-*Jika secret tidak diatur, workflow akan otomatis membuat build debug/unsigned release tanpa membuat proses CI gagal.*
+- **Continuous Integration (`build.yml`)**  
+  Berjalan pada setiap `push` dan `pull request` ke branch `main`. Memverifikasi checksum dataset, menjalankan unit test, linter Android, dan memverifikasi kompilasi aplikasi.
+- **Automated Release (`release.yml`)**  
+  Berjalan otomatis ketika Git Tag berawalan `v*` (contoh: `v1.0.0`) di-push. Menandatangani APK menggunakan skema v1 + v2 + v3, mengoptimalkan biner via R8, dan mempublikasikan paket rilis ke GitHub Releases.
 
 ---
 
-## 💻 Cara Menjalankan & Build Secara Lokal
+## Project Structure
 
-Jika Anda memiliki JDK 17 dan Android SDK di komputer lokal:
-
-1. **Clone repository**:
-   ```bash
-   git clone https://github.com/KyuuX444/alquran-offline.git
-   cd alquran-offline
-   ```
-
-2. **Validasi dataset**:
-   ```bash
-   python3 scripts/validate_dataset.py
-   ```
-
-3. **Jalankan Unit Test**:
-   ```bash
-   ./gradlew testDebugUnitTest
-   ```
-
-4. **Kompilasi Debug APK**:
-   ```bash
-   ./gradlew assembleDebug
-   ```
-   File APK akan tersedia di:
-   `app/build/outputs/apk/debug/app-debug.apk`
+```
+alquran-offline/
+├── app/
+│   ├── src/main/
+│   │   ├── AndroidManifest.xml          # Konfigurasi aplikasi (tanpa INTERNET)
+│   │   ├── assets/
+│   │   │   ├── quran.db                 # Database SQLite Al-Qur'an 30 Juz
+│   │   │   └── quran_metadata.json      # Metadata checksum & struktur surah
+│   │   ├── java/com/alquran/offline/
+│   │   │   ├── data/                    # Room DB, Entity, DAO, Preferences
+│   │   │   ├── model/                   # Model domain Surah, Ayah, Hadith
+│   │   │   ├── notification/            # Scheduler notifikasi lokal
+│   │   │   ├── receiver/                # AlarmReceiver & BootReceiver
+│   │   │   └── ui/                      # Jetpack Compose Screens & Components
+│   │   └── res/                         # Asset visual, XML shortcuts, tema
+│   └── src/test/java/com/alquran/       # Unit tests (Room, Nav, Compatibility)
+├── scripts/
+│   ├── validate_dataset.py              # Validasi integritas Al-Qur'an
+│   └── validate_hadith_dataset.py       # Validasi integritas Hadits Arbain
+├── .github/workflows/                   # CI/CD Workflows
+└── build.gradle.kts                     # Konfigurasi root build
+```
 
 ---
 
-## 📜 Lisensi & Atribusi Dataset
+## Privacy
 
-1. **Teks Al-Qur'an (Rasm Utsmani)**:
-   - Sumber: [Tanzil Project](https://tanzil.net)
-   - Lisensi: [Creative Commons Attribution 3.0 Unported License](https://creativecommons.org/licenses/by/3.0/)
-   - Teks Utsmani telah melalui proses verifikasi dan standardisasi internasional.
-2. **Terjemahan Bahasa Indonesia**:
-   - Sumber: Kementerian Agama Republik Indonesia (Kemenag RI).
-   - Digunakan secara terbuka untuk tujuan edukasi dan kemaslahatan umat.
-3. **Kode Sumber Aplikasi**:
-   - Kode aplikasi ini dilisensikan di bawah [MIT License](LICENSE).
+Aplikasi ini mengedepankan privasi secara fundamental:
+
+- **Tanpa Akun:** Tidak ada registrasi, login, atau permintaan profil pengguna.
+- **Tanpa Izin Jaringan:** Tidak meminta `android.permission.INTERNET`. Secara sistemik, sistem operasi Android memblokir aplikasi ini dari komunikasi jaringan apapun.
+- **Tanpa Analytics / Telemetry:** Bebas dari SDK pelacak pihak ketiga (Firebase, Google Analytics, dsb).
+- **Data Tersimpan Lokal:** Bookmark, riwayat baca, dan preferensi tersimpan aman di direktori internal aplikasi pada memori perangkat.
+
+---
+
+## Design Philosophy
+
+> *« Dibuat untuk membaca, bukan untuk memamerkan UI. »*
+
+- **Typography First:** Teks Arab Utsmani disajikan dengan ruang vertikal yang lega (line-height proporsional) agar tanda harakat mudah dibaca tanpa melelahkan mata.
+- **Content Centric:** Menghilangkan kartu tebal, efek neon, dan gradien dekoratif yang mengalihkan perhatian dari inti ayat.
+- **Minimalist & Native:** Mengikuti pola antarmuka native Android yang bersih, tenang, dan terintegrasi mulus dengan tema sistem.
+- **Ringan & Cepat:** Transisi instan antar layar tanpa hambatan pemuatan jaringan.
+
+---
+
+## Contributing
+
+Kontribusi berupa perbaikan bug, penyempurnaan tipografi, atau optimasi kinerja sangat diapresiasi:
+
+1. Lakukan **Fork** pada repositori ini.
+2. Buat branch fitur baru (`git checkout -b feature/penyempurnaan-fitur`).
+3. Terapkan perubahan dan pastikan unit test lolos (`./gradlew testDebugUnitTest`).
+4. Lakukan commit perubahan (`git commit -m 'feat: deskripsi penyempurnaan'`).
+5. Push ke branch Anda (`git push origin feature/penyempurnaan-fitur`).
+6. Buka **Pull Request** ke branch `main`.
+
+---
+
+## Thanks to
+
+Aplikasi ini terwujud berkat karya dan dedikasi komunitas open-source:
+
+- **[Tanzil Project](https://tanzil.net)** atas dataset teks Al-Qur'an Rasm Utsmani berstandar internasional yang teruji akurasinya.
+- **Kementerian Agama Republik Indonesia** atas penyediaan teks terjemahan Al-Qur'an bahasa Indonesia.
+- Komunitas pengembang Android & Kotlin atas ekosistem Jetpack Compose yang luar biasa.
+
+---
+
+## License
+
+- **Source Code:** Dilisensikan di bawah [MIT License](LICENSE).
+- **Teks Al-Qur'an:** [Creative Commons Attribution 3.0 Unported](https://creativecommons.org/licenses/by/3.0/) (Tanzil Project).
+- **Terjemahan & Hadits:** Digunakan secara terbuka untuk kepentingan literasi dan dakwah Islam.
+
+---
+
+## Author
+
+Dikembangkan dan dipelihara oleh **Kyuu** ([@KyuuX444](https://github.com/KyuuX444)).
+
+---
+
+<p align="center">
+  <sub>Al-Qur'an Offline · Android · 100% Offline First · Open Source</sub>
+</p>

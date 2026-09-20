@@ -5,6 +5,8 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -32,6 +34,7 @@ class MainActivity : ComponentActivity() {
     private val pendingIntent = MutableStateFlow<Intent?>(null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         pendingIntent.value = intent
 
@@ -69,18 +72,23 @@ class MainActivity : ComponentActivity() {
                     }
 
                     Scaffold(
+                        contentWindowInsets = WindowInsets(0, 0, 0, 0),
                         bottomBar = {
                             if (showBottomBar) {
                                 AppBottomBar(
                                     currentRoute = currentRoute,
                                     onTabSelected = { targetRoute ->
                                         if (currentRoute != targetRoute) {
-                                            navController.navigate(targetRoute) {
-                                                popUpTo(Screen.Home.route) {
-                                                    saveState = true
+                                            try {
+                                                navController.navigate(targetRoute) {
+                                                    popUpTo(Screen.Home.route) {
+                                                        saveState = true
+                                                    }
+                                                    launchSingleTop = true
+                                                    restoreState = true
                                                 }
-                                                launchSingleTop = true
-                                                restoreState = true
+                                            } catch (e: Exception) {
+                                                e.printStackTrace()
                                             }
                                         }
                                     }
@@ -91,7 +99,7 @@ class MainActivity : ComponentActivity() {
                         NavGraph(
                             navController = navController,
                             repository = repository,
-                            modifier = Modifier.padding(innerPadding)
+                            modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding())
                         )
                     }
                 }
@@ -118,24 +126,49 @@ class MainActivity : ComponentActivity() {
                     "last_read" -> {
                         try {
                             val lastRead = repository.lastRead.first()
-                            navController.navigate(Screen.Reader.createRoute(lastRead.surahId, lastRead.verseId))
+                            val safeSurah = lastRead.surahId.coerceIn(1, 114)
+                            val safeVerse = lastRead.verseId.coerceAtLeast(1)
+                            navController.navigate(Screen.Reader.createRoute(safeSurah, safeVerse)) {
+                                launchSingleTop = true
+                            }
                         } catch (e: Exception) {
-                            navController.navigate(Screen.SurahList.route)
+                            try {
+                                navController.navigate(Screen.SurahList.route) {
+                                    launchSingleTop = true
+                                }
+                            } catch (ignored: Exception) {
+                            }
                         }
                     }
                     "surah_list" -> {
-                        navController.navigate(Screen.SurahList.route)
+                        try {
+                            navController.navigate(Screen.SurahList.route) {
+                                launchSingleTop = true
+                            }
+                        } catch (ignored: Exception) {
+                        }
                     }
                     "hadith" -> {
-                        val hadithId = uri.getQueryParameter("id")?.toIntOrNull() ?: 0
-                        navController.navigate(Screen.HadithList.createRoute(hadithId))
+                        val rawId = uri.getQueryParameter("id")?.toIntOrNull() ?: 0
+                        val hadithId = rawId.coerceIn(0, 42)
+                        try {
+                            navController.navigate(Screen.HadithList.createRoute(hadithId)) {
+                                launchSingleTop = true
+                            }
+                        } catch (ignored: Exception) {
+                        }
                     }
                     "juz_list" -> {
-                        navController.navigate(Screen.JuzList.route)
+                        try {
+                            navController.navigate(Screen.JuzList.route) {
+                                launchSingleTop = true
+                            }
+                        } catch (ignored: Exception) {
+                        }
                     }
                 }
             }
-        } catch (e: Exception) {
+        } catch (e: Throwable) {
             e.printStackTrace()
         }
     }

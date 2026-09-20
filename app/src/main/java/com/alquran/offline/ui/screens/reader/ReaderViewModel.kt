@@ -15,9 +15,12 @@ import kotlinx.coroutines.launch
 
 class ReaderViewModel(
     private val repository: QuranRepository,
-    val surahId: Int,
-    val initialTargetVerse: Int = 1
+    rawSurahId: Int,
+    rawInitialTargetVerse: Int = 1
 ) : ViewModel() {
+
+    val surahId: Int = rawSurahId.coerceIn(1, 114)
+    val initialTargetVerse: Int = rawInitialTargetVerse.coerceAtLeast(1)
 
     private val _surah = MutableStateFlow<Surah?>(null)
     val surah: StateFlow<Surah?> = _surah.asStateFlow()
@@ -52,29 +55,42 @@ class ReaderViewModel(
 
     private fun loadSurah() {
         viewModelScope.launch {
-            val s = repository.getSurahById(surahId)
-            _surah.value = s
-            if (s != null) {
-                // Auto-save initial last read position
-                repository.saveLastRead(surahId, s.nameLatin, initialTargetVerse)
+            try {
+                val s = repository.getSurahById(surahId)
+                _surah.value = s
+                if (s != null) {
+                    // Auto-save initial last read position
+                    repository.saveLastRead(surahId, s.nameLatin, initialTargetVerse)
+                }
+            } catch (e: Throwable) {
+                e.printStackTrace()
             }
         }
     }
 
     fun toggleBookmark(ayah: Ayah) {
         viewModelScope.launch {
-            if (ayah.isBookmarked) {
-                repository.removeBookmark(ayah.surahId, ayah.verseId)
-            } else {
-                repository.addBookmark(ayah.surahId, ayah.verseId)
+            try {
+                if (ayah.isBookmarked) {
+                    repository.removeBookmark(ayah.surahId, ayah.verseId)
+                } else {
+                    repository.addBookmark(ayah.surahId, ayah.verseId)
+                }
+            } catch (e: Throwable) {
+                e.printStackTrace()
             }
         }
     }
 
     fun updateLastRead(verseId: Int) {
         val currentSurah = _surah.value ?: return
+        val safeVerse = verseId.coerceAtLeast(1)
         viewModelScope.launch {
-            repository.saveLastRead(surahId, currentSurah.nameLatin, verseId)
+            try {
+                repository.saveLastRead(surahId, currentSurah.nameLatin, safeVerse)
+            } catch (e: Throwable) {
+                e.printStackTrace()
+            }
         }
     }
 

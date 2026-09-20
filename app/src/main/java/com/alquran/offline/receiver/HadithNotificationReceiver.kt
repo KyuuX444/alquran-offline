@@ -104,9 +104,13 @@ class HadithNotificationReceiver : BroadcastReceiver() {
 
             val notificationManager = NotificationManagerCompat.from(context)
             if (notificationManager.areNotificationsEnabled()) {
-                notificationManager.notify(NotificationScheduler.NOTIFICATION_ID, notification)
+                try {
+                    notificationManager.notify(NotificationScheduler.NOTIFICATION_ID, notification)
+                } catch (se: SecurityException) {
+                    se.printStackTrace()
+                }
             }
-        } catch (e: Exception) {
+        } catch (e: Throwable) {
             e.printStackTrace()
         }
     }

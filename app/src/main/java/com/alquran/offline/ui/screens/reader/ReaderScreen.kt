@@ -1,5 +1,6 @@
 package com.alquran.offline.ui.screens.reader
 
+import android.content.ActivityNotFoundException
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -81,48 +82,67 @@ fun ReaderScreen(
     }
 
     fun copyAyahToClipboard(ayah: Ayah) {
-        val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        val text = buildString {
-            appendLine(ayah.textAr)
-            if (ayah.transliteration.isNotBlank()) appendLine(ayah.transliteration)
-            if (ayah.textId.isNotBlank()) appendLine(ayah.textId)
-            appendLine("(${surah?.nameLatin ?: "Surah ${ayah.surahId}"}: ${ayah.verseId})")
-        }
-        val clip = ClipData.newPlainText("Ayat Al-Qur'an", text)
-        clipboard.setPrimaryClip(clip)
-        scope.launch {
-            snackbarHostState.showSnackbar("Ayat berhasil disalin ke papan klip")
+        try {
+            val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager
+            val text = buildString {
+                appendLine(ayah.textAr)
+                if (ayah.transliteration.isNotBlank()) appendLine(ayah.transliteration)
+                if (ayah.textId.isNotBlank()) appendLine(ayah.textId)
+                appendLine("(${surah?.nameLatin ?: "Surah ${ayah.surahId}"}: ${ayah.verseId})")
+            }
+            val clip = ClipData.newPlainText("Ayat Al-Qur'an", text)
+            clipboard?.setPrimaryClip(clip)
+            scope.launch {
+                snackbarHostState.showSnackbar("Ayat berhasil disalin ke papan klip")
+            }
+        } catch (e: Throwable) {
+            scope.launch {
+                snackbarHostState.showSnackbar("Gagal menyalin ayat ke papan klip")
+            }
         }
     }
 
     fun shareAyah(ayah: Ayah) {
-        val shareText = buildString {
-            appendLine(ayah.textAr)
-            appendLine()
-            if (ayah.transliteration.isNotBlank()) {
-                appendLine(ayah.transliteration)
+        try {
+            val shareText = buildString {
+                appendLine(ayah.textAr)
                 appendLine()
+                if (ayah.transliteration.isNotBlank()) {
+                    appendLine(ayah.transliteration)
+                    appendLine()
+                }
+                if (ayah.textId.isNotBlank()) {
+                    appendLine("\"${ayah.textId}\"")
+                    appendLine()
+                }
+                appendLine("— QS. ${surah?.nameLatin ?: "Surah ${ayah.surahId}"} [${ayah.surahId}:${ayah.verseId}]")
+                appendLine("Dibaca via Al-Qur'an Offline")
             }
-            if (ayah.textId.isNotBlank()) {
-                appendLine("\"${ayah.textId}\"")
-                appendLine()
+            val sendIntent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, shareText)
+                type = "text/plain"
             }
-            appendLine("— QS. ${surah?.nameLatin ?: "Surah ${ayah.surahId}"} [${ayah.surahId}:${ayah.verseId}]")
-            appendLine("Dibaca via Al-Qur'an Offline")
+            val shareIntent = Intent.createChooser(sendIntent, "Bagikan Ayat").apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            context.startActivity(shareIntent)
+        } catch (e: ActivityNotFoundException) {
+            scope.launch {
+                snackbarHostState.showSnackbar("Tidak ada aplikasi yang dapat menerima konten ini.")
+            }
+        } catch (e: Throwable) {
+            scope.launch {
+                snackbarHostState.showSnackbar("Tidak dapat membagikan ayat saat ini.")
+            }
         }
-        val sendIntent = Intent().apply {
-            action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_TEXT, shareText)
-            type = "text/plain"
-        }
-        val shareIntent = Intent.createChooser(sendIntent, "Bagikan Ayat")
-        context.startActivity(shareIntent)
     }
 
     Scaffold(
         topBar = {
             AppTopBar(
-                title = surah?.let { "${it.id}. ${it.nameLatin}" } ?: "Membaca Surah",
+                title = surah?.nameLatin ?: "Membaca Surah",
+                subtitle = surah?.let { "${it.totalVerses} ayat · ${it.type}" },
                 onBackClick = onBackClick,
                 actions = {
                     IconButton(onClick = onSettingsClick) {

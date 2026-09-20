@@ -3,30 +3,21 @@ package com.alquran.offline.ui.screens.privacy
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.Security
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.alquran.offline.ui.components.AppTopBar
 
 @Composable
@@ -44,106 +35,110 @@ fun PrivacyScreen(onBackClick: () -> Unit) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            contentPadding = PaddingValues(20.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
-            // Offline Security Card
+            // Offline Security Note
             item {
-                Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(16.dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.6f)
-                    )
+                Column(
+                    modifier = Modifier.fillMaxWidth()
                 ) {
-                    Row(
-                        modifier = Modifier.padding(16.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Security,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.size(36.dp)
-                        )
-                        Spacer(modifier = Modifier.width(16.dp))
-                        Column {
-                            Text(
-                                text = "100% Offline First",
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.Bold,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer
-                            )
-                            Text(
-                                text = "Aplikasi ini tidak memiliki izin akses internet dan tidak terhubung ke server manapun.",
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer
-                            )
-                        }
-                    }
+                    Text(
+                        text = "100% OFFLINE FIRST",
+                        style = MaterialTheme.typography.labelMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.primary,
+                        letterSpacing = 1.sp
+                    )
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Text(
+                        text = "Aplikasi ini dirancang untuk beroperasi sepenuhnya tanpa koneksi internet. Tidak ada izin akses jaringan (INTERNET permission) yang diminta oleh aplikasi ini ke sistem operasi Android. Seluruh data teks Al-Qur'an dan Hadits telah disertakan langsung di dalam paket instalasi.",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        lineHeight = 22.sp
+                    )
                 }
+            }
+
+            item {
+                androidx.compose.material3.HorizontalDivider(
+                    color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
+                    thickness = 0.5.dp
+                )
             }
 
             // Privacy Guarantees
             item {
-                Card(
+                Column(
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(16.dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.surface
-                    ),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    Column(
-                        modifier = Modifier.padding(16.dp),
-                        verticalArrangement = Arrangement.spacedBy(10.dp)
-                    ) {
-                        Text(
-                            text = "Jaminan Privasi Pengguna",
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.primary
-                        )
-                        PrivacyItem("Tanpa Akun & Tanpa Login: Langsung gunakan tanpa mendaftar.")
-                        PrivacyItem("Tanpa Pelacakan / Analytics: Tidak ada log aktivitas yang dikirim keluar.")
-                        PrivacyItem("Data Tersimpan Lokal: Bookmark, riwayat baca, dan pengaturan hanya ada di memori perangkat Anda.")
-                        PrivacyItem("Tanpa Izin Khusus: Aplikasi tidak meminta izin kontak, lokasi, kamera, maupun internet.")
-                    }
+                    Text(
+                        text = "JAMINAN PRIVASI",
+                        style = MaterialTheme.typography.labelMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.primary,
+                        letterSpacing = 1.sp
+                    )
+                    PrivacyItem(
+                        title = "Tanpa Akun & Registrasi",
+                        desc = "Aplikasi dapat langsung digunakan tanpa mendaftar atau login."
+                    )
+                    PrivacyItem(
+                        title = "Tanpa Pelacakan / Analytics",
+                        desc = "Tidak ada pelacakan penggunaan, pengumpulan data pribadi, maupun log aktivitas."
+                    )
+                    PrivacyItem(
+                        title = "Penyimpanan Lokal Sepenuhnya",
+                        desc = "Penanda baca (bookmark), riwayat terakhir dibaca, dan preferensi tampilan hanya tersimpan di perangkat Anda."
+                    )
+                    PrivacyItem(
+                        title = "Tanpa Izin Sensitif",
+                        desc = "Aplikasi tidak mengakses kontak, lokasi, kamera, mikrofon, atau penyimpanan eksternal."
+                    )
                 }
             }
 
-            // Data Attribution Card
             item {
-                Card(
+                androidx.compose.material3.HorizontalDivider(
+                    color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
+                    thickness = 0.5.dp
+                )
+            }
+
+            // Data Attribution
+            item {
+                Column(
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(16.dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.surface
-                    ),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
-                    Column(
-                        modifier = Modifier.padding(16.dp),
-                        verticalArrangement = Arrangement.spacedBy(10.dp)
-                    ) {
-                        Text(
-                            text = "Sumber & Lisensi Dataset",
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.primary
-                        )
-                        Text(
-                            text = "1. Teks Al-Qur'an (Rasm Utsmani):\nBersumber dari Tanzil Project (tanzil.net), terverifikasi dengan standar Uthmani mushaf dan berlisensi Creative Commons Attribution 3.0.",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurface
-                        )
-                        Spacer(modifier = Modifier.height(4.dp))
-                        Text(
-                            text = "2. Terjemahan Bahasa Indonesia:\nBersumber dari Kementerian Agama Republik Indonesia (Kemenag RI), digunakan secara terbuka untuk kepentingan dakwah dan literasi umat Islam.",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurface
-                        )
-                    }
+                    Text(
+                        text = "SUMBER & ATRIBUSI DATASET",
+                        style = MaterialTheme.typography.labelMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.primary,
+                        letterSpacing = 1.sp
+                    )
+                    Text(
+                        text = "1. Teks Al-Qur'an (Rasm Utsmani):\nBersumber dari Tanzil Project (tanzil.net), terverifikasi dengan standar mushaf Utsmani internasional dan berlisensi Creative Commons Attribution 3.0.",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        lineHeight = 22.sp
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = "2. Terjemahan Bahasa Indonesia:\nBersumber dari Kementerian Agama Republik Indonesia (Kemenag RI), digunakan secara terbuka untuk kepentingan literasi dan dakwah.",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        lineHeight = 22.sp
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = "3. Hadits Arbain An-Nawawi:\n42 Hadits pilihan karya Imam An-Nawawi beserta terjemahan Bahasa Indonesia yang telah diverifikasi.",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        lineHeight = 22.sp
+                    )
                 }
             }
         }
@@ -151,24 +146,20 @@ fun PrivacyScreen(onBackClick: () -> Unit) {
 }
 
 @Composable
-private fun PrivacyItem(text: String) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.Top
-    ) {
-        Icon(
-            imageVector = Icons.Default.CheckCircle,
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.primary,
-            modifier = Modifier
-                .size(20.dp)
-                .padding(top = 2.dp)
-        )
-        Spacer(modifier = Modifier.width(10.dp))
+private fun PrivacyItem(title: String, desc: String) {
+    Column(modifier = Modifier.fillMaxWidth()) {
         Text(
-            text = text,
+            text = title,
             style = MaterialTheme.typography.bodyMedium,
+            fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colorScheme.onSurface
+        )
+        Spacer(modifier = Modifier.height(2.dp))
+        Text(
+            text = desc,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            lineHeight = 18.sp
         )
     }
 }

@@ -1,5 +1,6 @@
 package com.alquran.offline.ui.screens.hadith
 
+import android.content.ActivityNotFoundException
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -77,43 +78,61 @@ fun HadithListScreen(
     val selectedHadith by viewModel.selectedHadith.collectAsState()
 
     fun copyHadith(hadith: Hadith) {
-        val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        val text = buildString {
-            appendLine("Hadits #${hadith.nomor}: ${hadith.judul}")
-            appendLine()
-            appendLine(hadith.teksAr)
-            appendLine()
-            appendLine(hadith.teksId)
-            appendLine()
-            appendLine("— ${hadith.sumber}")
-            appendLine("Dibaca via Al-Qur'an Offline")
-        }
-        val clip = ClipData.newPlainText("Hadits", text)
-        clipboard.setPrimaryClip(clip)
-        scope.launch {
-            snackbarHostState.showSnackbar("Hadits berhasil disalin ke papan klip")
+        try {
+            val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager
+            val text = buildString {
+                appendLine("Hadits #${hadith.nomor}: ${hadith.judul}")
+                appendLine()
+                appendLine(hadith.teksAr)
+                appendLine()
+                appendLine(hadith.teksId)
+                appendLine()
+                appendLine("— ${hadith.sumber}")
+                appendLine("Dibaca via Al-Qur'an Offline")
+            }
+            val clip = ClipData.newPlainText("Hadits", text)
+            clipboard?.setPrimaryClip(clip)
+            scope.launch {
+                snackbarHostState.showSnackbar("Hadits berhasil disalin ke papan klip")
+            }
+        } catch (e: Throwable) {
+            scope.launch {
+                snackbarHostState.showSnackbar("Gagal menyalin hadits ke papan klip")
+            }
         }
     }
 
     fun shareHadith(hadith: Hadith) {
-        val text = buildString {
-            appendLine("📖 Hadits #${hadith.nomor}: ${hadith.judul}")
-            appendLine()
-            appendLine(hadith.teksAr)
-            appendLine()
-            appendLine("\"${hadith.teksId}\"")
-            appendLine()
-            appendLine("— ${hadith.sumber}")
-            appendLine("Kitab: ${hadith.kitab}")
-            appendLine("Dibaca via Al-Qur'an Offline")
+        try {
+            val text = buildString {
+                appendLine("📖 Hadits #${hadith.nomor}: ${hadith.judul}")
+                appendLine()
+                appendLine(hadith.teksAr)
+                appendLine()
+                appendLine("\"${hadith.teksId}\"")
+                appendLine()
+                appendLine("— ${hadith.sumber}")
+                appendLine("Kitab: ${hadith.kitab}")
+                appendLine("Dibaca via Al-Qur'an Offline")
+            }
+            val sendIntent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, text)
+                type = "text/plain"
+            }
+            val shareIntent = Intent.createChooser(sendIntent, "Bagikan Hadits").apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            context.startActivity(shareIntent)
+        } catch (e: ActivityNotFoundException) {
+            scope.launch {
+                snackbarHostState.showSnackbar("Tidak ada aplikasi yang dapat menerima konten ini.")
+            }
+        } catch (e: Throwable) {
+            scope.launch {
+                snackbarHostState.showSnackbar("Tidak dapat membagikan hadits saat ini.")
+            }
         }
-        val sendIntent = Intent().apply {
-            action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_TEXT, text)
-            type = "text/plain"
-        }
-        val shareIntent = Intent.createChooser(sendIntent, "Bagikan Hadits")
-        context.startActivity(shareIntent)
     }
 
     Scaffold(
@@ -155,11 +174,11 @@ fun HadithListScreen(
                         }
                     }
                 },
-                shape = RoundedCornerShape(14.dp),
+                shape = RoundedCornerShape(8.dp),
                 singleLine = true,
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = MaterialTheme.colorScheme.primary,
-                    unfocusedBorderColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f),
+                    unfocusedBorderColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.4f),
                     focusedContainerColor = MaterialTheme.colorScheme.surface,
                     unfocusedContainerColor = MaterialTheme.colorScheme.surface
                 )
@@ -168,8 +187,7 @@ fun HadithListScreen(
             // Hadith List
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
+                contentPadding = PaddingValues(bottom = 16.dp)
             ) {
                 items(
                     items = hadiths,
@@ -292,45 +310,32 @@ fun HadithItemCard(
     onClick: () -> Unit,
     onBookmarkClick: () -> Unit
 ) {
-    Card(
+    Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = onClick),
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
-        ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
+            .clickable(onClick = onClick)
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(horizontal = 20.dp, vertical = 14.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Box(
-                modifier = Modifier
-                    .size(42.dp)
-                    .background(
-                        color = MaterialTheme.colorScheme.primaryContainer,
-                        shape = CircleShape
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = hadith.nomor.toString(),
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer
-                )
-            }
+            // Hadith Number (e.g. #01)
+            Text(
+                text = String.format("#%02d", hadith.nomor),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.SemiBold,
+                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
+                modifier = Modifier.width(36.dp)
+            )
 
-            Spacer(modifier = Modifier.width(14.dp))
+            Spacer(modifier = Modifier.width(8.dp))
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = hadith.judul,
-                    style = MaterialTheme.typography.titleMedium,
+                    style = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurface
                 )
@@ -338,25 +343,28 @@ fun HadithItemCard(
                 Text(
                     text = hadith.sumber,
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.primary
-                )
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = hadith.teksId,
-                    style = MaterialTheme.typography.bodySmall,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
 
-            IconButton(onClick = onBookmarkClick) {
+            IconButton(
+                onClick = onBookmarkClick,
+                modifier = Modifier.size(32.dp)
+            ) {
                 Icon(
                     imageVector = if (hadith.isBookmarked) Icons.Filled.Bookmark else Icons.Outlined.BookmarkBorder,
                     contentDescription = "Bookmark",
-                    tint = if (hadith.isBookmarked) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.outline
+                    tint = if (hadith.isBookmarked) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f),
+                    modifier = Modifier.size(18.dp)
                 )
             }
         }
+
+        HorizontalDivider(
+            thickness = 0.5.dp,
+            color = MaterialTheme.colorScheme.outline.copy(alpha = 0.35f),
+            modifier = Modifier.padding(start = 64.dp)
+        )
     }
 }
+

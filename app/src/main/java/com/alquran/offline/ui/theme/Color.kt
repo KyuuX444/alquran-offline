@@ -2,38 +2,39 @@ package com.alquran.offline.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Primary Emerald Green Palette
-val EmeraldPrimary = Color(0xFF0A6847)
+// Calm, dignified green accent
+val EmeraldPrimary = Color(0xFF1E5638)
 val EmeraldOnPrimary = Color(0xFFFFFFFF)
-val EmeraldPrimaryContainer = Color(0xFFD3EAD8)
-val EmeraldOnPrimaryContainer = Color(0xFF002114)
+val EmeraldPrimaryContainer = Color(0xFFE2EDE5)
+val EmeraldOnPrimaryContainer = Color(0xFF072113)
 
-val EmeraldPrimaryDark = Color(0xFF6BD093)
-val EmeraldOnPrimaryDark = Color(0xFF003923)
-val EmeraldPrimaryContainerDark = Color(0xFF005234)
-val EmeraldOnPrimaryContainerDark = Color(0xFF88FDB7)
+val EmeraldPrimaryDark = Color(0xFF7CB696)
+val EmeraldOnPrimaryDark = Color(0xFF00381E)
+val EmeraldPrimaryContainerDark = Color(0xFF143B27)
+val EmeraldOnPrimaryContainerDark = Color(0xFF98D4B2)
 
-// Gold / Amber Accents
-val GoldAccent = Color(0xFFC59419)
-val GoldAccentContainer = Color(0xFFFFF0CA)
-val GoldOnAccentContainer = Color(0xFF261900)
+// Subtle warm secondary accent
+val GoldAccent = Color(0xFF9E7822)
+val GoldAccentContainer = Color(0xFFFBF4E2)
+val GoldOnAccentContainer = Color(0xFF332500)
 
-val GoldAccentDark = Color(0xFFE5C067)
-val GoldAccentContainerDark = Color(0xFF4A3800)
-val GoldOnAccentContainerDark = Color(0xFFFFDF9E)
+val GoldAccentDark = Color(0xFFD4B06A)
+val GoldAccentContainerDark = Color(0xFF3B2E0A)
+val GoldOnAccentContainerDark = Color(0xFFFCE8B3)
 
-// Neutrals - Light
-val BackgroundLight = Color(0xFFF8FAF7)
+// Neutrals - Light (Warm paper tone, high contrast without harsh glare)
+val BackgroundLight = Color(0xFFFAFBF9)
 val SurfaceLight = Color(0xFFFFFFFF)
-val SurfaceVariantLight = Color(0xFFE7ECE6)
-val TextPrimaryLight = Color(0xFF191C1A)
-val TextSecondaryLight = Color(0xFF4A554D)
-val OutlineLight = Color(0xFF707972)
+val SurfaceVariantLight = Color(0xFFF0F3F0)
+val TextPrimaryLight = Color(0xFF181C19)
+val TextSecondaryLight = Color(0xFF556058)
+val OutlineLight = Color(0xFFE0E5E1)
 
-// Neutrals - Dark
-val BackgroundDark = Color(0xFF0F1512)
-val SurfaceDark = Color(0xFF161E1A)
-val SurfaceVariantDark = Color(0xFF212A25)
-val TextPrimaryDark = Color(0xFFE1E4E0)
-val TextSecondaryDark = Color(0xFF8B968E)
-val OutlineDark = Color(0xFF89938B)
+// Neutrals - Dark (Deep warm charcoal, comfortable for night reading)
+val BackgroundDark = Color(0xFF131714)
+val SurfaceDark = Color(0xFF191E1A)
+val SurfaceVariantDark = Color(0xFF222824)
+val TextPrimaryDark = Color(0xFFE2E6E3)
+val TextSecondaryDark = Color(0xFF94A098)
+val OutlineDark = Color(0xFF2C342E)
+

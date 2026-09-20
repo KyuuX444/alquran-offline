@@ -110,8 +110,10 @@ fun NavGraph(
                 }
             )
         ) { backStackEntry ->
-            val surahId = backStackEntry.arguments?.getInt("surahId") ?: 1
-            val targetVerse = backStackEntry.arguments?.getInt("targetVerse") ?: 1
+            val rawSurahId = backStackEntry.arguments?.getInt("surahId") ?: 1
+            val surahId = rawSurahId.coerceIn(1, 114)
+            val rawTargetVerse = backStackEntry.arguments?.getInt("targetVerse") ?: 1
+            val targetVerse = rawTargetVerse.coerceAtLeast(1)
             val viewModel: ReaderViewModel = viewModel(
                 key = "reader_${surahId}_$targetVerse",
                 factory = ReaderViewModel.Factory(repository, surahId, targetVerse)
@@ -161,7 +163,8 @@ fun NavGraph(
                 }
             )
         ) { backStackEntry ->
-            val initialId = backStackEntry.arguments?.getInt("initialId") ?: 0
+            val rawInitialId = backStackEntry.arguments?.getInt("initialId") ?: 0
+            val initialId = rawInitialId.coerceIn(0, 42)
             val viewModel: HadithListViewModel = viewModel(
                 key = "hadith_$initialId",
                 factory = HadithListViewModel.Factory(repository, if (initialId > 0) initialId else null)

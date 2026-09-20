@@ -60,34 +60,48 @@ object NotificationScheduler {
             }
 
             val canExact = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                alarmManager.canScheduleExactAlarms()
+                try {
+                    alarmManager.canScheduleExactAlarms()
+                } catch (e: Throwable) {
+                    false
+                }
             } else {
                 true
             }
 
-            if (canExact) {
-                try {
+            try {
+                if (canExact) {
                     AlarmManagerCompat.setExactAndAllowWhileIdle(
                         alarmManager,
                         AlarmManager.RTC_WAKEUP,
                         calendar.timeInMillis,
                         pendingIntent
                     )
-                } catch (e: SecurityException) {
+                } else {
+                    AlarmManagerCompat.setAndAllowWhileIdle(
+                        alarmManager,
+                        AlarmManager.RTC_WAKEUP,
+                        calendar.timeInMillis,
+                        pendingIntent
+                    )
+                }
+            } catch (e: SecurityException) {
+                try {
+                    AlarmManagerCompat.setAndAllowWhileIdle(
+                        alarmManager,
+                        AlarmManager.RTC_WAKEUP,
+                        calendar.timeInMillis,
+                        pendingIntent
+                    )
+                } catch (fallbackEx: Throwable) {
                     alarmManager.set(
                         AlarmManager.RTC_WAKEUP,
                         calendar.timeInMillis,
                         pendingIntent
                     )
                 }
-            } else {
-                alarmManager.set(
-                    AlarmManager.RTC_WAKEUP,
-                    calendar.timeInMillis,
-                    pendingIntent
-                )
             }
-        } catch (e: Exception) {
+        } catch (e: Throwable) {
             e.printStackTrace()
         }
     }

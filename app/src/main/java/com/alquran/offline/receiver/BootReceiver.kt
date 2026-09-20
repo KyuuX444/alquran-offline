@@ -30,12 +30,12 @@ class BootReceiver : BroadcastReceiver() {
                     if (enabled) {
                         NotificationScheduler.scheduleDailyNotification(context, hour, minute)
                     }
-                } catch (e: Exception) {
+                } catch (e: Throwable) {
                     e.printStackTrace()
                 } finally {
                     try {
                         pendingResult.finish()
-                    } catch (ignored: Exception) {
+                    } catch (ignored: Throwable) {
                     }
                 }
             }
