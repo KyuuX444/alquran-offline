@@ -253,20 +253,39 @@ Aplikasi ini terwujud berkat karya dan dedikasi komunitas open-source:
 
 ---
 
-## License
+## License & Provenance
 
-- **Source Code:** Dilisensikan di bawah [MIT License](LICENSE).
-- **Teks Al-Qur'an:** [Creative Commons Attribution 3.0 Unported](https://creativecommons.org/licenses/by/3.0/) (Tanzil Project).
-- **Terjemahan & Hadits:** Digunakan secara terbuka untuk kepentingan literasi dan dakwah Islam.
+### Source Availability & License
+- **Source Code:** Dilisensikan di bawah [MIT License](LICENSE). Kode sumber tersedia secara terbuka dan dapat dipelajari, dimodifikasi, maupun didistribusikan ulang.
+- **Dataset Al-Qur'an:** [Creative Commons Attribution 3.0 Unported](https://creativecommons.org/licenses/by/3.0/) (Tanzil Project).
+- **Terjemahan & Hadits:** Digunakan secara terbuka untuk kepentingan literasi, edukasi, dan dakwah Islam.
+
+### Redistribution & Modification
+- **Penggunaan Komersial & Non-Komersial:** Diizinkan sesuai ketentuan lisensi MIT dengan tetap menyertakan copyright notice dan file `NOTICE`.
+- **Modifikasi / Fork:** Jika Anda membuat fork atau mendistribusikan versi modifikasi dari aplikasi ini:
+  - Anda diwajibkan menyertakan atribusi pengembang asli (`© 2026 Kyuu / KyuuX444`).
+  - Anda **wajib membedakan branding** (nama aplikasi dan ikon) agar pengguna tidak mengira bahwa build tersebut merupakan rilisan resmi dari pengembang asli.
+  - Jangan menghapus catatan lisensi atau provenance identifier yang ada pada kode sumber.
+
+### Official Releases & Signature Verification
+Rilisan resmi (*Official Release*) ditandatangani secara kriptografis menggunakan signing key resmi pengembang melalui CI/CD GitHub Actions:
+- **Project Provenance ID:** `quran-offline-kyuu-2026-c9f2a87b`
+- **Official Repository:** [github.com/KyuuX444/alquran-offline](https://github.com/KyuuX444/alquran-offline)
+- **Official Releases:** Unduh APK resmi hanya dari [GitHub Releases](https://github.com/KyuuX444/alquran-offline/releases).
+
+Setiap rilisan resmi menyertakan checksum **SHA-256** pada file `.sha256`. Untuk memverifikasi integritas file APK yang Anda unduh:
+```bash
+sha256sum -c alquran-offline-v1.apk.sha256
+```
 
 ---
 
 ## Author
 
-Dikembangkan dan dipelihara oleh **Kyuu** ([@KyuuX444](https://github.com/KyuuX444)).
+Dikembangkan dan dipelihara dengan penuh dedikasi oleh **Kyuu** ([@KyuuX444](https://github.com/KyuuX444)).
 
 ---
 
 <p align="center">
-  <sub>Al-Qur'an Offline · Android · 100% Offline First · Open Source</sub>
+  <sub>Al-Qur'an Offline · Android · 100% Offline First · Open Source · © 2026 Kyuu</sub>
 </p>

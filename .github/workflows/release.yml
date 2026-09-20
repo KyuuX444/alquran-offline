@@ -110,11 +110,25 @@ jobs:
           echo "$SIGN_OUTPUT" | grep -q "Verified using v3 scheme (APK Signature Scheme v3): true" || { echo "v3 signing check failed!"; exit 1; }
           echo "SUCCESS: APK is signed with v1, v2, and v3 schemes."
 
+      - name: Generate SHA-256 Checksum & Release Summary
+        run: |
+          cd release_artifacts
+          sha256sum alquran-offline-v1.apk > alquran-offline-v1.apk.sha256
+          APK_HASH=$(awk '{print $1}' alquran-offline-v1.apk.sha256)
+          echo "APK_SHA256=$APK_HASH" >> $GITHUB_ENV
+          echo "SHA-256: $APK_HASH"
+          echo "### Official Release Provenance & Checksum" >> $GITHUB_STEP_SUMMARY
+          echo "- **Artifact:** \`alquran-offline-v1.apk\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **SHA-256:** \`$APK_HASH\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Signatures:** Verified v1, v2, v3 schemes" >> $GITHUB_STEP_SUMMARY
+          echo "- **Provenance ID:** \`quran-offline-kyuu-2026-c9f2a87b\`" >> $GITHUB_STEP_SUMMARY
+          cd ..
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: alquran-offline-v1
-          path: release_artifacts/alquran-offline-v1.apk
+          path: release_artifacts/*
           if-no-files-found: error
           retention-days: 90
 
@@ -122,9 +136,31 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: release_artifacts/alquran-offline-v1.apk
+          files: |
+            release_artifacts/alquran-offline-v1.apk
+            release_artifacts/alquran-offline-v1.apk.sha256
           name: "Al-Qur'an Offline v1.0"
           tag_name: ${{ github.ref_name }}
           draft: false
           prerelease: false
-          generate_release_notes: true
+          body: |
+            ## Al-Qur'an Offline v1.0 (Official Release)
+
+            Aplikasi Al-Qur'an dan Hadits 100% Offline, tanpa iklan, tanpa API eksternal, dan tanpa pelacakan data.
+
+            ### Informasi Rilis & Provenance
+            - **Versi:** 1.0 (versionCode: 1)
+            - **Pengembang:** Kyuu (KyuuX444)
+            - **Lisensi:** MIT License
+            - **Project ID:** `quran-offline-kyuu-2026-c9f2a87b`
+            - **Skema Penandatanganan:** v1 (JAR) + v2 (APK Signature) + v3 (Android 9+)
+
+            ### Verifikasi Checksum (SHA-256)
+            ```text
+            ${{ env.APK_SHA256 }}  alquran-offline-v1.apk
+            ```
+
+            Untuk memverifikasi keaslian file APK yang diunduh:
+            ```bash
+            sha256sum -c alquran-offline-v1.apk.sha256
+            ```

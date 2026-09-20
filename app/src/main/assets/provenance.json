@@ -1,0 +1,14 @@
+{
+  "project_name": "Al-Qur'an Offline",
+  "project_id": "quran-offline-kyuu-2026-c9f2a87b",
+  "author": "Kyuu",
+  "github": "KyuuX444",
+  "repository": "https://github.com/KyuuX444/alquran-offline",
+  "copyright": "© 2026 Kyuu / KyuuX444",
+  "license": "MIT License",
+  "version_name": "1.0",
+  "version_code": 1,
+  "verified_offline": true,
+  "telemetry_enabled": false,
+  "internet_required": false
+}

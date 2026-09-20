@@ -34,3 +34,7 @@
 # Compose and Coroutines
 -dontwarn androidx.compose.**
 -dontwarn kotlinx.coroutines.**
+
+# Keep Provenance & Project Identity (watermark preservation under R8)
+-keep class com.alquran.offline.provenance.** { *; }
+-keepclassmembers class com.alquran.offline.provenance.** { *; }

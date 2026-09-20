@@ -15,6 +15,11 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+        buildConfigField("String", "PROJECT_ID", "\"quran-offline-kyuu-2026-c9f2a87b\"")
+        buildConfigField("String", "AUTHOR", "\"Kyuu\"")
+        buildConfigField("String", "GITHUB", "\"KyuuX444\"")
+        buildConfigField("String", "COPYRIGHT", "\"© 2026 Kyuu / KyuuX444\"")
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
@@ -39,6 +44,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -79,6 +85,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     composeOptions {

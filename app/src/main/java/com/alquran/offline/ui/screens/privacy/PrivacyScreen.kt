@@ -14,14 +14,20 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.alquran.offline.provenance.BuildVerifier
+import com.alquran.offline.provenance.ProjectInfo
 import com.alquran.offline.ui.components.AppTopBar
 
 @Composable
 fun PrivacyScreen(onBackClick: () -> Unit) {
+    val context = LocalContext.current
+    val buildOrigin = remember { BuildVerifier.verifyBuildOrigin(context) }
     Scaffold(
         topBar = {
             AppTopBar(
@@ -138,6 +144,49 @@ fun PrivacyScreen(onBackClick: () -> Unit) {
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         lineHeight = 22.sp
+                    )
+                }
+            }
+
+            item {
+                HorizontalDivider(
+                    color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
+                    thickness = 0.5.dp
+                )
+            }
+
+            // Build Information & Project Provenance
+            item {
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    Text(
+                        text = "INFORMASI BUILD & IDENTITAS PROYEK",
+                        style = MaterialTheme.typography.labelMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.primary,
+                        letterSpacing = 1.sp
+                    )
+                    PrivacyItem(
+                        title = "Nama Aplikasi & Versi",
+                        desc = "${ProjectInfo.NAME} • v${ProjectInfo.VERSION_NAME} (Build ${ProjectInfo.VERSION_CODE})"
+                    )
+                    PrivacyItem(
+                        title = "Pengembang & Lisensi",
+                        desc = "${ProjectInfo.AUTHOR} (${ProjectInfo.GITHUB}) • ${ProjectInfo.LICENSE}"
+                    )
+                    PrivacyItem(
+                        title = "Hak Cipta",
+                        desc = ProjectInfo.COPYRIGHT
+                    )
+                    PrivacyItem(
+                        title = "Status Build",
+                        desc = "${buildOrigin.label}\n${buildOrigin.description}"
+                    )
+                    PrivacyItem(
+                        title = "Model Distribusi",
+                        desc = "100% Offline • Tanpa Pelacakan Data • Tanpa Akses Jaringan"
                     )
                 }
             }

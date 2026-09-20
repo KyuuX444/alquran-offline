@@ -52,6 +52,20 @@
             </intent-filter>
         </receiver>
 
+        <!-- Open Source Provenance Metadata -->
+        <meta-data
+            android:name="com.alquran.offline.provenance.project_id"
+            android:value="quran-offline-kyuu-2026-c9f2a87b" />
+        <meta-data
+            android:name="com.alquran.offline.provenance.author"
+            android:value="Kyuu (KyuuX444)" />
+        <meta-data
+            android:name="com.alquran.offline.provenance.copyright"
+            android:value="© 2026 Kyuu / KyuuX444" />
+        <meta-data
+            android:name="com.alquran.offline.provenance.license"
+            android:value="MIT License" />
+
     </application>
 
 </manifest>
