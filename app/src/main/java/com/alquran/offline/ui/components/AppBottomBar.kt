@@ -63,7 +63,7 @@ fun AppBottomBar(
                 NavigationBarItem(
                     selected = isSelected,
                     onClick = {
-                        if (!isSelected) {
+                        if (!isSelected || (tab is BottomTab.Quran && currentRoute == "juz_list")) {
                             onTabSelected(tab.route)
                         }
                     },

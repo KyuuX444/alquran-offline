@@ -28,10 +28,12 @@ import com.alquran.offline.QuranApplication
 import com.alquran.offline.data.preferences.UserPreferencesRepository
 import com.alquran.offline.data.repository.QuranRepository
 import com.alquran.offline.model.ThemeMode
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import com.alquran.offline.ui.components.AppBottomBar
 import com.alquran.offline.ui.navigation.NavGraph
 import com.alquran.offline.ui.navigation.Screen
 import com.alquran.offline.ui.navigation.navigateSafe
+import com.alquran.offline.ui.navigation.navigateToHome
 import com.alquran.offline.ui.theme.AlQuranOfflineTheme
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
@@ -49,6 +51,7 @@ class MainActivity : ComponentActivity() {
         val repository = app.repository
         val prayerRepository = app.prayerRepository
         val dailyPrayerRepository = app.dailyPrayerRepository
+        val asmaulHusnaRepository = app.asmaulHusnaRepository
         val preferencesRepository = UserPreferencesRepository(this)
 
         setContent {
@@ -88,17 +91,21 @@ class MainActivity : ComponentActivity() {
                                 AppBottomBar(
                                     currentRoute = currentRoute,
                                     onTabSelected = { targetRoute ->
-                                        val isAlreadySelected = when {
-                                            targetRoute.startsWith("hadith_list") -> currentRoute?.startsWith("hadith_list") == true
-                                            else -> currentRoute == targetRoute
-                                        }
-                                        if (!isAlreadySelected) {
-                                            navController.navigateSafe(targetRoute) {
-                                                popUpTo(Screen.Home.route) {
-                                                    saveState = true
+                                        if (targetRoute == Screen.Home.route) {
+                                            navController.navigateToHome()
+                                        } else {
+                                            val isAlreadySelected = when {
+                                                targetRoute.startsWith("hadith_list") -> currentRoute?.startsWith("hadith_list") == true
+                                                else -> currentRoute == targetRoute
+                                            }
+                                            if (!isAlreadySelected) {
+                                                navController.navigateSafe(targetRoute) {
+                                                    popUpTo(navController.graph.findStartDestination().id) {
+                                                        saveState = true
+                                                    }
+                                                    launchSingleTop = true
+                                                    restoreState = true
                                                 }
-                                                launchSingleTop = true
-                                                restoreState = true
                                             }
                                         }
                                     }
@@ -111,6 +118,7 @@ class MainActivity : ComponentActivity() {
                             repository = repository,
                             prayerRepository = prayerRepository,
                             dailyPrayerRepository = dailyPrayerRepository,
+                            asmaulHusnaRepository = asmaulHusnaRepository,
                             preferencesRepository = preferencesRepository,
                             modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding())
                         )

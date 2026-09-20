@@ -65,6 +65,7 @@ fun HomeScreen(
     onNavigateToHadithDetail: (Int) -> Unit,
     onNavigateToPrayerList: () -> Unit,
     onNavigateToDailyPrayer: () -> Unit = {},
+    onNavigateToAsmaulHusna: () -> Unit = {},
     onNavigateToBookmark: () -> Unit,
     onNavigateToSearch: () -> Unit,
     onNavigateToSettings: () -> Unit,
@@ -305,6 +306,30 @@ fun HomeScreen(
                             iconColor = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.weight(1f),
                             onClick = onNavigateToDailyPrayer
+                        )
+                    }
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(10.dp)
+                    ) {
+                        QuickMenuCard(
+                            title = "Asmaul Husna",
+                            subtitle = "99 Nama Allah",
+                            icon = Icons.Default.Star,
+                            containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.7f),
+                            iconColor = MaterialTheme.colorScheme.secondary,
+                            modifier = Modifier.weight(1f),
+                            onClick = onNavigateToAsmaulHusna
+                        )
+                        QuickMenuCard(
+                            title = "Al-Qur'an 30 Juz",
+                            subtitle = "Navigasi Juz",
+                            icon = Icons.AutoMirrored.Filled.MenuBook,
+                            containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.6f),
+                            iconColor = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.weight(1f),
+                            onClick = onNavigateToJuzList
                         )
                     }
                 }

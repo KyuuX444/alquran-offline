@@ -1,6 +1,7 @@
 package com.alquran.offline
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -128,6 +129,35 @@ class DatasetIntegrityTest {
                 }
                 assertTrue("Table '$table' must have an 'id' column", idColumnFound)
             }
+        }
+    }
+
+    @Test
+    fun testAuthenticIndonesianTransliterationAndTranslation() {
+        val dbFile = getDbFile()
+        val url = "jdbc:sqlite:${dbFile.absolutePath}"
+        DriverManager.getConnection(url).use { conn ->
+            val statement = conn.createStatement()
+            
+            // Al-Fatihah 1: Bismillāhir-raḥmānir-raḥīm
+            val rs1 = statement.executeQuery("SELECT transliteration, text_id FROM ayahs WHERE surah_id = 1 AND verse_id = 1")
+            assertTrue(rs1.next())
+            val trans1 = rs1.getString("transliteration")
+            val id1 = rs1.getString("text_id")
+            assertTrue("Al-Fatihah 1 transliteration must start with Bismillāh", trans1.startsWith("Bismillāh"))
+            assertFalse("Transliteration must not contain legacy AA notation", trans1.contains("AA"))
+            assertTrue("Translation must be non-empty", id1.isNotBlank())
+
+            // Al-Ikhlas 1: Qul huwallāhu aḥad
+            val rs2 = statement.executeQuery("SELECT transliteration, text_id FROM ayahs WHERE surah_id = 112 AND verse_id = 1")
+            assertTrue(rs2.next())
+            val trans2 = rs2.getString("transliteration")
+            assertTrue("Al-Ikhlas 1 transliteration must be Qul huwallāhu aḥad", trans2.contains("Qul huwallāhu aḥad"))
+
+            // Verify no legacy 'AA' ascii representations in any ayahs
+            val rsLegacy = statement.executeQuery("SELECT COUNT(*) FROM ayahs WHERE transliteration LIKE '%AA%'")
+            assertTrue(rsLegacy.next())
+            assertEquals("No ayahs should have raw legacy AA transliteration", 0, rsLegacy.getInt(1))
         }
     }
 }

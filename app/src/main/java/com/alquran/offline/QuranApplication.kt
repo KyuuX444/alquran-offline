@@ -8,6 +8,8 @@ package com.alquran.offline
 import android.app.Application
 import com.alquran.offline.data.local.AppDatabase
 import com.alquran.offline.data.preferences.UserPreferencesRepository
+import com.alquran.offline.data.repository.AsmaulHusnaRepository
+import com.alquran.offline.data.repository.AsmaulHusnaRepositoryImpl
 import com.alquran.offline.data.repository.DailyPrayerRepository
 import com.alquran.offline.data.repository.DailyPrayerRepositoryImpl
 import com.alquran.offline.data.repository.PrayerRepository
@@ -29,6 +31,9 @@ class QuranApplication : Application() {
     lateinit var dailyPrayerRepository: DailyPrayerRepository
         private set
 
+    lateinit var asmaulHusnaRepository: AsmaulHusnaRepository
+        private set
+
     override fun onCreate() {
         super.onCreate()
         val preferencesRepository = UserPreferencesRepository(this)
@@ -36,6 +41,7 @@ class QuranApplication : Application() {
         repository = QuranRepositoryImpl(database, preferencesRepository)
         prayerRepository = PrayerRepositoryImpl(this)
         dailyPrayerRepository = DailyPrayerRepositoryImpl(this)
+        asmaulHusnaRepository = AsmaulHusnaRepositoryImpl(this)
 
         // Asynchronously pre-warm the database on Dispatchers.IO.
         // Room extracts and prepares the asset database in the background

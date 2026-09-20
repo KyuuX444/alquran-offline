@@ -10,10 +10,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.alquran.offline.data.preferences.UserPreferencesRepository
+import com.alquran.offline.data.repository.AsmaulHusnaRepository
 import com.alquran.offline.data.repository.DailyPrayerRepository
 import com.alquran.offline.data.repository.PrayerRepository
 import com.alquran.offline.data.repository.QuranRepository
 import com.alquran.offline.ui.screens.about.AboutScreen
+import com.alquran.offline.ui.screens.asmaul_husna.AsmaulHusnaScreen
+import com.alquran.offline.ui.screens.asmaul_husna.AsmaulHusnaViewModel
 import com.alquran.offline.ui.screens.bookmark.BookmarkScreen
 import com.alquran.offline.ui.screens.bookmark.BookmarkViewModel
 import com.alquran.offline.ui.screens.daily_prayer.DailyPrayerDetailScreen
@@ -48,6 +51,7 @@ fun NavGraph(
     repository: QuranRepository,
     prayerRepository: PrayerRepository,
     dailyPrayerRepository: DailyPrayerRepository,
+    asmaulHusnaRepository: AsmaulHusnaRepository,
     preferencesRepository: UserPreferencesRepository,
     modifier: Modifier = Modifier
 ) {
@@ -71,6 +75,7 @@ fun NavGraph(
                 },
                 onNavigateToPrayerList = { navController.navigateSafe(Screen.PrayerList.route) },
                 onNavigateToDailyPrayer = { navController.navigateSafe(Screen.DailyPrayerList.route) },
+                onNavigateToAsmaulHusna = { navController.navigateSafe(Screen.AsmaulHusna.route) },
                 onNavigateToBookmark = { navController.navigateSafe(Screen.Bookmark.route) },
                 onNavigateToSearch = { navController.navigateSafe(Screen.Search.route) },
                 onNavigateToSettings = { navController.navigateSafe(Screen.Settings.route) },
@@ -143,6 +148,13 @@ fun NavGraph(
             ReaderScreen(
                 viewModel = viewModel,
                 onBackClick = { navController.popBackStackSafe() },
+                onHomeClick = { navController.navigateToHome() },
+                onNavigateToSurah = { nextSurahId ->
+                    navController.navigateSafe(Screen.Reader.createRoute(nextSurahId, 1)) {
+                        popUpTo(Screen.Reader.route) { inclusive = true }
+                        launchSingleTop = true
+                    }
+                },
                 onSettingsClick = { navController.navigateSafe(Screen.Settings.route) }
             )
         }
@@ -314,6 +326,18 @@ fun NavGraph(
         composable(Screen.About.route) {
             AboutScreen(
                 onBackClick = { navController.popBackStackSafe() }
+            )
+        }
+
+        // Asmaul Husna Screen (99 Nama Allah Yang Indah)
+        composable(Screen.AsmaulHusna.route) {
+            val viewModel: AsmaulHusnaViewModel = viewModel(
+                factory = AsmaulHusnaViewModel.Factory(asmaulHusnaRepository)
+            )
+            AsmaulHusnaScreen(
+                viewModel = viewModel,
+                onBackClick = { navController.popBackStackSafe() },
+                onHomeClick = { navController.navigateToHome() }
             )
         }
     }

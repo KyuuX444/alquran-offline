@@ -30,18 +30,43 @@ fun NavController.navigateSafe(
 }
 
 /**
- * Safely pops the backstack only when in the RESUMED state, preventing crashes on rapid back clicks.
+ * Safely pops the backstack when in at least the STARTED state, preventing crashes on rapid back clicks,
+ * and falls back to Home if the stack has no previous destinations.
  */
 fun NavController.popBackStackSafe(): Boolean {
     val currentEntry = currentBackStackEntry
-    return if (currentEntry != null && currentEntry.lifecycle.currentState == Lifecycle.State.RESUMED) {
+    return if (currentEntry == null || currentEntry.lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
         try {
-            popBackStack()
+            val popped = popBackStack()
+            if (!popped) {
+                navigateToHome()
+                true
+            } else {
+                true
+            }
         } catch (e: Throwable) {
             e.printStackTrace()
-            false
+            try {
+                navigateToHome()
+                true
+            } catch (ignored: Throwable) {
+                false
+            }
         }
     } else {
         false
+    }
+}
+
+/**
+ * Navigates directly and reliably to the Home screen, popping all higher destinations.
+ */
+fun NavController.navigateToHome() {
+    val popped = popBackStack(Screen.Home.route, inclusive = false)
+    if (!popped) {
+        navigateSafe(Screen.Home.route) {
+            popUpTo(0) { inclusive = true }
+            launchSingleTop = true
+        }
     }
 }

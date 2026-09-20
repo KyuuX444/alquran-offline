@@ -7,11 +7,11 @@
   "total_surahs": 114,
   "total_verses": 6236,
   "total_juz": 30,
-  "sha256_checksum": "b8aaf900ca6b709b52f1d44bd1b89fcac84c6ec772a946b6b93036a0c03aa694",
+  "sha256_checksum": "caf5e61925f148400240f040ba3d548dda0f1b8ff8c8f433aee207f57096add1",
   "surahs": [
     {
       "id": 1,
-      "name_ar": "\u0627\u0644\u0641\u0627\u062a\u062d\u0629",
+      "name_ar": "الفاتحة",
       "name_latin": "Al-Fatihah",
       "translation_id": "Pembukaan",
       "type": "Makkiyah",
@@ -21,7 +21,7 @@
     },
     {
       "id": 2,
-      "name_ar": "\u0627\u0644\u0628\u0642\u0631\u0629",
+      "name_ar": "البقرة",
       "name_latin": "Al-Baqarah",
       "translation_id": "Sapi Betina",
       "type": "Madaniyah",
@@ -31,7 +31,7 @@
     },
     {
       "id": 3,
-      "name_ar": "\u0622\u0644 \u0639\u0645\u0631\u0627\u0646",
+      "name_ar": "آل عمران",
       "name_latin": "Ali 'Imran",
       "translation_id": "Keluarga Imran",
       "type": "Madaniyah",
@@ -41,7 +41,7 @@
     },
     {
       "id": 4,
-      "name_ar": "\u0627\u0644\u0646\u0633\u0627\u0621",
+      "name_ar": "النساء",
       "name_latin": "An-Nisa",
       "translation_id": "Wanita",
       "type": "Madaniyah",
@@ -51,7 +51,7 @@
     },
     {
       "id": 5,
-      "name_ar": "\u0627\u0644\u0645\u0627\u0626\u062f\u0629",
+      "name_ar": "المائدة",
       "name_latin": "Al-Ma'idah",
       "translation_id": "Jamuan (Hidangan Makanan)",
       "type": "Madaniyah",
@@ -61,7 +61,7 @@
     },
     {
       "id": 6,
-      "name_ar": "\u0627\u0644\u0623\u0646\u0639\u0627\u0645",
+      "name_ar": "الأنعام",
       "name_latin": "Al-An'am",
       "translation_id": "Binatang Ternak",
       "type": "Makkiyah",
@@ -71,7 +71,7 @@
     },
     {
       "id": 7,
-      "name_ar": "\u0627\u0644\u0623\u0639\u0631\u0627\u0641",
+      "name_ar": "الأعراف",
       "name_latin": "Al-A'raf",
       "translation_id": "Tempat-tempat Tinggi",
       "type": "Makkiyah",
@@ -81,7 +81,7 @@
     },
     {
       "id": 8,
-      "name_ar": "\u0627\u0644\u0623\u0646\u0641\u0627\u0644",
+      "name_ar": "الأنفال",
       "name_latin": "Al-Anfal",
       "translation_id": "Rampasan Perang",
       "type": "Madaniyah",
@@ -91,7 +91,7 @@
     },
     {
       "id": 9,
-      "name_ar": "\u0627\u0644\u062a\u0648\u0628\u0629",
+      "name_ar": "التوبة",
       "name_latin": "At-Tawbah",
       "translation_id": "Pengampunan",
       "type": "Madaniyah",
@@ -101,7 +101,7 @@
     },
     {
       "id": 10,
-      "name_ar": "\u064a\u0648\u0646\u0633",
+      "name_ar": "يونس",
       "name_latin": "Yunus",
       "translation_id": "Yunus",
       "type": "Makkiyah",
@@ -111,7 +111,7 @@
     },
     {
       "id": 11,
-      "name_ar": "\u0647\u0648\u062f",
+      "name_ar": "هود",
       "name_latin": "Hud",
       "translation_id": "Hud",
       "type": "Makkiyah",
@@ -121,7 +121,7 @@
     },
     {
       "id": 12,
-      "name_ar": "\u064a\u0648\u0633\u0641",
+      "name_ar": "يوسف",
       "name_latin": "Yusuf",
       "translation_id": "Yusuf",
       "type": "Makkiyah",
@@ -131,7 +131,7 @@
     },
     {
       "id": 13,
-      "name_ar": "\u0627\u0644\u0631\u0639\u062f",
+      "name_ar": "الرعد",
       "name_latin": "Ar-Ra'd",
       "translation_id": "Guruh (Petir)",
       "type": "Madaniyah",
@@ -141,7 +141,7 @@
     },
     {
       "id": 14,
-      "name_ar": "\u0627\u0628\u0631\u0627\u0647\u064a\u0645",
+      "name_ar": "ابراهيم",
       "name_latin": "Ibrahim",
       "translation_id": "Ibrahim",
       "type": "Makkiyah",
@@ -151,7 +151,7 @@
     },
     {
       "id": 15,
-      "name_ar": "\u0627\u0644\u062d\u062c\u0631",
+      "name_ar": "الحجر",
       "name_latin": "Al-Hijr",
       "translation_id": "Bukit",
       "type": "Makkiyah",
@@ -161,7 +161,7 @@
     },
     {
       "id": 16,
-      "name_ar": "\u0627\u0644\u0646\u062d\u0644",
+      "name_ar": "النحل",
       "name_latin": "An-Nahl",
       "translation_id": "Lebah Madu",
       "type": "Makkiyah",
@@ -171,7 +171,7 @@
     },
     {
       "id": 17,
-      "name_ar": "\u0627\u0644\u0625\u0633\u0631\u0627\u0621",
+      "name_ar": "الإسراء",
       "name_latin": "Al-Isra",
       "translation_id": "Perjalanan Malam",
       "type": "Makkiyah",
@@ -181,7 +181,7 @@
     },
     {
       "id": 18,
-      "name_ar": "\u0627\u0644\u0643\u0647\u0641",
+      "name_ar": "الكهف",
       "name_latin": "Al-Kahf",
       "translation_id": "Para Penghuni Gua",
       "type": "Makkiyah",
@@ -191,7 +191,7 @@
     },
     {
       "id": 19,
-      "name_ar": "\u0645\u0631\u064a\u0645",
+      "name_ar": "مريم",
       "name_latin": "Maryam",
       "translation_id": "Maryam",
       "type": "Makkiyah",
@@ -201,7 +201,7 @@
     },
     {
       "id": 20,
-      "name_ar": "\u0637\u0647",
+      "name_ar": "طه",
       "name_latin": "Taha",
       "translation_id": "Tha-Ha",
       "type": "Makkiyah",
@@ -211,7 +211,7 @@
     },
     {
       "id": 21,
-      "name_ar": "\u0627\u0644\u0623\u0646\u0628\u064a\u0627\u0621",
+      "name_ar": "الأنبياء",
       "name_latin": "Al-Anbya",
       "translation_id": "Para Nabi",
       "type": "Makkiyah",
@@ -221,7 +221,7 @@
     },
     {
       "id": 22,
-      "name_ar": "\u0627\u0644\u062d\u062c",
+      "name_ar": "الحج",
       "name_latin": "Al-Hajj",
       "translation_id": "Haji",
       "type": "Madaniyah",
@@ -231,7 +231,7 @@
     },
     {
       "id": 23,
-      "name_ar": "\u0627\u0644\u0645\u0624\u0645\u0646\u0648\u0646",
+      "name_ar": "المؤمنون",
       "name_latin": "Al-Mu'minun",
       "translation_id": "Orang-orang Mukmin",
       "type": "Makkiyah",
@@ -241,7 +241,7 @@
     },
     {
       "id": 24,
-      "name_ar": "\u0627\u0644\u0646\u0648\u0631",
+      "name_ar": "النور",
       "name_latin": "An-Nur",
       "translation_id": "Cahaya",
       "type": "Madaniyah",
@@ -251,7 +251,7 @@
     },
     {
       "id": 25,
-      "name_ar": "\u0627\u0644\u0641\u0631\u0642\u0627\u0646",
+      "name_ar": "الفرقان",
       "name_latin": "Al-Furqan",
       "translation_id": "Pembeda",
       "type": "Makkiyah",
@@ -261,7 +261,7 @@
     },
     {
       "id": 26,
-      "name_ar": "\u0627\u0644\u0634\u0639\u0631\u0627\u0621",
+      "name_ar": "الشعراء",
       "name_latin": "Ash-Shu'ara",
       "translation_id": "Penyair",
       "type": "Makkiyah",
@@ -271,7 +271,7 @@
     },
     {
       "id": 27,
-      "name_ar": "\u0627\u0644\u0646\u0645\u0644",
+      "name_ar": "النمل",
       "name_latin": "An-Naml",
       "translation_id": "Semut",
       "type": "Makkiyah",
@@ -281,7 +281,7 @@
     },
     {
       "id": 28,
-      "name_ar": "\u0627\u0644\u0642\u0635\u0635",
+      "name_ar": "القصص",
       "name_latin": "Al-Qasas",
       "translation_id": "Kisah-kisah",
       "type": "Makkiyah",
@@ -291,7 +291,7 @@
     },
     {
       "id": 29,
-      "name_ar": "\u0627\u0644\u0639\u0646\u0643\u0628\u0648\u062a",
+      "name_ar": "العنكبوت",
       "name_latin": "Al-'Ankabut",
       "translation_id": "Laba-laba",
       "type": "Makkiyah",
@@ -301,7 +301,7 @@
     },
     {
       "id": 30,
-      "name_ar": "\u0627\u0644\u0631\u0648\u0645",
+      "name_ar": "الروم",
       "name_latin": "Ar-Rum",
       "translation_id": "Bangsa Romawi",
       "type": "Makkiyah",
@@ -311,7 +311,7 @@
     },
     {
       "id": 31,
-      "name_ar": "\u0644\u0642\u0645\u0627\u0646",
+      "name_ar": "لقمان",
       "name_latin": "Luqman",
       "translation_id": "Luqman",
       "type": "Makkiyah",
@@ -321,7 +321,7 @@
     },
     {
       "id": 32,
-      "name_ar": "\u0627\u0644\u0633\u062c\u062f\u0629",
+      "name_ar": "السجدة",
       "name_latin": "As-Sajdah",
       "translation_id": "Sujud",
       "type": "Makkiyah",
@@ -331,7 +331,7 @@
     },
     {
       "id": 33,
-      "name_ar": "\u0627\u0644\u0623\u062d\u0632\u0627\u0628",
+      "name_ar": "الأحزاب",
       "name_latin": "Al-Ahzab",
       "translation_id": "Golongan yang Bersekutu",
       "type": "Madaniyah",
@@ -341,7 +341,7 @@
     },
     {
       "id": 34,
-      "name_ar": "\u0633\u0628\u0625",
+      "name_ar": "سبإ",
       "name_latin": "Saba",
       "translation_id": "Saba\\'",
       "type": "Makkiyah",
@@ -351,7 +351,7 @@
     },
     {
       "id": 35,
-      "name_ar": "\u0641\u0627\u0637\u0631",
+      "name_ar": "فاطر",
       "name_latin": "Fatir",
       "translation_id": "Pencipta",
       "type": "Makkiyah",
@@ -361,7 +361,7 @@
     },
     {
       "id": 36,
-      "name_ar": "\u064a\u0633",
+      "name_ar": "يس",
       "name_latin": "Ya-Sin",
       "translation_id": "Yas Sin",
       "type": "Makkiyah",
@@ -371,7 +371,7 @@
     },
     {
       "id": 37,
-      "name_ar": "\u0627\u0644\u0635\u0627\u0641\u0627\u062a",
+      "name_ar": "الصافات",
       "name_latin": "As-Saffat",
       "translation_id": "Barisan-barisan",
       "type": "Makkiyah",
@@ -381,7 +381,7 @@
     },
     {
       "id": 38,
-      "name_ar": "\u0635",
+      "name_ar": "ص",
       "name_latin": "Sad",
       "translation_id": "Shad",
       "type": "Makkiyah",
@@ -391,7 +391,7 @@
     },
     {
       "id": 39,
-      "name_ar": "\u0627\u0644\u0632\u0645\u0631",
+      "name_ar": "الزمر",
       "name_latin": "Az-Zumar",
       "translation_id": "Para Rombongan",
       "type": "Makkiyah",
@@ -401,7 +401,7 @@
     },
     {
       "id": 40,
-      "name_ar": "\u063a\u0627\u0641\u0631",
+      "name_ar": "غافر",
       "name_latin": "Ghafir",
       "translation_id": "Sang Maha Pengampun",
       "type": "Makkiyah",
@@ -411,7 +411,7 @@
     },
     {
       "id": 41,
-      "name_ar": "\u0641\u0635\u0644\u062a",
+      "name_ar": "فصلت",
       "name_latin": "Fussilat",
       "translation_id": "Yang Dijelaskan",
       "type": "Makkiyah",
@@ -421,7 +421,7 @@
     },
     {
       "id": 42,
-      "name_ar": "\u0627\u0644\u0634\u0648\u0631\u0649",
+      "name_ar": "الشورى",
       "name_latin": "Ash-Shuraa",
       "translation_id": "Musyawarah",
       "type": "Makkiyah",
@@ -431,7 +431,7 @@
     },
     {
       "id": 43,
-      "name_ar": "\u0627\u0644\u0632\u062e\u0631\u0641",
+      "name_ar": "الزخرف",
       "name_latin": "Az-Zukhruf",
       "translation_id": "Perhiasan",
       "type": "Makkiyah",
@@ -441,7 +441,7 @@
     },
     {
       "id": 44,
-      "name_ar": "\u0627\u0644\u062f\u062e\u0627\u0646",
+      "name_ar": "الدخان",
       "name_latin": "Ad-Dukhan",
       "translation_id": "Kabut",
       "type": "Makkiyah",
@@ -451,7 +451,7 @@
     },
     {
       "id": 45,
-      "name_ar": "\u0627\u0644\u062c\u0627\u062b\u064a\u0629",
+      "name_ar": "الجاثية",
       "name_latin": "Al-Jathiyah",
       "translation_id": "Yang Bertekuk Lutut",
       "type": "Makkiyah",
@@ -461,7 +461,7 @@
     },
     {
       "id": 46,
-      "name_ar": "\u0627\u0644\u0623\u062d\u0642\u0627\u0641",
+      "name_ar": "الأحقاف",
       "name_latin": "Al-Ahqaf",
       "translation_id": "Bukit-bukir Pasir",
       "type": "Makkiyah",
@@ -471,7 +471,7 @@
     },
     {
       "id": 47,
-      "name_ar": "\u0645\u062d\u0645\u062f",
+      "name_ar": "محمد",
       "name_latin": "Muhammad",
       "translation_id": "Muhammad",
       "type": "Madaniyah",
@@ -481,7 +481,7 @@
     },
     {
       "id": 48,
-      "name_ar": "\u0627\u0644\u0641\u062a\u062d",
+      "name_ar": "الفتح",
       "name_latin": "Al-Fath",
       "translation_id": "Kemenangan",
       "type": "Madaniyah",
@@ -491,7 +491,7 @@
     },
     {
       "id": 49,
-      "name_ar": "\u0627\u0644\u062d\u062c\u0631\u0627\u062a",
+      "name_ar": "الحجرات",
       "name_latin": "Al-Hujurat",
       "translation_id": "Kamar-kamar",
       "type": "Madaniyah",
@@ -501,7 +501,7 @@
     },
     {
       "id": 50,
-      "name_ar": "\u0642",
+      "name_ar": "ق",
       "name_latin": "Qaf",
       "translation_id": "Qaf",
       "type": "Makkiyah",
@@ -511,7 +511,7 @@
     },
     {
       "id": 51,
-      "name_ar": "\u0627\u0644\u0630\u0627\u0631\u064a\u0627\u062a",
+      "name_ar": "الذاريات",
       "name_latin": "Adh-Dhariyat",
       "translation_id": "Angin yang Menerbangkan",
       "type": "Makkiyah",
@@ -521,7 +521,7 @@
     },
     {
       "id": 52,
-      "name_ar": "\u0627\u0644\u0637\u0648\u0631",
+      "name_ar": "الطور",
       "name_latin": "At-Tur",
       "translation_id": "Bukit",
       "type": "Makkiyah",
@@ -531,7 +531,7 @@
     },
     {
       "id": 53,
-      "name_ar": "\u0627\u0644\u0646\u062c\u0645",
+      "name_ar": "النجم",
       "name_latin": "An-Najm",
       "translation_id": "Bintang",
       "type": "Makkiyah",
@@ -541,7 +541,7 @@
     },
     {
       "id": 54,
-      "name_ar": "\u0627\u0644\u0642\u0645\u0631",
+      "name_ar": "القمر",
       "name_latin": "Al-Qamar",
       "translation_id": "Bulan",
       "type": "Makkiyah",
@@ -551,7 +551,7 @@
     },
     {
       "id": 55,
-      "name_ar": "\u0627\u0644\u0631\u062d\u0645\u0646",
+      "name_ar": "الرحمن",
       "name_latin": "Ar-Rahman",
       "translation_id": "Yang Maha Pemurah",
       "type": "Madaniyah",
@@ -561,7 +561,7 @@
     },
     {
       "id": 56,
-      "name_ar": "\u0627\u0644\u0648\u0627\u0642\u0639\u0629",
+      "name_ar": "الواقعة",
       "name_latin": "Al-Waqi'ah",
       "translation_id": "Hari Kiamat",
       "type": "Makkiyah",
@@ -571,7 +571,7 @@
     },
     {
       "id": 57,
-      "name_ar": "\u0627\u0644\u062d\u062f\u064a\u062f",
+      "name_ar": "الحديد",
       "name_latin": "Al-Hadid",
       "translation_id": "Besi",
       "type": "Madaniyah",
@@ -581,7 +581,7 @@
     },
     {
       "id": 58,
-      "name_ar": "\u0627\u0644\u0645\u062c\u0627\u062f\u0644\u0629",
+      "name_ar": "المجادلة",
       "name_latin": "Al-Mujadila",
       "translation_id": "Wanita yang Menggugat",
       "type": "Madaniyah",
@@ -591,7 +591,7 @@
     },
     {
       "id": 59,
-      "name_ar": "\u0627\u0644\u062d\u0634\u0631",
+      "name_ar": "الحشر",
       "name_latin": "Al-Hashr",
       "translation_id": "Pengusiran",
       "type": "Madaniyah",
@@ -601,7 +601,7 @@
     },
     {
       "id": 60,
-      "name_ar": "\u0627\u0644\u0645\u0645\u062a\u062d\u0646\u0629",
+      "name_ar": "الممتحنة",
       "name_latin": "Al-Mumtahanah",
       "translation_id": "Wanita yang Diuji",
       "type": "Madaniyah",
@@ -611,7 +611,7 @@
     },
     {
       "id": 61,
-      "name_ar": "\u0627\u0644\u0635\u0641",
+      "name_ar": "الصف",
       "name_latin": "As-Saf",
       "translation_id": "Barisan",
       "type": "Madaniyah",
@@ -621,7 +621,7 @@
     },
     {
       "id": 62,
-      "name_ar": "\u0627\u0644\u062c\u0645\u0639\u0629",
+      "name_ar": "الجمعة",
       "name_latin": "Al-Jumu'ah",
       "translation_id": "Hari Jum\\'at",
       "type": "Madaniyah",
@@ -631,7 +631,7 @@
     },
     {
       "id": 63,
-      "name_ar": "\u0627\u0644\u0645\u0646\u0627\u0641\u0642\u0648\u0646",
+      "name_ar": "المنافقون",
       "name_latin": "Al-Munafiqun",
       "translation_id": "Kaum Munafik",
       "type": "Madaniyah",
@@ -641,7 +641,7 @@
     },
     {
       "id": 64,
-      "name_ar": "\u0627\u0644\u062a\u063a\u0627\u0628\u0646",
+      "name_ar": "التغابن",
       "name_latin": "At-Taghabun",
       "translation_id": "Hari Dinampakkan Kesalahan",
       "type": "Madaniyah",
@@ -651,7 +651,7 @@
     },
     {
       "id": 65,
-      "name_ar": "\u0627\u0644\u0637\u0644\u0627\u0642",
+      "name_ar": "الطلاق",
       "name_latin": "At-Talaq",
       "translation_id": "Perceraian",
       "type": "Madaniyah",
@@ -661,7 +661,7 @@
     },
     {
       "id": 66,
-      "name_ar": "\u0627\u0644\u062a\u062d\u0631\u064a\u0645",
+      "name_ar": "التحريم",
       "name_latin": "At-Tahrim",
       "translation_id": "Mengharamkan",
       "type": "Madaniyah",
@@ -671,7 +671,7 @@
     },
     {
       "id": 67,
-      "name_ar": "\u0627\u0644\u0645\u0644\u0643",
+      "name_ar": "الملك",
       "name_latin": "Al-Mulk",
       "translation_id": "Kerajaan",
       "type": "Makkiyah",
@@ -681,7 +681,7 @@
     },
     {
       "id": 68,
-      "name_ar": "\u0627\u0644\u0642\u0644\u0645",
+      "name_ar": "القلم",
       "name_latin": "Al-Qalam",
       "translation_id": "Pena",
       "type": "Makkiyah",
@@ -691,7 +691,7 @@
     },
     {
       "id": 69,
-      "name_ar": "\u0627\u0644\u062d\u0627\u0642\u0629",
+      "name_ar": "الحاقة",
       "name_latin": "Al-Haqqah",
       "translation_id": "Kenyataan (Hari Kiamat)",
       "type": "Makkiyah",
@@ -701,7 +701,7 @@
     },
     {
       "id": 70,
-      "name_ar": "\u0627\u0644\u0645\u0639\u0627\u0631\u062c",
+      "name_ar": "المعارج",
       "name_latin": "Al-Ma'arij",
       "translation_id": "Tempat yang Naik",
       "type": "Makkiyah",
@@ -711,7 +711,7 @@
     },
     {
       "id": 71,
-      "name_ar": "\u0646\u0648\u062d",
+      "name_ar": "نوح",
       "name_latin": "Nuh",
       "translation_id": "Nuh",
       "type": "Makkiyah",
@@ -721,7 +721,7 @@
     },
     {
       "id": 72,
-      "name_ar": "\u0627\u0644\u062c\u0646",
+      "name_ar": "الجن",
       "name_latin": "Al-Jinn",
       "translation_id": "Jin",
       "type": "Makkiyah",
@@ -731,7 +731,7 @@
     },
     {
       "id": 73,
-      "name_ar": "\u0627\u0644\u0645\u0632\u0645\u0644",
+      "name_ar": "المزمل",
       "name_latin": "Al-Muzzammil",
       "translation_id": "Orang yang Berselimut",
       "type": "Makkiyah",
@@ -741,7 +741,7 @@
     },
     {
       "id": 74,
-      "name_ar": "\u0627\u0644\u0645\u062f\u062b\u0631",
+      "name_ar": "المدثر",
       "name_latin": "Al-Muddaththir",
       "translation_id": "Orang yang Berkemul",
       "type": "Makkiyah",
@@ -751,7 +751,7 @@
     },
     {
       "id": 75,
-      "name_ar": "\u0627\u0644\u0642\u064a\u0627\u0645\u0629",
+      "name_ar": "القيامة",
       "name_latin": "Al-Qiyamah",
       "translation_id": "Hari Berbangkit",
       "type": "Makkiyah",
@@ -761,7 +761,7 @@
     },
     {
       "id": 76,
-      "name_ar": "\u0627\u0644\u0627\u0646\u0633\u0627\u0646",
+      "name_ar": "الانسان",
       "name_latin": "Al-Insan",
       "translation_id": "Manusia",
       "type": "Madaniyah",
@@ -771,7 +771,7 @@
     },
     {
       "id": 77,
-      "name_ar": "\u0627\u0644\u0645\u0631\u0633\u0644\u0627\u062a",
+      "name_ar": "المرسلات",
       "name_latin": "Al-Mursalat",
       "translation_id": "Malaikat-malaikan yang Diutus",
       "type": "Makkiyah",
@@ -781,7 +781,7 @@
     },
     {
       "id": 78,
-      "name_ar": "\u0627\u0644\u0646\u0628\u0625",
+      "name_ar": "النبإ",
       "name_latin": "An-Naba",
       "translation_id": "Berita Besar",
       "type": "Makkiyah",
@@ -791,7 +791,7 @@
     },
     {
       "id": 79,
-      "name_ar": "\u0627\u0644\u0646\u0627\u0632\u0639\u0627\u062a",
+      "name_ar": "النازعات",
       "name_latin": "An-Nazi'at",
       "translation_id": "Malaikat yang Mencabut",
       "type": "Makkiyah",
@@ -801,7 +801,7 @@
     },
     {
       "id": 80,
-      "name_ar": "\u0639\u0628\u0633",
+      "name_ar": "عبس",
       "name_latin": "'Abasa",
       "translation_id": "Ia Bermuka Masam",
       "type": "Makkiyah",
@@ -811,7 +811,7 @@
     },
     {
       "id": 81,
-      "name_ar": "\u0627\u0644\u062a\u0643\u0648\u064a\u0631",
+      "name_ar": "التكوير",
       "name_latin": "At-Takwir",
       "translation_id": "Menggulung",
       "type": "Makkiyah",
@@ -821,7 +821,7 @@
     },
     {
       "id": 82,
-      "name_ar": "\u0627\u0644\u0625\u0646\u0641\u0637\u0627\u0631",
+      "name_ar": "الإنفطار",
       "name_latin": "Al-Infitar",
       "translation_id": "Terbelah",
       "type": "Makkiyah",
@@ -831,7 +831,7 @@
     },
     {
       "id": 83,
-      "name_ar": "\u0627\u0644\u0645\u0637\u0641\u0641\u064a\u0646",
+      "name_ar": "المطففين",
       "name_latin": "Al-Mutaffifin",
       "translation_id": "Orang-orang Curang",
       "type": "Makkiyah",
@@ -841,7 +841,7 @@
     },
     {
       "id": 84,
-      "name_ar": "\u0627\u0644\u0625\u0646\u0634\u0642\u0627\u0642",
+      "name_ar": "الإنشقاق",
       "name_latin": "Al-Inshiqaq",
       "translation_id": "Terbelah",
       "type": "Makkiyah",
@@ -851,7 +851,7 @@
     },
     {
       "id": 85,
-      "name_ar": "\u0627\u0644\u0628\u0631\u0648\u062c",
+      "name_ar": "البروج",
       "name_latin": "Al-Buruj",
       "translation_id": "Gugusan Bintang",
       "type": "Makkiyah",
@@ -861,7 +861,7 @@
     },
     {
       "id": 86,
-      "name_ar": "\u0627\u0644\u0637\u0627\u0631\u0642",
+      "name_ar": "الطارق",
       "name_latin": "At-Tariq",
       "translation_id": "Yang Datang di Malam Hari",
       "type": "Makkiyah",
@@ -871,7 +871,7 @@
     },
     {
       "id": 87,
-      "name_ar": "\u0627\u0644\u0623\u0639\u0644\u0649",
+      "name_ar": "الأعلى",
       "name_latin": "Al-A'la",
       "translation_id": "Yang Paling Tinggi",
       "type": "Makkiyah",
@@ -881,7 +881,7 @@
     },
     {
       "id": 88,
-      "name_ar": "\u0627\u0644\u063a\u0627\u0634\u064a\u0629",
+      "name_ar": "الغاشية",
       "name_latin": "Al-Ghashiyah",
       "translation_id": "Hari Pembalasan",
       "type": "Makkiyah",
@@ -891,7 +891,7 @@
     },
     {
       "id": 89,
-      "name_ar": "\u0627\u0644\u0641\u062c\u0631",
+      "name_ar": "الفجر",
       "name_latin": "Al-Fajr",
       "translation_id": "Fajar",
       "type": "Makkiyah",
@@ -901,7 +901,7 @@
     },
     {
       "id": 90,
-      "name_ar": "\u0627\u0644\u0628\u0644\u062f",
+      "name_ar": "البلد",
       "name_latin": "Al-Balad",
       "translation_id": "Negeri",
       "type": "Makkiyah",
@@ -911,7 +911,7 @@
     },
     {
       "id": 91,
-      "name_ar": "\u0627\u0644\u0634\u0645\u0633",
+      "name_ar": "الشمس",
       "name_latin": "Ash-Shams",
       "translation_id": "Matahari",
       "type": "Makkiyah",
@@ -921,7 +921,7 @@
     },
     {
       "id": 92,
-      "name_ar": "\u0627\u0644\u0644\u064a\u0644",
+      "name_ar": "الليل",
       "name_latin": "Al-Layl",
       "translation_id": "Malam",
       "type": "Makkiyah",
@@ -931,7 +931,7 @@
     },
     {
       "id": 93,
-      "name_ar": "\u0627\u0644\u0636\u062d\u0649",
+      "name_ar": "الضحى",
       "name_latin": "Ad-Duhaa",
       "translation_id": "Waktu Dhuha",
       "type": "Makkiyah",
@@ -941,7 +941,7 @@
     },
     {
       "id": 94,
-      "name_ar": "\u0627\u0644\u0634\u0631\u062d",
+      "name_ar": "الشرح",
       "name_latin": "Ash-Sharh",
       "translation_id": "Melapangkan",
       "type": "Makkiyah",
@@ -951,7 +951,7 @@
     },
     {
       "id": 95,
-      "name_ar": "\u0627\u0644\u062a\u064a\u0646",
+      "name_ar": "التين",
       "name_latin": "At-Tin",
       "translation_id": "Buah Tin",
       "type": "Makkiyah",
@@ -961,7 +961,7 @@
     },
     {
       "id": 96,
-      "name_ar": "\u0627\u0644\u0639\u0644\u0642",
+      "name_ar": "العلق",
       "name_latin": "Al-'Alaq",
       "translation_id": "Segumpal Darah",
       "type": "Makkiyah",
@@ -971,7 +971,7 @@
     },
     {
       "id": 97,
-      "name_ar": "\u0627\u0644\u0642\u062f\u0631",
+      "name_ar": "القدر",
       "name_latin": "Al-Qadr",
       "translation_id": "Kemuliaan",
       "type": "Makkiyah",
@@ -981,7 +981,7 @@
     },
     {
       "id": 98,
-      "name_ar": "\u0627\u0644\u0628\u064a\u0646\u0629",
+      "name_ar": "البينة",
       "name_latin": "Al-Bayyinah",
       "translation_id": "Pembuktian",
       "type": "Madaniyah",
@@ -991,7 +991,7 @@
     },
     {
       "id": 99,
-      "name_ar": "\u0627\u0644\u0632\u0644\u0632\u0644\u0629",
+      "name_ar": "الزلزلة",
       "name_latin": "Az-Zalzalah",
       "translation_id": "Kegoncangan",
       "type": "Madaniyah",
@@ -1001,7 +1001,7 @@
     },
     {
       "id": 100,
-      "name_ar": "\u0627\u0644\u0639\u0627\u062f\u064a\u0627\u062a",
+      "name_ar": "العاديات",
       "name_latin": "Al-'Adiyat",
       "translation_id": "Berlari Kencang",
       "type": "Makkiyah",
@@ -1011,7 +1011,7 @@
     },
     {
       "id": 101,
-      "name_ar": "\u0627\u0644\u0642\u0627\u0631\u0639\u0629",
+      "name_ar": "القارعة",
       "name_latin": "Al-Qari'ah",
       "translation_id": "Hari Kiamat",
       "type": "Makkiyah",
@@ -1021,7 +1021,7 @@
     },
     {
       "id": 102,
-      "name_ar": "\u0627\u0644\u062a\u0643\u0627\u062b\u0631",
+      "name_ar": "التكاثر",
       "name_latin": "At-Takathur",
       "translation_id": "Bermegah-megahan",
       "type": "Makkiyah",
@@ -1031,7 +1031,7 @@
     },
     {
       "id": 103,
-      "name_ar": "\u0627\u0644\u0639\u0635\u0631",
+      "name_ar": "العصر",
       "name_latin": "Al-'Asr",
       "translation_id": "Waktu Sore",
       "type": "Makkiyah",
@@ -1041,7 +1041,7 @@
     },
     {
       "id": 104,
-      "name_ar": "\u0627\u0644\u0647\u0645\u0632\u0629",
+      "name_ar": "الهمزة",
       "name_latin": "Al-Humazah",
       "translation_id": "Pengumpat",
       "type": "Makkiyah",
@@ -1051,7 +1051,7 @@
     },
     {
       "id": 105,
-      "name_ar": "\u0627\u0644\u0641\u064a\u0644",
+      "name_ar": "الفيل",
       "name_latin": "Al-Fil",
       "translation_id": "Gajah",
       "type": "Makkiyah",
@@ -1061,7 +1061,7 @@
     },
     {
       "id": 106,
-      "name_ar": "\u0642\u0631\u064a\u0634",
+      "name_ar": "قريش",
       "name_latin": "Quraysh",
       "translation_id": "Suku Quraisy",
       "type": "Makkiyah",
@@ -1071,7 +1071,7 @@
     },
     {
       "id": 107,
-      "name_ar": "\u0627\u0644\u0645\u0627\u0639\u0648\u0646",
+      "name_ar": "الماعون",
       "name_latin": "Al-Ma'un",
       "translation_id": "Barang yang Berguna",
       "type": "Makkiyah",
@@ -1081,7 +1081,7 @@
     },
     {
       "id": 108,
-      "name_ar": "\u0627\u0644\u0643\u0648\u062b\u0631",
+      "name_ar": "الكوثر",
       "name_latin": "Al-Kawthar",
       "translation_id": "Nikmat Berlimpah",
       "type": "Makkiyah",
@@ -1091,7 +1091,7 @@
     },
     {
       "id": 109,
-      "name_ar": "\u0627\u0644\u0643\u0627\u0641\u0631\u0648\u0646",
+      "name_ar": "الكافرون",
       "name_latin": "Al-Kafirun",
       "translation_id": "Orang-orang Kafir",
       "type": "Makkiyah",
@@ -1101,7 +1101,7 @@
     },
     {
       "id": 110,
-      "name_ar": "\u0627\u0644\u0646\u0635\u0631",
+      "name_ar": "النصر",
       "name_latin": "An-Nasr",
       "translation_id": "Pertolongan",
       "type": "Madaniyah",
@@ -1111,7 +1111,7 @@
     },
     {
       "id": 111,
-      "name_ar": "\u0627\u0644\u0645\u0633\u062f",
+      "name_ar": "المسد",
       "name_latin": "Al-Masad",
       "translation_id": "Gejolak Api (Sabut)",
       "type": "Makkiyah",
@@ -1121,7 +1121,7 @@
     },
     {
       "id": 112,
-      "name_ar": "\u0627\u0644\u0625\u062e\u0644\u0627\u0635",
+      "name_ar": "الإخلاص",
       "name_latin": "Al-Ikhlas",
       "translation_id": "Ikhlash",
       "type": "Makkiyah",
@@ -1131,7 +1131,7 @@
     },
     {
       "id": 113,
-      "name_ar": "\u0627\u0644\u0641\u0644\u0642",
+      "name_ar": "الفلق",
       "name_latin": "Al-Falaq",
       "translation_id": "Waktu Shubuh",
       "type": "Makkiyah",
@@ -1141,7 +1141,7 @@
     },
     {
       "id": 114,
-      "name_ar": "\u0627\u0644\u0646\u0627\u0633",
+      "name_ar": "الناس",
       "name_latin": "An-Nas",
       "translation_id": "Umat Manusia",
       "type": "Makkiyah",

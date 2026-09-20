@@ -109,5 +109,6 @@ class CrashProofingTest {
 
         assertEquals("reader/1?targetVerse=1", Screen.Reader.createRoute(1, 1))
         assertEquals("reader/114?targetVerse=6", Screen.Reader.createRoute(114, 6))
+        assertEquals("asmaul_husna", Screen.AsmaulHusna.route)
     }
 }

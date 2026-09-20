@@ -42,4 +42,6 @@ sealed class Screen(val route: String) {
             return "reader/$surahId?targetVerse=$targetVerse"
         }
     }
+
+    object AsmaulHusna : Screen("asmaul_husna")
 }
