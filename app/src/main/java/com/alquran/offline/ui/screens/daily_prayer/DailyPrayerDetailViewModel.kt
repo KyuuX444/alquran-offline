@@ -28,13 +28,13 @@ class DailyPrayerDetailViewModel(
     val arabicFontSize = preferencesRepository.arabicFontSize.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
-        initialValue = 28
+        initialValue = 28f
     )
 
     val translationFontSize = preferencesRepository.translationFontSize.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
-        initialValue = 15
+        initialValue = 15f
     )
 
     init {
@@ -77,15 +77,15 @@ class DailyPrayerDetailViewModel(
         }
     }
 
-    fun updateArabicFontSize(size: Int) {
+    fun updateArabicFontSize(size: Float) {
         viewModelScope.launch {
-            preferencesRepository.setArabicFontSize(size.coerceIn(20, 44))
+            preferencesRepository.setArabicFontSize(size.coerceIn(20f, 44f))
         }
     }
 
-    fun updateTranslationFontSize(size: Int) {
+    fun updateTranslationFontSize(size: Float) {
         viewModelScope.launch {
-            preferencesRepository.setTranslationFontSize(size.coerceIn(12, 24))
+            preferencesRepository.setTranslationFontSize(size.coerceIn(12f, 24f))
         }
     }
 

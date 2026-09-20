@@ -218,16 +218,16 @@ fun DailyPrayerDetailScreen(
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Text(
-                                    text = "Ukuran Arab ($arabicFontSize sp)",
+                                    text = "Ukuran Arab (${arabicFontSize.toInt()} sp)",
                                     style = MaterialTheme.typography.bodySmall
                                 )
                                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                                     OutlinedButton(
-                                        onClick = { viewModel.updateArabicFontSize(arabicFontSize - 2) },
+                                        onClick = { viewModel.updateArabicFontSize(arabicFontSize - 2f) },
                                         contentPadding = PaddingValues(horizontal = 12.dp)
                                     ) { Text("A-") }
                                     OutlinedButton(
-                                        onClick = { viewModel.updateArabicFontSize(arabicFontSize + 2) },
+                                        onClick = { viewModel.updateArabicFontSize(arabicFontSize + 2f) },
                                         contentPadding = PaddingValues(horizontal = 12.dp)
                                     ) { Text("A+") }
                                 }
