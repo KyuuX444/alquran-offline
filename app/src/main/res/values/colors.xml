@@ -17,4 +17,5 @@
     <color name="surface_dark">#1A221F</color>
     <color name="text_primary_dark">#E2E3DE</color>
     <color name="text_secondary_dark">#9AA89D</color>
+    <color name="ic_launcher_bg">#F8FAFE</color>
 </resources>

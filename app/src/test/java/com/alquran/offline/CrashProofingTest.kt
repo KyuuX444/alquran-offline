@@ -101,6 +101,8 @@ class CrashProofingTest {
         assertEquals("prayer_list", Screen.PrayerList.route)
         assertEquals("prayer_detail/1", Screen.PrayerDetail.createRoute(1))
         assertEquals("hadith_detail/1", Screen.HadithDetail.createRoute(1))
+        assertEquals("daily_prayer_list", Screen.DailyPrayerList.route)
+        assertEquals("daily_prayer_detail/doa-1", Screen.DailyPrayerDetail.createRoute("doa-1"))
 
         assertEquals("hadith_list?initialId=0", Screen.HadithList.createRoute(0))
         assertEquals("hadith_list?initialId=42", Screen.HadithList.createRoute(42))

@@ -48,6 +48,7 @@ class MainActivity : ComponentActivity() {
         val app = application as QuranApplication
         val repository = app.repository
         val prayerRepository = app.prayerRepository
+        val dailyPrayerRepository = app.dailyPrayerRepository
         val preferencesRepository = UserPreferencesRepository(this)
 
         setContent {
@@ -109,6 +110,7 @@ class MainActivity : ComponentActivity() {
                             navController = navController,
                             repository = repository,
                             prayerRepository = prayerRepository,
+                            dailyPrayerRepository = dailyPrayerRepository,
                             preferencesRepository = preferencesRepository,
                             modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding())
                         )
@@ -168,6 +170,11 @@ class MainActivity : ComponentActivity() {
                     }
                     "prayer", "bacaan_sholat" -> {
                         navController.navigateSafe(Screen.PrayerList.route) {
+                            launchSingleTop = true
+                        }
+                    }
+                    "daily_prayer", "doa" -> {
+                        navController.navigateSafe(Screen.DailyPrayerList.route) {
                             launchSingleTop = true
                         }
                     }

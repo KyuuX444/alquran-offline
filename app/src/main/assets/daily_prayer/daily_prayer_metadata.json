@@ -1,0 +1,18 @@
+{
+  "dataset_name": "Doa Harian Shahih (Al-Qur'an & As-Sunnah)",
+  "version": "1.0",
+  "sha256": "8ea3d7df54b8300cf7889394a4b65baca57a1f31e895f5504acbcaeb31e6e584",
+  "total_prayers": 32,
+  "sources": [
+    "Shahih Al-Bukhari",
+    "Shahih Muslim",
+    "Sunan Abu Daud",
+    "Sunan At-Tirmidzi",
+    "Sunan Ibnu Majah",
+    "Muwatha' Malik",
+    "Musnad Ahmad",
+    "Al-Qur'an Al-Karim",
+    "Hisnul Muslim (Sa'id bin Ali bin Wahf Al-Qahthani)"
+  ],
+  "verification": "All Arabic texts, transliterations, and translations verified against classical Hadith compilations and the Holy Quran. 100% offline."
+}

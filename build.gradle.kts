@@ -16,11 +16,17 @@ tasks.register<Exec>("validatePrayerDataset") {
     commandLine("python3", "${rootDir}/scripts/validate_prayer_dataset.py")
 }
 
+tasks.register<Exec>("validateDailyPrayerDataset") {
+    group = "verification"
+    description = "Validates the integrity of the Doa Harian dataset"
+    commandLine("python3", "${rootDir}/scripts/validate_daily_prayer_dataset.py")
+}
+
 tasks.register<Exec>("validateDataset") {
     group = "verification"
     description = "Validates the integrity of the Al-Qur'an dataset (114 surahs, 6,236 ayahs, 30 juz)"
     commandLine("python3", "${rootDir}/scripts/validate_dataset.py")
-    dependsOn("validateHadithDataset", "validatePrayerDataset")
+    dependsOn("validateHadithDataset", "validatePrayerDataset", "validateDailyPrayerDataset")
 }
 
 tasks.register("clean", Delete::class) {

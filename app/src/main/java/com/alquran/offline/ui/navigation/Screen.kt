@@ -29,6 +29,14 @@ sealed class Screen(val route: String) {
         }
     }
 
+    object DailyPrayerList : Screen("daily_prayer_list")
+
+    object DailyPrayerDetail : Screen("daily_prayer_detail/{prayerId}") {
+        fun createRoute(prayerId: String): String {
+            return "daily_prayer_detail/$prayerId"
+        }
+    }
+
     object Reader : Screen("reader/{surahId}?targetVerse={targetVerse}") {
         fun createRoute(surahId: Int, targetVerse: Int = 1): String {
             return "reader/$surahId?targetVerse=$targetVerse"

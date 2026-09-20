@@ -64,6 +64,7 @@ fun HomeScreen(
     onNavigateToHadith: () -> Unit,
     onNavigateToHadithDetail: (Int) -> Unit,
     onNavigateToPrayerList: () -> Unit,
+    onNavigateToDailyPrayer: () -> Unit = {},
     onNavigateToBookmark: () -> Unit,
     onNavigateToSearch: () -> Unit,
     onNavigateToSettings: () -> Unit,
@@ -289,7 +290,7 @@ fun HomeScreen(
                     ) {
                         QuickMenuCard(
                             title = "Bacaan Sholat",
-                            subtitle = "Panduan Lengkap",
+                            subtitle = "Panduan Sahih",
                             icon = Icons.Default.SelfImprovement,
                             containerColor = MaterialTheme.colorScheme.tertiaryContainer,
                             iconColor = MaterialTheme.colorScheme.tertiary,
@@ -297,13 +298,13 @@ fun HomeScreen(
                             onClick = onNavigateToPrayerList
                         )
                         QuickMenuCard(
-                            title = "30 Juz",
-                            subtitle = "Mushaf Al-Qur'an",
+                            title = "Doa Harian",
+                            subtitle = "30+ Doa Shahih",
                             icon = Icons.AutoMirrored.Outlined.MenuBook,
                             containerColor = MaterialTheme.colorScheme.surfaceVariant,
                             iconColor = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.weight(1f),
-                            onClick = onNavigateToJuzList
+                            onClick = onNavigateToDailyPrayer
                         )
                     }
                 }

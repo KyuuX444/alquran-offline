@@ -1,0 +1,322 @@
+[
+  {
+    "id": "doa-1",
+    "category": "Aktivitas Harian",
+    "title": "Doa Sebelum Tidur",
+    "arabic": "بِاسْمِكَ اللّٰهُمَّ أَحْيَا وَأَمُوْتُ",
+    "transliteration": "Bismikallaahumma ahyaa wa amuut.",
+    "translation": "Dengan nama-Mu ya Allah, aku hidup dan aku mati.",
+    "source": "HR. Bukhari no. 6324 & Muslim no. 2714",
+    "reference": "Shahih Bukhari (Kitab Ad-Da'awat) & Hisnul Muslim"
+  },
+  {
+    "id": "doa-2",
+    "category": "Aktivitas Harian",
+    "title": "Doa Bangun Tidur",
+    "arabic": "اَلْحَمْدُ لِلّٰهِ الَّذِيْ أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُوْرُ",
+    "transliteration": "Alhamdulillaahil-ladzii ahyaanaa ba'da maa amaatanaa wa ilaihin-nusyuur.",
+    "translation": "Segala puji bagi Allah yang menghidupkan kami kembali setelah mematikan kami, dan kepada-Nya kami dibangkitkan.",
+    "source": "HR. Bukhari no. 6312 & Muslim no. 2711",
+    "reference": "Shahih Bukhari & Hisnul Muslim"
+  },
+  {
+    "id": "doa-3",
+    "category": "Aktivitas Harian",
+    "title": "Doa Sebelum Makan",
+    "arabic": "بِسْمِ اللّٰهِ",
+    "transliteration": "Bismillaah.",
+    "translation": "Dengan nama Allah (aku mulai makan).",
+    "source": "HR. Bukhari no. 5376 & Muslim no. 2022",
+    "reference": "Shahih Muslim & Hisnul Muslim"
+  },
+  {
+    "id": "doa-4",
+    "category": "Aktivitas Harian",
+    "title": "Doa Sesudah Makan",
+    "arabic": "اَلْحَمْدُ لِلّٰهِ الَّذِيْ أَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مُسْلِمِيْنَ",
+    "transliteration": "Alhamdulillaahil-ladzii ath'amanaa wa saqaanaa wa ja'alanaa muslimiin.",
+    "translation": "Segala puji bagi Allah yang telah memberi kami makan dan minum, serta menjadikan kami termasuk orang-orang yang berserah diri (muslim).",
+    "source": "HR. Abu Daud no. 3850 & Tirmidzi no. 3457",
+    "reference": "Sunan Abu Daud & Kitab Al-Adzkar An-Nawawi"
+  },
+  {
+    "id": "doa-5",
+    "category": "Rumah & Tempat Tinggal",
+    "title": "Doa Masuk Rumah",
+    "arabic": "بِسْمِ اللّٰهِ وَلَجْنَا، وَبِسْمِ اللّٰهِ خَرَجْنَا، وَعَلَى اللّٰهِ رَبِّنَا تَوَكَّلْنَا",
+    "transliteration": "Bismillaahi walajnaa, wa bismillaahi kharajnaa, wa 'alallaahi rabbinaa tawakkalnaa.",
+    "translation": "Dengan nama Allah kami masuk, dan dengan nama Allah kami keluar, dan kepada Allah Rabb kami, kami bertawakal.",
+    "source": "HR. Abu Daud no. 5096",
+    "reference": "Sunan Abu Daud (Kitab Al-Adab) & Hisnul Muslim"
+  },
+  {
+    "id": "doa-6",
+    "category": "Rumah & Tempat Tinggal",
+    "title": "Doa Keluar Rumah",
+    "arabic": "بِسْمِ اللّٰهِ تَوَكَّلْتُ عَلَى اللّٰهِ، لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللّٰهِ",
+    "transliteration": "Bismillaahi tawakkaltu 'alallaah, laa hawla wa laa quwwata illaa billaah.",
+    "translation": "Dengan nama Allah, aku bertawakal kepada Allah. Tiada daya dan kekuatan kecuali dengan pertolongan Allah.",
+    "source": "HR. Abu Daud no. 5095 & Tirmidzi no. 3426",
+    "reference": "Sunan At-Tirmidzi & Hisnul Muslim"
+  },
+  {
+    "id": "doa-7",
+    "category": "Ibadah & Masjid",
+    "title": "Doa Masuk Masjid",
+    "arabic": "اَللّٰهُمَّ افْتَحْ لِيْ أَبْوَابَ رَحْمَتِكَ",
+    "transliteration": "Allaahummaftah lii abwaaba rahmatik.",
+    "translation": "Ya Allah, bukakanlah untukku pintu-pintu rahmat-Mu.",
+    "source": "HR. Muslim no. 713 & Abu Daud no. 465",
+    "reference": "Shahih Muslim & Hisnul Muslim"
+  },
+  {
+    "id": "doa-8",
+    "category": "Ibadah & Masjid",
+    "title": "Doa Keluar Masjid",
+    "arabic": "اَللّٰهُمَّ إِنِّيْ أَسْأَلُكَ مِنْ فَضْلِكَ",
+    "transliteration": "Allaahumma innii as-aluka min fadhlik.",
+    "translation": "Ya Allah, sesungguhnya aku memohon karunia dari-Mu.",
+    "source": "HR. Muslim no. 713 & Abu Daud no. 465",
+    "reference": "Shahih Muslim & Hisnul Muslim"
+  },
+  {
+    "id": "doa-9",
+    "category": "Ibadah & Thaharah",
+    "title": "Doa Sebelum Wudhu",
+    "arabic": "بِسْمِ اللّٰهِ",
+    "transliteration": "Bismillaah.",
+    "translation": "Dengan nama Allah.",
+    "source": "HR. Abu Daud no. 101, Tirmidzi no. 25, & Ibnu Majah no. 397",
+    "reference": "Sunan Ibnu Majah & Hisnul Muslim"
+  },
+  {
+    "id": "doa-10",
+    "category": "Ibadah & Thaharah",
+    "title": "Doa Sesudah Wudhu",
+    "arabic": "أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيْكَ لَهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُوْلُهُ، اَللّٰهُمَّ اجْعَلْنِيْ مِنَ التَّوَّابِيْنَ وَاجْعَلْنِيْ مِنَ الْمُتَطَهِّرِيْنَ",
+    "transliteration": "Asyhadu allaa ilaaha illallaah wahdahu laa syariika lah, wa asyhadu anna Muhammadan 'abduhu wa rasuuluh. Allaahummaj'alnii minat-tawwaabiina waj'alnii minal-mutathahhiriin.",
+    "translation": "Aku bersaksi bahwa tiada tuhan selain Allah Yang Maha Esa tiada sekutu bagi-Nya, dan aku bersaksi bahwa Muhammad adalah hamba dan utusan-Nya. Ya Allah, jadikanlah aku termasuk orang-orang yang bertaubat dan jadikanlah aku termasuk orang-orang yang senantiasa bersuci.",
+    "source": "HR. Muslim no. 234 & Tirmidzi no. 55",
+    "reference": "Shahih Muslim & Sunan At-Tirmidzi"
+  },
+  {
+    "id": "doa-11",
+    "category": "Perjalanan & Safar",
+    "title": "Doa Bepergian (Safar)",
+    "arabic": "سُبْحَانَ الَّذِيْ سَخَّرَ لَنَا هٰذَا وَمَا كُنَّا لَهُ مُقْرِنِيْنَ، وَإِنَّا إِلَىٰ رَبِّنَا لَمُنْقَلِبُوْنَ، اَللّٰهُمَّ إِنَّا نَسْأَلُكَ فِيْ سَفَرِنَا هٰذَا الْبِرَّ وَالتَّقْوَىٰ، وَمِنَ الْعَمَلِ مَا تَرْضَىٰ",
+    "transliteration": "Subhaanal-ladzii sakh-khara lanaa haadzaa wa maa kunnaa lahu muqriniin, wa innaa ilaa rabbinaa lamunqalibuun. Allaahumma innaa nas-aluka fii safarinaa haadzal-birra wat-taqwaa, wa minal-'amali maa tardhaa.",
+    "translation": "Maha Suci Allah yang telah menundukkan kendaraan ini untuk kami padahal sebelumnya kami tidak mampu menguasainya, dan sesungguhnya kami akan kembali kepada Rabb kami. Ya Allah, sesungguhnya kami memohon kebaikan dan ketakwaan dalam perjalanan ini, serta amal perbuatan yang Engkau ridhai.",
+    "source": "HR. Muslim no. 1342 & QS. Az-Zukhruf: 13-14",
+    "reference": "Shahih Muslim & Hisnul Muslim"
+  },
+  {
+    "id": "doa-12",
+    "category": "Perjalanan & Safar",
+    "title": "Doa Ketika Sampai Tujuan",
+    "arabic": "أَعُوْذُ بِكَلِمَاتِ اللّٰهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",
+    "transliteration": "A'uudzu bikalimaatillaahit-taammaati min syarri maa khalaq.",
+    "translation": "Aku berlindung dengan kalimat-kalimat Allah yang sempurna dari kejahatan apa yang telah Dia ciptakan.",
+    "source": "HR. Muslim no. 2708",
+    "reference": "Shahih Muslim (Kitab Adz-Dzikr) & Hisnul Muslim"
+  },
+  {
+    "id": "doa-13",
+    "category": "Belajar & Menuntut Ilmu",
+    "title": "Doa Memulai Belajar",
+    "arabic": "رَبِّ زِدْنِيْ عِلْمًا، وَارْزُقْنِيْ فَهْمًا",
+    "transliteration": "Rabbi zidnii 'ilmaa, warzuqnii fahmaa.",
+    "translation": "Ya Tuhanku, tambahkanlah ilmu kepadaku, dan berilah aku karunia pemahaman.",
+    "source": "QS. Thaha: 114",
+    "reference": "Al-Qur'an Surah Thaha: 114 & Kitab Al-Adzkar An-Nawawi"
+  },
+  {
+    "id": "doa-14",
+    "category": "Belajar & Menuntut Ilmu",
+    "title": "Doa Setelah Belajar (Kaffaratul Majelis)",
+    "arabic": "سُبْحَانَكَ اللّٰهُمَّ وَبِحَمْدِكَ، أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا أَنْتَ، أَسْتَغْفِرُكَ وَأَتُوْبُ إِلَيْكَ",
+    "transliteration": "Subhaanakallaahumma wa bihamdika, asyhadu allaa ilaaha illaa anta, astaghfiruka wa atuubu ilaik.",
+    "translation": "Maha Suci Engkau, ya Allah, dan dengan memuji-Mu. Aku bersaksi bahwa tiada tuhan selain Engkau, aku memohon ampunan-Mu dan bertaubat kepada-Mu.",
+    "source": "HR. Tirmidzi no. 3433 & Abu Daud no. 4859",
+    "reference": "Sunan At-Tirmidzi & Hisnul Muslim"
+  },
+  {
+    "id": "doa-15",
+    "category": "Kerja & Ikhtiar",
+    "title": "Doa Sebelum Bekerja",
+    "arabic": "اَللّٰهُمَّ لَا سَهْلَ إِلَّا مَا جَعَلْتَهُ سَهْلًا، وَأَنْتَ تَجْعَلُ الْحَزْنَ إِذَا شِئْتَ سَهْلًا",
+    "transliteration": "Allaahumma laa sahla illaa maa ja'altahu sahlaa, wa anta taj'alul-hazna idzaa syi'ta sahlaa.",
+    "translation": "Ya Allah, tidak ada kemudahan kecuali apa yang Engkau jadikan mudah, dan Engkaulah yang menjadikan kesedihan/kesulitan jika Engkau kehendaki menjadi mudah.",
+    "source": "HR. Ibnu Hibban no. 974 & Ibnu Sunni no. 351",
+    "reference": "Shahih Ibnu Hibban & Hisnul Muslim"
+  },
+  {
+    "id": "doa-16",
+    "category": "Belajar & Menuntut Ilmu",
+    "title": "Doa Memohon Ilmu yang Bermanfaat",
+    "arabic": "اَللّٰهُمَّ إِنِّيْ أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا",
+    "transliteration": "Allaahumma innii as-aluka 'ilman naafi'aa, wa rizqan thayyibaa, wa 'amalan mutaqabbalaa.",
+    "translation": "Ya Allah, sesungguhnya aku memohon kepada-Mu ilmu yang bermanfaat, rezeki yang baik (halal), dan amal yang diterima.",
+    "source": "HR. Ibnu Majah no. 925 & Ahmad no. 26521",
+    "reference": "Sunan Ibnu Majah & Hisnul Muslim"
+  },
+  {
+    "id": "doa-17",
+    "category": "Kerja & Ikhtiar",
+    "title": "Doa Memohon Rezeki yang Halal & Berkah",
+    "arabic": "اَللّٰهُمَّ اكْفِنِيْ بِحَلَالِكَ عَنْ حَرَامِكَ، وَأَغْنِنِيْ بِفَضْلِكَ عَمَّنْ سِوَاكَ",
+    "transliteration": "Allaahummak-finii bihalaalika 'an haraamik, wa aghninii bifadhlika 'amman siwaak.",
+    "translation": "Ya Allah, cukupkanlah aku dengan rezeki-Mu yang halal hingga aku terhindar dari yang haram, dan kayakanlah aku dengan karunia-Mu hingga aku tidak membutuhkan siapapun selain Engkau.",
+    "source": "HR. Tirmidzi no. 3563 & Ahmad no. 1319",
+    "reference": "Sunan At-Tirmidzi & Hisnul Muslim"
+  },
+  {
+    "id": "doa-18",
+    "category": "Keluarga & Orang Tua",
+    "title": "Doa Untuk Kedua Orang Tua",
+    "arabic": "رَبِّ اغْفِرْ لِيْ وَلِوَالِدَيَّ وَارْحَمْهُمَا كَمَا رَبَّيَانِيْ صَغِيْرًا",
+    "transliteration": "Rabbigh-fir lii wa liwaalidayya warhamhumaa kamaa rabbayaanii shaghiiraa.",
+    "translation": "Ya Tuhanku, ampunilah aku dan kedua orang tuaku, dan sayangilah keduanya sebagaimana mereka berdua telah mendidik aku di waktu kecil.",
+    "source": "QS. Al-Isra: 24 & QS. Ibrahim: 41",
+    "reference": "Al-Qur'an Surah Al-Isra: 24 & Kitab Al-Adzkar An-Nawawi"
+  },
+  {
+    "id": "doa-19",
+    "category": "Kebaikan & Perlindungan",
+    "title": "Doa Kebaikan Dunia dan Akhirat (Sapu Jagat)",
+    "arabic": "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+    "transliteration": "Rabbanaa aatinaa fid-dun-yaa hasanah, wa fil-aakhirati hasanah, wa qinaa 'adzaaban-naar.",
+    "translation": "Ya Tuhan kami, berilah kami kebaikan di dunia dan kebaikan di akhirat, dan lindungilah kami dari siksa api neraka.",
+    "source": "QS. Al-Baqarah: 201; HR. Bukhari no. 6389 & Muslim no. 2690",
+    "reference": "Shahih Bukhari & Shahih Muslim"
+  },
+  {
+    "id": "doa-20",
+    "category": "Kebaikan & Perlindungan",
+    "title": "Doa Memohon Ampunan (Sayyidul Istighfar)",
+    "arabic": "اَللّٰهُمَّ أَنْتَ رَبِّيْ لَا إِلٰهَ إِلَّا أَنْتَ، خَلَقْتَنِيْ وَأَنَا عَبْدُكَ، وَأَنَا عَلَىٰ عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوْذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوْءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوْءُ بِذَنْبِيْ فَاغْفِرْ لِيْ، فَإِنَّهُ لَا يَغْفِرُ الذُّنُوْبَ إِلَّا أَنْتَ",
+    "transliteration": "Allaahumma anta rabbii laa ilaaha illaa anta, khalaqtanii wa anaa 'abduka, wa anaa 'alaa 'ahdika wa wa'dika mastatha'tu, a'uudzu bika min syarri maa shana'tu, abuu-u laka bini'matika 'alayya, wa abuu-u bidzanbii faghfir lii, fa-innahu laa yaghfirudz-dzunuuba illaa anta.",
+    "translation": "Ya Allah, Engkaulah Rabbku, tiada tuhan selain Engkau. Engkau yang menciptakan aku dan aku adalah hamba-Mu, dan aku senantiasa berada dalam ikrar janji-Mu semampuku. Aku berlindung kepada-Mu dari keburukan apa yang telah kuperbuat. Aku mengakui segala nikmat-Mu atasku, dan aku mengakui dosaku kepada-Mu, maka ampunilah aku, karena sesungguhnya tidak ada yang dapat mengampuni dosa selain Engkau.",
+    "source": "HR. Bukhari no. 6306",
+    "reference": "Shahih Bukhari (Kitab Ad-Da'awat) & Hisnul Muslim"
+  },
+  {
+    "id": "doa-21",
+    "category": "Ketenangan & Kesabaran",
+    "title": "Doa Ketika Sedih / Mengalami Kesulitan",
+    "arabic": "لَا إِلٰهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّيْ كُنْتُ مِنَ الظَّالِمِيْنَ",
+    "transliteration": "Laa ilaaha illaa anta subhaanaka innii kuntu minazh-zhaalimiin.",
+    "translation": "Tidak ada tuhan selain Engkau, Maha Suci Engkau, sesungguhnya aku termasuk orang-orang yang berbuat zalim.",
+    "source": "QS. Al-Anbiya: 87; HR. Tirmidzi no. 3505 & Ahmad no. 1462",
+    "reference": "Sunan At-Tirmidzi & Hisnul Muslim"
+  },
+  {
+    "id": "doa-22",
+    "category": "Kesehatan & Kesembuhan",
+    "title": "Doa Ketika Sakit",
+    "arabic": "بِسْمِ اللّٰهِ (٣x)، أَعُوْذُ بِاللّٰهِ وَقُدْرَتِهِ مِنْ شَرِّ مَا أَجِدُ وَأُحَاذِرُ (٧x)",
+    "transliteration": "Bismillaah (3x), A'uudzu billaahi wa qudratihii min syarri maa ajidu wa uhaadzir (7x).",
+    "translation": "Dengan nama Allah (3x), Aku berlindung kepada Allah dan kekuasaan-Nya dari keburukan rasa sakit yang sedang aku rasakan dan aku khawatirkan (7x).",
+    "source": "HR. Muslim no. 2202",
+    "reference": "Shahih Muslim (Kitab As-Salam) & Hisnul Muslim"
+  },
+  {
+    "id": "doa-23",
+    "category": "Kesehatan & Kesembuhan",
+    "title": "Doa Untuk Kesembuhan (Menjenguk Orang Sakit)",
+    "arabic": "اَللّٰهُمَّ رَبَّ النَّاسِ أَذْهِبِ الْبَأْسَ، اشْفِ أَنْتَ الشَّافِيْ، لَا شِفَاءَ إِلَّا شِفَاؤُكَ، شِفَاءً لَا يُغَادِرُ سَقَمًا",
+    "transliteration": "Allaahumma rabban-naasi adzhibil-ba's, isyfi antasy-syaafii, laa syifaa-a illaa syifaa-uka, syifaa-an laa yughaadiru saqamaa.",
+    "translation": "Ya Allah, Rabb sekalian manusia, hilangkanlah kesusahan/penyakit ini. Berilah kesembuhan, Engkaulah Maha Penyembuh, tiada kesembuhan selain kesembuhan dari-Mu, kesembuhan yang tidak meninggalkan penyakit sedikit pun.",
+    "source": "HR. Bukhari no. 5743 & Muslim no. 2191",
+    "reference": "Shahih Bukhari (Kitab Ath-Thibb) & Hisnul Muslim"
+  },
+  {
+    "id": "doa-24",
+    "category": "Ketenangan & Kesabaran",
+    "title": "Doa Ketika Mendapat Musibah",
+    "arabic": "إِنَّا لِلّٰهِ وَإِنَّا إِلَيْهِ رَاجِعُوْنَ، اَللّٰهُمَّ أْجُرْنِيْ فِيْ مُصِيْبَتِيْ وَأَخْلِفْ لِيْ خَيْرًا مِنْهَا",
+    "transliteration": "Innaa lillaahi wa innaa ilaihi raaji'uun, Allaahummajurnii fii mushiibatii wa akhlif lii khairan minhaa.",
+    "translation": "Sesungguhnya kami milik Allah dan kepada-Nya kami akan kembali. Ya Allah, berilah pahala kepadaku atas musibah yang menimpaku dan gantikanlah untukku dengan yang lebih baik daripadanya.",
+    "source": "HR. Muslim no. 918",
+    "reference": "Shahih Muslim (Kitab Al-Jana'iz) & Hisnul Muslim"
+  },
+  {
+    "id": "doa-25",
+    "category": "Alam & Cuaca",
+    "title": "Doa Saat Hujan",
+    "arabic": "اَللّٰهُمَّ صَيِّبًا نَافِعًا",
+    "transliteration": "Allaahumma shayyiban naafi'aa.",
+    "translation": "Ya Allah, turunkanlah hujan yang membawa manfaat.",
+    "source": "HR. Bukhari no. 1032",
+    "reference": "Shahih Bukhari (Kitab Al-Istisqa') & Hisnul Muslim"
+  },
+  {
+    "id": "doa-26",
+    "category": "Alam & Cuaca",
+    "title": "Doa Setelah Hujan",
+    "arabic": "مُطِرْنَا بِفَضْلِ اللّٰهِ وَرَحْمَتِهِ",
+    "transliteration": "Muthirnaa bifadhlillaahi wa rahmatih.",
+    "translation": "Kita diberi hujan berkat karunia Allah dan rahmat-Nya.",
+    "source": "HR. Bukhari no. 846 & Muslim no. 71",
+    "reference": "Shahih Bukhari & Shahih Muslim"
+  },
+  {
+    "id": "doa-27",
+    "category": "Alam & Cuaca",
+    "title": "Doa Ketika Mendengar Petir",
+    "arabic": "سُبْحَانَ الَّذِيْ يُسَبِّحُ الرَّعْدُ بِحَمْدِهِ وَالْمَلَائِكَةُ مِنْ خِيْفَتِهِ",
+    "transliteration": "Subhaanal-ladzii yusabbihur-ra'du bihamdihii wal-malaa-ikatu min khiifatih.",
+    "translation": "Maha Suci Allah yang petir senantiasa bertasbih memuji-Nya dan para malaikat karena takut kepada-Nya.",
+    "source": "HR. Malik dalam Muwatha' no. 1801 & Bukhari dalam Al-Adab Al-Mufrad no. 723",
+    "reference": "Muwatha' Malik & Hisnul Muslim"
+  },
+  {
+    "id": "doa-28",
+    "category": "Kebaikan & Perlindungan",
+    "title": "Doa Memohon Perlindungan",
+    "arabic": "بِسْمِ اللّٰهِ الَّذِيْ لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيْعُ الْعَلِيْمُ",
+    "transliteration": "Bismillaahil-ladzii laa yadhurru ma'asmihii syai-un fil-ardhi wa laa fis-samaa-i wa huwas-samii'ul-'aliim.",
+    "translation": "Dengan nama Allah yang dengan nama-Nya tidak ada sesuatu pun di bumi maupun di langit yang dapat mendatangkan bahaya, dan Dia Maha Mendengar lagi Maha Mengetahui.",
+    "source": "HR. Abu Daud no. 5088 & Tirmidzi no. 3388",
+    "reference": "Sunan At-Tirmidzi & Hisnul Muslim"
+  },
+  {
+    "id": "doa-29",
+    "category": "Ketenangan & Kesabaran",
+    "title": "Doa Untuk Ketenangan & Keteguhan Hati",
+    "arabic": "يَا مُقَلِّبَ الْقُلُوْبِ ثَبِّتْ قَلْبِيْ عَلَىٰ دِيْنِكَ",
+    "transliteration": "Yaa muqallibal-quluub, tsabbit qalbii 'alaa diinik.",
+    "translation": "Wahai Dzat yang membolak-balikkan hati, teguhkanlah hatiku di atas agama-Mu.",
+    "source": "HR. Tirmidzi no. 3522 & Ahmad no. 12107",
+    "reference": "Sunan At-Tirmidzi & Hisnul Muslim"
+  },
+  {
+    "id": "doa-30",
+    "category": "Doa Pilihan Lainnya",
+    "title": "Doa Masuk Kamar Mandi",
+    "arabic": "اَللّٰهُمَّ إِنِّيْ أَعُوْذُ بِكَ مِنَ الْخُبُثِ وَالْخَبَائِثِ",
+    "transliteration": "Allaahumma innii a'uudzu bika minal-khubutsi wal-khabaa-its.",
+    "translation": "Ya Allah, sesungguhnya aku berlindung kepada-Mu dari godaan setan laki-laki dan setan perempuan.",
+    "source": "HR. Bukhari no. 142 & Muslim no. 375",
+    "reference": "Shahih Bukhari (Kitab Al-Wudhu) & Hisnul Muslim"
+  },
+  {
+    "id": "doa-31",
+    "category": "Doa Pilihan Lainnya",
+    "title": "Doa Keluar Kamar Mandi",
+    "arabic": "غُفْرَانَكَ",
+    "transliteration": "Ghufraanak.",
+    "translation": "Aku memohon ampunan-Mu (ya Allah).",
+    "source": "HR. Abu Daud no. 30 & Tirmidzi no. 7",
+    "reference": "Sunan At-Tirmidzi & Hisnul Muslim"
+  },
+  {
+    "id": "doa-32",
+    "category": "Doa Pilihan Lainnya",
+    "title": "Doa Memakai Pakaian",
+    "arabic": "اَلْحَمْدُ لِلّٰهِ الَّذِيْ كَسَانِيْ هٰذَا وَرَزَقَنِيْهِ مِنْ غَيْرِ حَوْلٍ مِنِّيْ وَلَا قُوَّةٍ",
+    "transliteration": "Alhamdulillaahil-ladzii kasaanii haadzaa wa razaqaniihi min ghairi hawlin minnii wa laa quwwah.",
+    "translation": "Segala puji bagi Allah yang telah memakaikan pakaian ini kepadaku dan mengaruniakannya kepadaku tanpa daya dan kekuatan dariku.",
+    "source": "HR. Abu Daud no. 4023 & Tirmidzi no. 3458",
+    "reference": "Sunan Abu Daud & Hisnul Muslim"
+  }
+]

@@ -10,10 +10,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.alquran.offline.data.preferences.UserPreferencesRepository
+import com.alquran.offline.data.repository.DailyPrayerRepository
 import com.alquran.offline.data.repository.PrayerRepository
 import com.alquran.offline.data.repository.QuranRepository
+import com.alquran.offline.ui.screens.about.AboutScreen
 import com.alquran.offline.ui.screens.bookmark.BookmarkScreen
 import com.alquran.offline.ui.screens.bookmark.BookmarkViewModel
+import com.alquran.offline.ui.screens.daily_prayer.DailyPrayerDetailScreen
+import com.alquran.offline.ui.screens.daily_prayer.DailyPrayerDetailViewModel
+import com.alquran.offline.ui.screens.daily_prayer.DailyPrayerListScreen
+import com.alquran.offline.ui.screens.daily_prayer.DailyPrayerListViewModel
 import com.alquran.offline.ui.screens.hadith.HadithDetailScreen
 import com.alquran.offline.ui.screens.hadith.HadithDetailViewModel
 import com.alquran.offline.ui.screens.hadith.HadithListScreen
@@ -41,6 +47,7 @@ fun NavGraph(
     navController: NavHostController,
     repository: QuranRepository,
     prayerRepository: PrayerRepository,
+    dailyPrayerRepository: DailyPrayerRepository,
     preferencesRepository: UserPreferencesRepository,
     modifier: Modifier = Modifier
 ) {
@@ -63,10 +70,11 @@ fun NavGraph(
                     navController.navigateSafe(Screen.HadithDetail.createRoute(hadithId))
                 },
                 onNavigateToPrayerList = { navController.navigateSafe(Screen.PrayerList.route) },
+                onNavigateToDailyPrayer = { navController.navigateSafe(Screen.DailyPrayerList.route) },
                 onNavigateToBookmark = { navController.navigateSafe(Screen.Bookmark.route) },
                 onNavigateToSearch = { navController.navigateSafe(Screen.Search.route) },
                 onNavigateToSettings = { navController.navigateSafe(Screen.Settings.route) },
-                onNavigateToPrivacy = { navController.navigateSafe(Screen.Privacy.route) },
+                onNavigateToPrivacy = { navController.navigateSafe(Screen.About.route) },
                 onNavigateToReader = { surahId, verseId ->
                     navController.navigateSafe(Screen.Reader.createRoute(surahId, verseId))
                 }
@@ -247,6 +255,41 @@ fun NavGraph(
             )
         }
 
+        // Daily Prayer List Screen (Doa Harian)
+        composable(Screen.DailyPrayerList.route) {
+            val viewModel: DailyPrayerListViewModel = viewModel(
+                factory = DailyPrayerListViewModel.Factory(dailyPrayerRepository)
+            )
+            DailyPrayerListScreen(
+                viewModel = viewModel,
+                onBackClick = { navController.popBackStackSafe() },
+                onPrayerClick = { prayerId ->
+                    navController.navigateSafe(Screen.DailyPrayerDetail.createRoute(prayerId))
+                }
+            )
+        }
+
+        // Daily Prayer Detail Screen
+        composable(
+            route = Screen.DailyPrayerDetail.route,
+            arguments = listOf(
+                navArgument("prayerId") {
+                    type = NavType.StringType
+                    defaultValue = "doa-1"
+                }
+            )
+        ) { backStackEntry ->
+            val rawPrayerId = backStackEntry.arguments?.getString("prayerId") ?: "doa-1"
+            val viewModel: DailyPrayerDetailViewModel = viewModel(
+                key = "daily_prayer_$rawPrayerId",
+                factory = DailyPrayerDetailViewModel.Factory(dailyPrayerRepository, preferencesRepository, rawPrayerId)
+            )
+            DailyPrayerDetailScreen(
+                viewModel = viewModel,
+                onBackClick = { navController.popBackStackSafe() }
+            )
+        }
+
         // Settings Screen
         composable(Screen.Settings.route) {
             val context = LocalContext.current
@@ -256,7 +299,7 @@ fun NavGraph(
             SettingsScreen(
                 viewModel = viewModel,
                 onBackClick = { navController.popBackStackSafe() },
-                onPrivacyClick = { navController.navigateSafe(Screen.Privacy.route) }
+                onPrivacyClick = { navController.navigateSafe(Screen.About.route) }
             )
         }
 
@@ -267,9 +310,9 @@ fun NavGraph(
             )
         }
 
-        // About Screen (alias to Privacy & Attribution Screen)
+        // About Screen (App + Developer + Attributions + Links)
         composable(Screen.About.route) {
-            PrivacyScreen(
+            AboutScreen(
                 onBackClick = { navController.popBackStackSafe() }
             )
         }

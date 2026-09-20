@@ -35,6 +35,16 @@ jobs:
           chmod +x scripts/validate_hadith_dataset.py
           python3 scripts/validate_hadith_dataset.py
 
+      - name: Run Prayer Dataset Integrity Validation
+        run: |
+          chmod +x scripts/validate_prayer_dataset.py
+          python3 scripts/validate_prayer_dataset.py
+
+      - name: Run Daily Prayer Dataset Integrity Validation
+        run: |
+          chmod +x scripts/validate_daily_prayer_dataset.py
+          python3 scripts/validate_daily_prayer_dataset.py
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
