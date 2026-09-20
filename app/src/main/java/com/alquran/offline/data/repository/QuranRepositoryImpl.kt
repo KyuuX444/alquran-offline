@@ -314,6 +314,8 @@ class QuranRepositoryImpl(
                 emit(emptyList())
             }
         }.flowOn(Dispatchers.IO)
+    }
+
     override fun getHadithsByKitab(kitab: String): Flow<List<Hadith>> {
         val flow = if (kitab.isBlank() || kitab == "Semua Kitab") {
             hadithDao.getAllHadiths()
