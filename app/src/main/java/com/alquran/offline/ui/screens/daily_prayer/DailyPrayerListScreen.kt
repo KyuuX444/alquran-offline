@@ -1,6 +1,5 @@
 package com.alquran.offline.ui.screens.daily_prayer
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -127,7 +126,7 @@ fun DailyPrayerListScreen(
                         )
                     },
                     trailingIcon = {
-                        AnimatedVisibility(visible = searchQuery.isNotEmpty()) {
+                        if (searchQuery.isNotEmpty()) {
                             IconButton(onClick = { viewModel.onSearchQueryChanged("") }) {
                                 Icon(
                                     imageVector = Icons.Default.Clear,
