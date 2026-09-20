@@ -75,7 +75,8 @@ class MainActivity : ComponentActivity() {
     ) {
         val uri: Uri = intent.data ?: return
         if (uri.scheme == "alquran") {
-            when (uri.host) {
+            val destination = uri.host ?: uri.authority
+            when (destination) {
                 "last_read" -> {
                     try {
                         val lastRead = repository.lastRead.first()

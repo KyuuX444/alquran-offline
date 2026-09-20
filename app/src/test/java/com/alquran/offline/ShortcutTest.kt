@@ -35,16 +35,16 @@ class ShortcutTest {
     fun testDeepLinkUriParsing() {
         val uri1 = URI.create("alquran://last_read")
         assertEquals("alquran", uri1.scheme)
-        assertEquals("last_read", uri1.host)
+        assertEquals("last_read", uri1.authority)
 
         val uri2 = URI.create("alquran://surah_list")
-        assertEquals("surah_list", uri2.host)
+        assertEquals("surah_list", uri2.authority)
 
         val uri3 = URI.create("alquran://hadith?id=15")
-        assertEquals("hadith", uri3.host)
+        assertEquals("hadith", uri3.authority)
         assertTrue(uri3.query.contains("id=15"))
 
         val uri4 = URI.create("alquran://juz_list")
-        assertEquals("juz_list", uri4.host)
+        assertEquals("juz_list", uri4.authority)
     }
 }

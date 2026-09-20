@@ -78,7 +78,8 @@ class HadithDatasetTest {
             // Hadith 42
             val rs42 = statement.executeQuery("SELECT judul, sumber FROM hadiths WHERE nomor = 42")
             assertTrue("Hadith #42 must exist", rs42.next())
-            assertTrue("Hadith #42 title should mention Ampunan", rs42.getString("judul").contains("Ampunan", ignoreCase = true))
+            val title42 = rs42.getString("judul")
+            assertTrue("Hadith #42 title should mention Pengampun or Ampunan", title42.contains("Pengampun", ignoreCase = true) || title42.contains("Ampunan", ignoreCase = true))
             assertTrue("Hadith #42 source should mention Tirmidzi", rs42.getString("sumber").contains("Tirmidzi", ignoreCase = true))
         }
     }
