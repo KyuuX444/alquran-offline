@@ -2,6 +2,7 @@ package com.alquran.offline.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -11,6 +12,8 @@ import androidx.navigation.navArgument
 import com.alquran.offline.data.repository.QuranRepository
 import com.alquran.offline.ui.screens.bookmark.BookmarkScreen
 import com.alquran.offline.ui.screens.bookmark.BookmarkViewModel
+import com.alquran.offline.ui.screens.hadith.HadithListScreen
+import com.alquran.offline.ui.screens.hadith.HadithListViewModel
 import com.alquran.offline.ui.screens.home.HomeScreen
 import com.alquran.offline.ui.screens.home.HomeViewModel
 import com.alquran.offline.ui.screens.juz.JuzListScreen
@@ -45,6 +48,7 @@ fun NavGraph(
                 viewModel = viewModel,
                 onNavigateToSurahList = { navController.navigate(Screen.SurahList.route) },
                 onNavigateToJuzList = { navController.navigate(Screen.JuzList.route) },
+                onNavigateToHadith = { navController.navigate(Screen.HadithList.createRoute()) },
                 onNavigateToBookmark = { navController.navigate(Screen.Bookmark.route) },
                 onNavigateToSearch = { navController.navigate(Screen.Search.route) },
                 onNavigateToSettings = { navController.navigate(Screen.Settings.route) },
@@ -135,10 +139,32 @@ fun NavGraph(
             )
         }
 
+        // Hadith Screen
+        composable(
+            route = Screen.HadithList.route,
+            arguments = listOf(
+                navArgument("initialId") {
+                    type = NavType.IntType
+                    defaultValue = 0
+                }
+            )
+        ) { backStackEntry ->
+            val initialId = backStackEntry.arguments?.getInt("initialId") ?: 0
+            val viewModel: HadithListViewModel = viewModel(
+                key = "hadith_$initialId",
+                factory = HadithListViewModel.Factory(repository, if (initialId > 0) initialId else null)
+            )
+            HadithListScreen(
+                viewModel = viewModel,
+                onBackClick = { navController.popBackStack() }
+            )
+        }
+
         // Settings Screen
         composable(Screen.Settings.route) {
+            val context = LocalContext.current
             val viewModel: SettingsViewModel = viewModel(
-                factory = SettingsViewModel.Factory(repository)
+                factory = SettingsViewModel.Factory(repository, context.applicationContext)
             )
             SettingsScreen(
                 viewModel = viewModel,

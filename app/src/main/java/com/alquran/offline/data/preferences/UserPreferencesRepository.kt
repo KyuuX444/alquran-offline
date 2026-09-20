@@ -29,6 +29,13 @@ class UserPreferencesRepository(private val context: Context) {
         val LAST_READ_SURAH_NAME = stringPreferencesKey("last_read_surah_name")
         val LAST_READ_VERSE_ID = intPreferencesKey("last_read_verse_id")
         val LAST_READ_TIMESTAMP = longPreferencesKey("last_read_timestamp")
+
+        // Notification Settings
+        val NOTIFICATION_ENABLED = booleanPreferencesKey("notification_enabled")
+        val NOTIFICATION_HOUR = intPreferencesKey("notification_hour")
+        val NOTIFICATION_MINUTE = intPreferencesKey("notification_minute")
+        val LAST_NOTIFIED_DAY_OF_YEAR = intPreferencesKey("last_notified_day_of_year")
+        val LAST_NOTIFIED_HADITH_INDEX = intPreferencesKey("last_notified_hadith_index")
     }
 
     val arabicFontSize: Flow<Float> = context.dataStore.data.map { preferences ->
@@ -59,6 +66,18 @@ class UserPreferencesRepository(private val context: Context) {
             verseId = preferences[Keys.LAST_READ_VERSE_ID] ?: 1,
             timestamp = preferences[Keys.LAST_READ_TIMESTAMP] ?: 0L
         )
+    }
+
+    val notificationEnabled: Flow<Boolean> = context.dataStore.data.map { preferences ->
+        preferences[Keys.NOTIFICATION_ENABLED] ?: true
+    }
+
+    val notificationHour: Flow<Int> = context.dataStore.data.map { preferences ->
+        preferences[Keys.NOTIFICATION_HOUR] ?: 7
+    }
+
+    val notificationMinute: Flow<Int> = context.dataStore.data.map { preferences ->
+        preferences[Keys.NOTIFICATION_MINUTE] ?: 0
     }
 
     suspend fun setArabicFontSize(size: Float) {
@@ -101,5 +120,28 @@ class UserPreferencesRepository(private val context: Context) {
             preferences[Keys.LAST_READ_VERSE_ID] = 1
             preferences[Keys.LAST_READ_TIMESTAMP] = 0L
         }
+    }
+
+    suspend fun setNotificationEnabled(enabled: Boolean) {
+        context.dataStore.edit { preferences ->
+            preferences[Keys.NOTIFICATION_ENABLED] = enabled
+        }
+    }
+
+    suspend fun setNotificationTime(hour: Int, minute: Int) {
+        context.dataStore.edit { preferences ->
+            preferences[Keys.NOTIFICATION_HOUR] = hour
+            preferences[Keys.NOTIFICATION_MINUTE] = minute
+        }
+    }
+
+    suspend fun getNextHadithIndex(totalHadiths: Int): Int {
+        var nextIdx = 0
+        context.dataStore.edit { preferences ->
+            val lastIdx = preferences[Keys.LAST_NOTIFIED_HADITH_INDEX] ?: 0
+            nextIdx = (lastIdx + 1) % totalHadiths
+            preferences[Keys.LAST_NOTIFIED_HADITH_INDEX] = nextIdx
+        }
+        return nextIdx
     }
 }

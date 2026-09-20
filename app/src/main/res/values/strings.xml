@@ -38,4 +38,14 @@
     <string name="reset_terakhir_dibaca">Reset Posisi Bacaan Terakhir</string>
     <string name="tentang_aplikasi">Tentang Aplikasi</string>
     <string name="kebijakan_privasi">Kebijakan Privasi</string>
+
+    <!-- App Shortcuts -->
+    <string name="shortcut_last_read_short">Lanjut Baca</string>
+    <string name="shortcut_last_read_long">Lanjut Membaca Al-Qur\'an</string>
+    <string name="shortcut_surah_short">Daftar Surah</string>
+    <string name="shortcut_surah_long">Buka Daftar 114 Surah</string>
+    <string name="shortcut_hadith_short">Hadits</string>
+    <string name="shortcut_hadith_long">Kumpulan Hadits Arba\'in</string>
+    <string name="shortcut_juz_short">Daftar Juz</string>
+    <string name="shortcut_juz_long">Buka Daftar 30 Juz</string>
 </resources>

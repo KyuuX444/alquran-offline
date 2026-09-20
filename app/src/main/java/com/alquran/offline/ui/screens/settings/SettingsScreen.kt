@@ -1,9 +1,13 @@
 package com.alquran.offline.ui.screens.settings
 
-import androidx.compose.foundation.background
+import android.Manifest
+import android.app.TimePickerDialog
+import android.content.pm.PackageManager
+import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -18,6 +22,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Brightness4
 import androidx.compose.material.icons.filled.FormatSize
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.RestartAlt
 import androidx.compose.material.icons.filled.Security
 import androidx.compose.material3.ButtonDefaults
@@ -43,12 +48,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import com.alquran.offline.model.ThemeMode
 import com.alquran.offline.ui.components.AppTopBar
 import kotlinx.coroutines.launch
@@ -59,13 +66,34 @@ fun SettingsScreen(
     onBackClick: () -> Unit,
     onPrivacyClick: () -> Unit
 ) {
+    val context = LocalContext.current
     val arabicFontSize by viewModel.arabicFontSize.collectAsState()
     val translationFontSize by viewModel.translationFontSize.collectAsState()
     val showTranslation by viewModel.showTranslation.collectAsState()
     val themeMode by viewModel.themeMode.collectAsState()
+    val notificationEnabled by viewModel.notificationEnabled.collectAsState()
+    val notificationHour by viewModel.notificationHour.collectAsState()
+    val notificationMinute by viewModel.notificationMinute.collectAsState()
 
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
+
+    // Notification Permission Launcher (Android 13+)
+    val notificationPermissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            viewModel.setNotificationEnabled(true)
+            scope.launch {
+                snackbarHostState.showSnackbar("Notifikasi hadits harian diaktifkan")
+            }
+        } else {
+            viewModel.setNotificationEnabled(false)
+            scope.launch {
+                snackbarHostState.showSnackbar("Izin notifikasi tidak diberikan oleh sistem")
+            }
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -231,6 +259,130 @@ fun SettingsScreen(
                 }
             }
 
+            // Notification Settings Section
+            item {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surface
+                    ),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp)
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(
+                                imageVector = Icons.Default.Notifications,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.primary
+                            )
+                            Text(
+                                text = "  Notifikasi Hadits Harian",
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(14.dp))
+
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text(
+                                    text = "Hadits Harian Otomatis",
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    fontWeight = FontWeight.Medium
+                                )
+                                Text(
+                                    text = "Senin – Minggu terjadwal 100% offline",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                            Switch(
+                                checked = notificationEnabled,
+                                onCheckedChange = { isChecked ->
+                                    if (isChecked) {
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                                            if (ContextCompat.checkSelfPermission(
+                                                    context,
+                                                    Manifest.permission.POST_NOTIFICATIONS
+                                                ) == PackageManager.PERMISSION_GRANTED
+                                            ) {
+                                                viewModel.setNotificationEnabled(true)
+                                            } else {
+                                                notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                                            }
+                                        } else {
+                                            viewModel.setNotificationEnabled(true)
+                                        }
+                                    } else {
+                                        viewModel.setNotificationEnabled(false)
+                                    }
+                                },
+                                colors = SwitchDefaults.colors(
+                                    checkedThumbColor = MaterialTheme.colorScheme.primary,
+                                    checkedTrackColor = MaterialTheme.colorScheme.primaryContainer
+                                )
+                            )
+                        }
+
+                        if (notificationEnabled) {
+                            Spacer(modifier = Modifier.height(12.dp))
+                            val timeFormatted = String.format("%02d:%02d", notificationHour, notificationMinute)
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clickable {
+                                        TimePickerDialog(
+                                            context,
+                                            { _, h, m ->
+                                                viewModel.setNotificationTime(h, m)
+                                                scope.launch {
+                                                    snackbarHostState.showSnackbar("Waktu notifikasi diubah ke ${String.format("%02d:%02d", h, m)}")
+                                                }
+                                            },
+                                            notificationHour,
+                                            notificationMinute,
+                                            true
+                                        ).show()
+                                    }
+                                    .padding(vertical = 8.dp),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Column {
+                                    Text(
+                                        text = "Waktu Notifikasi",
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        fontWeight = FontWeight.Medium
+                                    )
+                                    Text(
+                                        text = "Sentuh untuk mengubah jam pengingat",
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
+                                Text(
+                                    text = timeFormatted,
+                                    style = MaterialTheme.typography.titleMedium,
+                                    fontWeight = FontWeight.Bold,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+
             // Theme Settings Section
             item {
                 Card(
@@ -357,7 +509,6 @@ fun SettingsScreen(
                                 contentDescription = null,
                                 tint = MaterialTheme.colorScheme.primary
                             )
-                            Spacer(modifier = Modifier.height(12.dp))
                             Text(
                                 text = "  Kebijakan Privasi (100% Offline)",
                                 style = MaterialTheme.typography.bodyLarge,
@@ -380,7 +531,7 @@ fun SettingsScreen(
                                 tint = MaterialTheme.colorScheme.primary
                             )
                             Text(
-                                text = "  Versi Aplikasi: 1.0.0 (Offline Build)",
+                                text = "  Versi Aplikasi: 1.0 (Offline Build)",
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )

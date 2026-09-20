@@ -1,0 +1,9 @@
+{
+  "dataset_name": "Hadits Arba'in An-Nawawi (42 Hadits)",
+  "author": "Imam Yahya bin Syaraf An-Nawawi",
+  "total_hadiths": 42,
+  "language": "Arab & Indonesia",
+  "source": "Kitab Al-Arba'in An-Nawawiyyah (abdanzamzam/arbain-id)",
+  "license": "Permissive (ISC / Public Domain Hadith)",
+  "sha256_checksum": "ae729e07fe776b8c0c75e61bb84926794b6f5f92e952062b3c5d07a04671b470"
+}

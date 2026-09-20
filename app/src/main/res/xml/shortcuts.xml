@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="shortcut_last_read"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_last_read"
+        android:shortcutShortLabel="@string/shortcut_last_read_short"
+        android:shortcutLongLabel="@string/shortcut_last_read_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.alquran.offline"
+            android:targetClass="com.alquran.offline.ui.MainActivity"
+            android:data="alquran://last_read" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="shortcut_surah"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_surah"
+        android:shortcutShortLabel="@string/shortcut_surah_short"
+        android:shortcutLongLabel="@string/shortcut_surah_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.alquran.offline"
+            android:targetClass="com.alquran.offline.ui.MainActivity"
+            android:data="alquran://surah_list" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="shortcut_hadith"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_hadith"
+        android:shortcutShortLabel="@string/shortcut_hadith_short"
+        android:shortcutLongLabel="@string/shortcut_hadith_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.alquran.offline"
+            android:targetClass="com.alquran.offline.ui.MainActivity"
+            android:data="alquran://hadith" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="shortcut_juz"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_juz"
+        android:shortcutShortLabel="@string/shortcut_juz_short"
+        android:shortcutLongLabel="@string/shortcut_juz_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.alquran.offline"
+            android:targetClass="com.alquran.offline.ui.MainActivity"
+            android:data="alquran://juz_list" />
+    </shortcut>
+</shortcuts>

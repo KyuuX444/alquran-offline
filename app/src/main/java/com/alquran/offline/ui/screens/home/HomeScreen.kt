@@ -21,6 +21,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.FormatListNumbered
+import androidx.compose.material.icons.filled.FormatQuote
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
@@ -42,8 +43,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.alquran.offline.model.Hadith
 import com.alquran.offline.model.LastRead
 
 @Composable
@@ -51,6 +54,7 @@ fun HomeScreen(
     viewModel: HomeViewModel,
     onNavigateToSurahList: () -> Unit,
     onNavigateToJuzList: () -> Unit,
+    onNavigateToHadith: () -> Unit,
     onNavigateToBookmark: () -> Unit,
     onNavigateToSearch: () -> Unit,
     onNavigateToSettings: () -> Unit,
@@ -58,6 +62,7 @@ fun HomeScreen(
     onNavigateToReader: (Int, Int) -> Unit
 ) {
     val lastRead by viewModel.lastRead.collectAsState()
+    val todayHadith by viewModel.todayHadith.collectAsState()
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background
@@ -84,6 +89,16 @@ fun HomeScreen(
                         onNavigateToReader(lastRead.surahId, lastRead.verseId)
                     }
                 )
+            }
+
+            // Today Hadith Card
+            todayHadith?.let { hadith ->
+                item {
+                    TodayHadithCard(
+                        hadith = hadith,
+                        onClick = onNavigateToHadith
+                    )
+                }
             }
 
             // Menu Section
@@ -129,18 +144,18 @@ fun HomeScreen(
                         horizontalArrangement = Arrangement.spacedBy(10.dp)
                     ) {
                         MenuGridItem(
+                            title = "Hadits",
+                            subtitle = "42 Arba'in",
+                            icon = Icons.Default.FormatQuote,
+                            modifier = Modifier.weight(1f),
+                            onClick = onNavigateToHadith
+                        )
+                        MenuGridItem(
                             title = "Bookmark",
-                            subtitle = "Ayat Tersimpan",
+                            subtitle = "Ayat & Hadits",
                             icon = Icons.Default.Bookmark,
                             modifier = Modifier.weight(1f),
                             onClick = onNavigateToBookmark
-                        )
-                        MenuGridItem(
-                            title = "Pencarian",
-                            subtitle = "Offline Fast Search",
-                            icon = Icons.Default.Search,
-                            modifier = Modifier.weight(1f),
-                            onClick = onNavigateToSearch
                         )
                     }
 
@@ -149,17 +164,30 @@ fun HomeScreen(
                         horizontalArrangement = Arrangement.spacedBy(10.dp)
                     ) {
                         MenuGridItem(
+                            title = "Pencarian",
+                            subtitle = "Offline Search",
+                            icon = Icons.Default.Search,
+                            modifier = Modifier.weight(1f),
+                            onClick = onNavigateToSearch
+                        )
+                        MenuGridItem(
                             title = "Pengaturan",
-                            subtitle = "Font & Tema",
+                            subtitle = "Font & Notif",
                             icon = Icons.Default.Settings,
                             modifier = Modifier.weight(1f),
                             onClick = onNavigateToSettings
                         )
+                    }
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(10.dp)
+                    ) {
                         MenuGridItem(
                             title = "Privasi",
                             subtitle = "100% Offline",
                             icon = Icons.Default.Shield,
-                            modifier = Modifier.weight(1f),
+                            modifier = Modifier.fillMaxWidth(),
                             onClick = onNavigateToPrivacy
                         )
                     }
@@ -234,7 +262,7 @@ private fun HomeHeader(
                 color = MaterialTheme.colorScheme.primary
             )
             Text(
-                text = "Lengkap 30 Juz 100% Tanpa Kuota",
+                text = "Lengkap 30 Juz & Hadits 100% Offline",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -336,6 +364,63 @@ private fun LastReadHeroCard(
                     )
                 }
             }
+        }
+    }
+}
+
+@Composable
+private fun TodayHadithCard(
+    hadith: Hadith,
+    onClick: () -> Unit
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 10.dp)
+            .clickable(onClick = onClick),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.45f)
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.5.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "📖 Hadits Hari Ini (#${hadith.nomor})",
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer
+                )
+                Text(
+                    text = hadith.sumber,
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.primary
+                )
+            }
+            Spacer(modifier = Modifier.height(6.dp))
+            Text(
+                text = hadith.judul,
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.SemiBold,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "\"${hadith.teksId}\"",
+                style = MaterialTheme.typography.bodyMedium,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
         }
     }
 }

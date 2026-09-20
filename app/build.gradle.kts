@@ -10,10 +10,10 @@ android {
 
     defaultConfig {
         applicationId = "com.alquran.offline"
-        minSdk = 24
+        minSdk = 21
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0.0"
+        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -23,6 +23,9 @@ android {
 
     signingConfigs {
         create("release") {
+            enableV1Signing = true
+            enableV2Signing = true
+            enableV3Signing = true
             val keystorePath = System.getenv("KEYSTORE_FILE")
             if (!keystorePath.isNullOrBlank() && file(keystorePath).exists()) {
                 storeFile = file(keystorePath)
@@ -48,6 +51,15 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             isDebuggable = true
+        }
+    }
+
+    applicationVariants.all {
+        outputs.all {
+            val output = this as? com.android.build.gradle.internal.api.BaseVariantOutputImpl
+            if (buildType.name == "release") {
+                output?.outputFileName = "alquran-offline-v1.apk"
+            }
         }
     }
 

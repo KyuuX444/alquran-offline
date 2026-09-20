@@ -2,9 +2,11 @@ package com.alquran.offline.data.repository
 
 import com.alquran.offline.data.local.AppDatabase
 import com.alquran.offline.data.local.entity.BookmarkEntity
+import com.alquran.offline.data.local.entity.HadithBookmarkEntity
 import com.alquran.offline.data.preferences.UserPreferencesRepository
 import com.alquran.offline.model.Ayah
 import com.alquran.offline.model.Bookmark
+import com.alquran.offline.model.Hadith
 import com.alquran.offline.model.JuzInfo
 import com.alquran.offline.model.LastRead
 import com.alquran.offline.model.SearchResult
@@ -15,6 +17,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import java.util.Calendar
 
 class QuranRepositoryImpl(
     private val database: AppDatabase,
@@ -24,6 +27,7 @@ class QuranRepositoryImpl(
     private val surahDao = database.surahDao()
     private val ayahDao = database.ayahDao()
     private val bookmarkDao = database.bookmarkDao()
+    private val hadithDao = database.hadithDao()
 
     override fun getAllSurahs(): Flow<List<Surah>> {
         return surahDao.getAllSurahs().map { list ->
@@ -195,6 +199,67 @@ class QuranRepositoryImpl(
         results
     }
 
+    // Hadiths
+    override fun getAllHadiths(): Flow<List<Hadith>> {
+        return hadithDao.getAllHadiths().map { list ->
+            list.map { entity ->
+                val isBm = hadithDao.isBookmarked(entity.id)
+                entity.toDomain(isBookmarked = isBm)
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    override suspend fun getHadithById(id: Int): Hadith? = withContext(Dispatchers.IO) {
+        val entity = hadithDao.getHadithById(id) ?: return@withContext null
+        val isBm = hadithDao.isBookmarked(entity.id)
+        entity.toDomain(isBookmarked = isBm)
+    }
+
+    override suspend fun getHadithByNumber(nomor: Int): Hadith? = withContext(Dispatchers.IO) {
+        val entity = hadithDao.getHadithByNumber(nomor) ?: return@withContext null
+        val isBm = hadithDao.isBookmarked(entity.id)
+        entity.toDomain(isBookmarked = isBm)
+    }
+
+    override suspend fun getTodayHadith(): Hadith = withContext(Dispatchers.IO) {
+        val count = hadithDao.getHadithCount()
+        val total = if (count > 0) count else 42
+        val dayOfYear = Calendar.getInstance().get(Calendar.DAY_OF_YEAR)
+        val targetNumber = (dayOfYear % total) + 1
+        val entity = hadithDao.getHadithByNumber(targetNumber)
+            ?: hadithDao.getHadithById(1)
+            ?: throw IllegalStateException("Hadith dataset not found")
+        val isBm = hadithDao.isBookmarked(entity.id)
+        entity.toDomain(isBookmarked = isBm)
+    }
+
+    override suspend fun searchHadiths(query: String): List<Hadith> = withContext(Dispatchers.IO) {
+        val trimmed = query.trim()
+        if (trimmed.isBlank()) return@withContext emptyList()
+        val list = hadithDao.searchHadiths(trimmed)
+        list.map { entity ->
+            val isBm = hadithDao.isBookmarked(entity.id)
+            entity.toDomain(isBookmarked = isBm)
+        }
+    }
+
+    override suspend fun toggleHadithBookmark(hadithId: Int): Unit = withContext(Dispatchers.IO) {
+        if (hadithDao.isBookmarked(hadithId)) {
+            hadithDao.deleteBookmark(hadithId)
+        } else {
+            hadithDao.insertBookmark(
+                HadithBookmarkEntity(
+                    hadithId = hadithId,
+                    createdAt = System.currentTimeMillis()
+                )
+            )
+        }
+    }
+
+    override fun isHadithBookmarked(hadithId: Int): Flow<Boolean> {
+        return hadithDao.isBookmarkedFlow(hadithId).flowOn(Dispatchers.IO)
+    }
+
     override val lastRead: Flow<LastRead> = preferencesRepository.lastRead
 
     override suspend fun saveLastRead(surahId: Int, surahName: String, verseId: Int) {
@@ -224,5 +289,18 @@ class QuranRepositoryImpl(
 
     override suspend fun setThemeMode(mode: ThemeMode) {
         preferencesRepository.setThemeMode(mode)
+    }
+
+    // Notifications
+    override val notificationEnabled: Flow<Boolean> = preferencesRepository.notificationEnabled
+    override val notificationHour: Flow<Int> = preferencesRepository.notificationHour
+    override val notificationMinute: Flow<Int> = preferencesRepository.notificationMinute
+
+    override suspend fun setNotificationEnabled(enabled: Boolean) {
+        preferencesRepository.setNotificationEnabled(enabled)
+    }
+
+    override suspend fun setNotificationTime(hour: Int, minute: Int) {
+        preferencesRepository.setNotificationTime(hour, minute)
     }
 }
