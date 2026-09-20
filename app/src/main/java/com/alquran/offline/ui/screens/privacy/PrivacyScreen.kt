@@ -61,7 +61,7 @@ fun PrivacyScreen(onBackClick: () -> Unit) {
             }
 
             item {
-                androidx.compose.material3.HorizontalDivider(
+                HorizontalDivider(
                     color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
                     thickness = 0.5.dp
                 )
@@ -100,7 +100,7 @@ fun PrivacyScreen(onBackClick: () -> Unit) {
             }
 
             item {
-                androidx.compose.material3.HorizontalDivider(
+                HorizontalDivider(
                     color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
                     thickness = 0.5.dp
                 )
