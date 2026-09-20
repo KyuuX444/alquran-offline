@@ -2,10 +2,16 @@ package com.alquran.offline.data.local.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.alquran.offline.model.Surah
 
-@Entity(tableName = "surahs")
+@Entity(
+    tableName = "surahs",
+    indices = [
+        Index(value = ["name_latin"], name = "idx_surahs_name")
+    ]
+)
 data class SurahEntity(
     @PrimaryKey val id: Int,
     @ColumnInfo(name = "name_ar") val nameAr: String,

@@ -11,7 +11,7 @@ data class BookmarkEntity(
     @ColumnInfo(name = "surah_id") val surahId: Int,
     @ColumnInfo(name = "verse_id") val verseId: Int,
     @ColumnInfo(name = "created_at") val createdAt: Long = System.currentTimeMillis(),
-    @ColumnInfo(name = "note") val note: String = ""
+    @ColumnInfo(name = "note", defaultValue = "''") val note: String = ""
 ) {
     fun toDomain(surahName: String = "", textAr: String = "", textId: String = ""): Bookmark = Bookmark(
         id = id,

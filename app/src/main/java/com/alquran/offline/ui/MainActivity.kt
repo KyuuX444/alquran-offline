@@ -25,6 +25,7 @@ import com.alquran.offline.model.ThemeMode
 import com.alquran.offline.ui.components.AppBottomBar
 import com.alquran.offline.ui.navigation.NavGraph
 import com.alquran.offline.ui.navigation.Screen
+import com.alquran.offline.ui.navigation.navigateSafe
 import com.alquran.offline.ui.theme.AlQuranOfflineTheme
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
@@ -78,17 +79,17 @@ class MainActivity : ComponentActivity() {
                                 AppBottomBar(
                                     currentRoute = currentRoute,
                                     onTabSelected = { targetRoute ->
-                                        if (currentRoute != targetRoute) {
-                                            try {
-                                                navController.navigate(targetRoute) {
-                                                    popUpTo(Screen.Home.route) {
-                                                        saveState = true
-                                                    }
-                                                    launchSingleTop = true
-                                                    restoreState = true
+                                        val isAlreadySelected = when {
+                                            targetRoute.startsWith("hadith_list") -> currentRoute?.startsWith("hadith_list") == true
+                                            else -> currentRoute == targetRoute
+                                        }
+                                        if (!isAlreadySelected) {
+                                            navController.navigateSafe(targetRoute) {
+                                                popUpTo(Screen.Home.route) {
+                                                    saveState = true
                                                 }
-                                            } catch (e: Exception) {
-                                                e.printStackTrace()
+                                                launchSingleTop = true
+                                                restoreState = true
                                             }
                                         }
                                     }
@@ -128,42 +129,50 @@ class MainActivity : ComponentActivity() {
                             val lastRead = repository.lastRead.first()
                             val safeSurah = lastRead.surahId.coerceIn(1, 114)
                             val safeVerse = lastRead.verseId.coerceAtLeast(1)
-                            navController.navigate(Screen.Reader.createRoute(safeSurah, safeVerse)) {
+                            navController.navigateSafe(Screen.Reader.createRoute(safeSurah, safeVerse)) {
                                 launchSingleTop = true
                             }
                         } catch (e: Exception) {
-                            try {
-                                navController.navigate(Screen.SurahList.route) {
-                                    launchSingleTop = true
-                                }
-                            } catch (ignored: Exception) {
+                            navController.navigateSafe(Screen.SurahList.route) {
+                                launchSingleTop = true
                             }
                         }
                     }
                     "surah_list" -> {
-                        try {
-                            navController.navigate(Screen.SurahList.route) {
-                                launchSingleTop = true
-                            }
-                        } catch (ignored: Exception) {
+                        navController.navigateSafe(Screen.SurahList.route) {
+                            launchSingleTop = true
                         }
                     }
                     "hadith" -> {
                         val rawId = uri.getQueryParameter("id")?.toIntOrNull() ?: 0
                         val hadithId = rawId.coerceIn(0, 42)
-                        try {
-                            navController.navigate(Screen.HadithList.createRoute(hadithId)) {
-                                launchSingleTop = true
-                            }
-                        } catch (ignored: Exception) {
+                        navController.navigateSafe(Screen.HadithList.createRoute(hadithId)) {
+                            launchSingleTop = true
                         }
                     }
                     "juz_list" -> {
-                        try {
-                            navController.navigate(Screen.JuzList.route) {
-                                launchSingleTop = true
-                            }
-                        } catch (ignored: Exception) {
+                        navController.navigateSafe(Screen.JuzList.route) {
+                            launchSingleTop = true
+                        }
+                    }
+                    "bookmark" -> {
+                        navController.navigateSafe(Screen.Bookmark.route) {
+                            launchSingleTop = true
+                        }
+                    }
+                    "search" -> {
+                        navController.navigateSafe(Screen.Search.route) {
+                            launchSingleTop = true
+                        }
+                    }
+                    "settings" -> {
+                        navController.navigateSafe(Screen.Settings.route) {
+                            launchSingleTop = true
+                        }
+                    }
+                    "about", "privacy" -> {
+                        navController.navigateSafe(Screen.Privacy.route) {
+                            launchSingleTop = true
                         }
                     }
                 }

@@ -82,9 +82,13 @@ class ReaderViewModel(
         }
     }
 
+    private var lastSavedVerseId: Int = -1
+
     fun updateLastRead(verseId: Int) {
         val currentSurah = _surah.value ?: return
         val safeVerse = verseId.coerceAtLeast(1)
+        if (lastSavedVerseId == safeVerse) return
+        lastSavedVerseId = safeVerse
         viewModelScope.launch {
             try {
                 repository.saveLastRead(surahId, currentSurah.nameLatin, safeVerse)

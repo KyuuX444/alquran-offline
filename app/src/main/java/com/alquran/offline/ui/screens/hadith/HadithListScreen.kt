@@ -186,19 +186,34 @@ fun HadithListScreen(
             )
 
             // Hadith List
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(bottom = 16.dp)
-            ) {
-                items(
-                    items = hadiths,
-                    key = { it.id }
-                ) { hadith ->
-                    HadithItemCard(
-                        hadith = hadith,
-                        onClick = { viewModel.selectHadith(hadith) },
-                        onBookmarkClick = { viewModel.toggleBookmark(hadith) }
+            if (hadiths.isEmpty()) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(32.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = if (searchQuery.isNotBlank()) "Tidak ada hadits yang cocok dengan \"$searchQuery\"" else "Memuat hadits...",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
+                }
+            } else {
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(bottom = 16.dp)
+                ) {
+                    items(
+                        items = hadiths,
+                        key = { it.id }
+                    ) { hadith ->
+                        HadithItemCard(
+                            hadith = hadith,
+                            onClick = { viewModel.selectHadith(hadith) },
+                            onBookmarkClick = { viewModel.toggleBookmark(hadith) }
+                        )
+                    }
                 }
             }
         }

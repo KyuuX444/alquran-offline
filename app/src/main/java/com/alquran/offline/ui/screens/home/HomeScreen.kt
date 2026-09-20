@@ -17,6 +17,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.automirrored.filled.MenuBook
+import androidx.compose.material.icons.automirrored.outlined.MenuBook
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.FormatQuote
 import androidx.compose.material.icons.filled.Search
@@ -168,9 +169,15 @@ fun HomeScreen(
                 ) {
                     HomeNavItem(
                         title = "Qur'an",
-                        subtitle = "114 Surah · 30 Juz",
+                        subtitle = "114 Surah Al-Qur'an",
                         icon = Icons.AutoMirrored.Filled.MenuBook,
                         onClick = onNavigateToSurahList
+                    )
+                    HomeNavItem(
+                        title = "Juz",
+                        subtitle = "30 Juz Pembagian Mushaf",
+                        icon = Icons.AutoMirrored.Outlined.MenuBook,
+                        onClick = onNavigateToJuzList
                     )
                     HomeNavItem(
                         title = "Hadits",

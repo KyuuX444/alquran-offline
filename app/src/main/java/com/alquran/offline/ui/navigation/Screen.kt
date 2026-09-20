@@ -8,6 +8,7 @@ sealed class Screen(val route: String) {
     object Search : Screen("search")
     object Settings : Screen("settings")
     object Privacy : Screen("privacy")
+    object About : Screen("about")
 
     object HadithList : Screen("hadith_list?initialId={initialId}") {
         fun createRoute(initialId: Int = 0): String {

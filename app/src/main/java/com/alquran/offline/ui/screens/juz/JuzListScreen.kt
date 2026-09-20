@@ -58,10 +58,12 @@ fun JuzListScreen(
                     containerColor = MaterialTheme.colorScheme.surface,
                     contentColor = MaterialTheme.colorScheme.primary,
                     indicator = { tabPositions ->
-                        TabRowDefaults.SecondaryIndicator(
-                            modifier = Modifier.tabIndicatorOffset(tabPositions[1]),
-                            color = MaterialTheme.colorScheme.primary
-                        )
+                        if (tabPositions.size > 1) {
+                            TabRowDefaults.SecondaryIndicator(
+                                modifier = Modifier.tabIndicatorOffset(tabPositions[1]),
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                        }
                     },
                     divider = {
                         HorizontalDivider(

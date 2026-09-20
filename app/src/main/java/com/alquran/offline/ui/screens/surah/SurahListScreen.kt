@@ -1,10 +1,12 @@
 package com.alquran.offline.ui.screens.surah
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.Alignment
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -63,10 +65,12 @@ fun SurahListScreen(
                     containerColor = MaterialTheme.colorScheme.surface,
                     contentColor = MaterialTheme.colorScheme.primary,
                     indicator = { tabPositions ->
-                        TabRowDefaults.SecondaryIndicator(
-                            modifier = Modifier.tabIndicatorOffset(tabPositions[0]),
-                            color = MaterialTheme.colorScheme.primary
-                        )
+                        if (tabPositions.isNotEmpty()) {
+                            TabRowDefaults.SecondaryIndicator(
+                                modifier = Modifier.tabIndicatorOffset(tabPositions[0]),
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                        }
                     },
                     divider = {
                         HorizontalDivider(
@@ -135,18 +139,33 @@ fun SurahListScreen(
             )
 
             // Surah Native List
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(bottom = 16.dp)
-            ) {
-                items(
-                    items = surahs,
-                    key = { it.id }
-                ) { surah ->
-                    SurahCard(
-                        surah = surah,
-                        onClick = { onSurahClick(surah.id) }
+            if (surahs.isEmpty()) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(32.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = if (searchQuery.isNotBlank()) "Tidak ada surah yang cocok dengan \"$searchQuery\"" else "Memuat surah...",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
+                }
+            } else {
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(bottom = 16.dp)
+                ) {
+                    items(
+                        items = surahs,
+                        key = { it.id }
+                    ) { surah ->
+                        SurahCard(
+                            surah = surah,
+                            onClick = { onSurahClick(surah.id) }
+                        )
+                    }
                 }
             }
         }

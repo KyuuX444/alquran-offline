@@ -320,15 +320,15 @@ fun SettingsScreen(
                 )
 
                 SettingsPreferenceRow(
-                    title = "Kebijakan Privasi",
+                    title = "Tentang & Kebijakan Privasi",
                     subtitle = "100% Offline · Tanpa analitik atau pelacakan data",
                     onClick = onPrivacyClick
                 )
 
                 SettingsPreferenceRow(
                     title = "Versi Aplikasi",
-                    subtitle = "1.0 (Full Offline)",
-                    onClick = {}
+                    subtitle = "1.0 (Build 1) · Full Offline",
+                    onClick = onPrivacyClick
                 )
             }
         }

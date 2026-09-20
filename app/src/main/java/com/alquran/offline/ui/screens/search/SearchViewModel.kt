@@ -37,12 +37,20 @@ class SearchViewModel(
         }
 
         searchJob = viewModelScope.launch {
-            _isLoading.value = true
-            // Debounce for 300ms for smooth user experience
-            delay(300)
-            val searchResults = repository.search(newQuery)
-            _results.value = searchResults
-            _isLoading.value = false
+            try {
+                _isLoading.value = true
+                // Debounce for 300ms for smooth user experience
+                delay(300)
+                val searchResults = repository.search(newQuery)
+                _results.value = searchResults
+            } catch (e: Exception) {
+                if (e !is kotlinx.coroutines.CancellationException) {
+                    e.printStackTrace()
+                    _results.value = emptyList()
+                }
+            } finally {
+                _isLoading.value = false
+            }
         }
     }
 

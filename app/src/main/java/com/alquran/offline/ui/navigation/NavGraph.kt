@@ -46,15 +46,15 @@ fun NavGraph(
             )
             HomeScreen(
                 viewModel = viewModel,
-                onNavigateToSurahList = { navController.navigate(Screen.SurahList.route) },
-                onNavigateToJuzList = { navController.navigate(Screen.JuzList.route) },
-                onNavigateToHadith = { navController.navigate(Screen.HadithList.createRoute()) },
-                onNavigateToBookmark = { navController.navigate(Screen.Bookmark.route) },
-                onNavigateToSearch = { navController.navigate(Screen.Search.route) },
-                onNavigateToSettings = { navController.navigate(Screen.Settings.route) },
-                onNavigateToPrivacy = { navController.navigate(Screen.Privacy.route) },
+                onNavigateToSurahList = { navController.navigateSafe(Screen.SurahList.route) },
+                onNavigateToJuzList = { navController.navigateSafe(Screen.JuzList.route) },
+                onNavigateToHadith = { navController.navigateSafe(Screen.HadithList.createRoute()) },
+                onNavigateToBookmark = { navController.navigateSafe(Screen.Bookmark.route) },
+                onNavigateToSearch = { navController.navigateSafe(Screen.Search.route) },
+                onNavigateToSettings = { navController.navigateSafe(Screen.Settings.route) },
+                onNavigateToPrivacy = { navController.navigateSafe(Screen.Privacy.route) },
                 onNavigateToReader = { surahId, verseId ->
-                    navController.navigate(Screen.Reader.createRoute(surahId, verseId))
+                    navController.navigateSafe(Screen.Reader.createRoute(surahId, verseId))
                 }
             )
         }
@@ -66,12 +66,12 @@ fun NavGraph(
             )
             SurahListScreen(
                 viewModel = viewModel,
-                onBackClick = { navController.popBackStack() },
+                onBackClick = { navController.popBackStackSafe() },
                 onSurahClick = { surahId ->
-                    navController.navigate(Screen.Reader.createRoute(surahId, 1))
+                    navController.navigateSafe(Screen.Reader.createRoute(surahId, 1))
                 },
                 onNavigateToJuz = {
-                    navController.navigate(Screen.JuzList.route) {
+                    navController.navigateSafe(Screen.JuzList.route) {
                         popUpTo(Screen.SurahList.route) { inclusive = true }
                         launchSingleTop = true
                     }
@@ -86,12 +86,12 @@ fun NavGraph(
             )
             JuzListScreen(
                 viewModel = viewModel,
-                onBackClick = { navController.popBackStack() },
+                onBackClick = { navController.popBackStackSafe() },
                 onJuzClick = { surahId, verseId ->
-                    navController.navigate(Screen.Reader.createRoute(surahId, verseId))
+                    navController.navigateSafe(Screen.Reader.createRoute(surahId, verseId))
                 },
                 onNavigateToSurah = {
-                    navController.navigate(Screen.SurahList.route) {
+                    navController.navigateSafe(Screen.SurahList.route) {
                         popUpTo(Screen.JuzList.route) { inclusive = true }
                         launchSingleTop = true
                     }
@@ -120,8 +120,8 @@ fun NavGraph(
             )
             ReaderScreen(
                 viewModel = viewModel,
-                onBackClick = { navController.popBackStack() },
-                onSettingsClick = { navController.navigate(Screen.Settings.route) }
+                onBackClick = { navController.popBackStackSafe() },
+                onSettingsClick = { navController.navigateSafe(Screen.Settings.route) }
             )
         }
 
@@ -132,9 +132,9 @@ fun NavGraph(
             )
             BookmarkScreen(
                 viewModel = viewModel,
-                onBackClick = { navController.popBackStack() },
+                onBackClick = { navController.popBackStackSafe() },
                 onBookmarkClick = { surahId, verseId ->
-                    navController.navigate(Screen.Reader.createRoute(surahId, verseId))
+                    navController.navigateSafe(Screen.Reader.createRoute(surahId, verseId))
                 }
             )
         }
@@ -146,9 +146,9 @@ fun NavGraph(
             )
             SearchScreen(
                 viewModel = viewModel,
-                onBackClick = { navController.popBackStack() },
+                onBackClick = { navController.popBackStackSafe() },
                 onNavigateToReader = { surahId, verseId ->
-                    navController.navigate(Screen.Reader.createRoute(surahId, verseId))
+                    navController.navigateSafe(Screen.Reader.createRoute(surahId, verseId))
                 }
             )
         }
@@ -171,7 +171,7 @@ fun NavGraph(
             )
             HadithListScreen(
                 viewModel = viewModel,
-                onBackClick = { navController.popBackStack() }
+                onBackClick = { navController.popBackStackSafe() }
             )
         }
 
@@ -183,15 +183,22 @@ fun NavGraph(
             )
             SettingsScreen(
                 viewModel = viewModel,
-                onBackClick = { navController.popBackStack() },
-                onPrivacyClick = { navController.navigate(Screen.Privacy.route) }
+                onBackClick = { navController.popBackStackSafe() },
+                onPrivacyClick = { navController.navigateSafe(Screen.Privacy.route) }
             )
         }
 
         // Privacy Screen
         composable(Screen.Privacy.route) {
             PrivacyScreen(
-                onBackClick = { navController.popBackStack() }
+                onBackClick = { navController.popBackStackSafe() }
+            )
+        }
+
+        // About Screen (alias to Privacy & Attribution Screen)
+        composable(Screen.About.route) {
+            PrivacyScreen(
+                onBackClick = { navController.popBackStackSafe() }
             )
         }
     }

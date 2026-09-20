@@ -62,7 +62,16 @@ fun ReaderScreen(
             val targetIndex = (viewModel.initialTargetVerse - 1).coerceIn(0, ayahs.size - 1)
             // Account for Basmalah banner header if present (surahId != 1 && surahId != 9)
             val headerOffset = if (viewModel.surahId != 1 && viewModel.surahId != 9) 1 else 0
-            listState.animateScrollToItem(targetIndex + headerOffset)
+            val maxIndex = (ayahs.size + headerOffset - 1).coerceAtLeast(0)
+            val safeIndex = (targetIndex + headerOffset).coerceIn(0, maxIndex)
+            try {
+                listState.animateScrollToItem(safeIndex)
+            } catch (e: Throwable) {
+                try {
+                    listState.scrollToItem(safeIndex)
+                } catch (ignored: Throwable) {
+                }
+            }
         }
     }
 

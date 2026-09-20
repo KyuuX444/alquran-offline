@@ -2,10 +2,17 @@ package com.alquran.offline.data.local.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.alquran.offline.model.Hadith
 
-@Entity(tableName = "hadiths")
+@Entity(
+    tableName = "hadiths",
+    indices = [
+        Index(value = ["nomor"], name = "idx_hadiths_nomor"),
+        Index(value = ["judul"], name = "idx_hadiths_judul")
+    ]
+)
 data class HadithEntity(
     @PrimaryKey val id: Int,
     @ColumnInfo(name = "kitab") val kitab: String,

@@ -62,7 +62,11 @@ fun AppBottomBar(
 
                 NavigationBarItem(
                     selected = isSelected,
-                    onClick = { onTabSelected(tab.route) },
+                    onClick = {
+                        if (!isSelected) {
+                            onTabSelected(tab.route)
+                        }
+                    },
                     icon = {
                         Icon(
                             imageVector = if (isSelected) tab.selectedIcon else tab.unselectedIcon,

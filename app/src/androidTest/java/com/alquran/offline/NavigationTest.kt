@@ -24,6 +24,7 @@ class NavigationTest {
         assertEquals("search", Screen.Search.route)
         assertEquals("settings", Screen.Settings.route)
         assertEquals("privacy", Screen.Privacy.route)
+        assertEquals("about", Screen.About.route)
 
         val readerRoute = Screen.Reader.createRoute(1, 5)
         assertEquals("reader/1?targetVerse=5", readerRoute)

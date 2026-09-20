@@ -14,6 +14,7 @@ import com.alquran.offline.model.Surah
 import com.alquran.offline.model.ThemeMode
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
@@ -30,31 +31,57 @@ class QuranRepositoryImpl(
     private val hadithDao = database.hadithDao()
 
     override fun getAllSurahs(): Flow<List<Surah>> {
-        return surahDao.getAllSurahs().map { list ->
-            list.map { it.toDomain() }
-        }.flowOn(Dispatchers.IO)
+        return surahDao.getAllSurahs()
+            .map { list -> list.map { it.toDomain() } }
+            .catch { e ->
+                e.printStackTrace()
+                emit(emptyList())
+            }
+            .flowOn(Dispatchers.IO)
     }
 
     override suspend fun getSurahById(id: Int): Surah? = withContext(Dispatchers.IO) {
-        surahDao.getSurahById(id)?.toDomain()
+        try {
+            val safeId = id.coerceIn(1, 114)
+            surahDao.getSurahById(safeId)?.toDomain()
+        } catch (e: Throwable) {
+            e.printStackTrace()
+            null
+        }
     }
 
     override fun getAyahsBySurah(surahId: Int): Flow<List<Ayah>> {
-        return ayahDao.getAyahsBySurah(surahId).map { list ->
-            val bookmarkedSet = bookmarkDao.getBookmarkedVerseIdsForSurah(surahId).toHashSet()
+        val safeSurahId = surahId.coerceIn(1, 114)
+        return ayahDao.getAyahsBySurah(safeSurahId).map { list ->
+            val bookmarkedSet = try {
+                bookmarkDao.getBookmarkedVerseIdsForSurah(safeSurahId).toHashSet()
+            } catch (e: Throwable) {
+                emptySet<Int>()
+            }
             list.map { entity ->
                 entity.toDomain(isBookmarked = bookmarkedSet.contains(entity.verseId))
             }
+        }.catch { e ->
+            e.printStackTrace()
+            emit(emptyList())
         }.flowOn(Dispatchers.IO)
     }
 
     override fun getAyahsByJuz(juzId: Int): Flow<List<Ayah>> {
-        return ayahDao.getAyahsByJuz(juzId).map { list ->
-            val bookmarkKeys = bookmarkDao.getAllBookmarkKeys().toHashSet()
+        val safeJuzId = juzId.coerceIn(1, 30)
+        return ayahDao.getAyahsByJuz(safeJuzId).map { list ->
+            val bookmarkKeys = try {
+                bookmarkDao.getAllBookmarkKeys().toHashSet()
+            } catch (e: Throwable) {
+                emptySet<String>()
+            }
             list.map { entity ->
                 val key = "${entity.surahId}_${entity.verseId}"
                 entity.toDomain(isBookmarked = bookmarkKeys.contains(key))
             }
+        }.catch { e ->
+            e.printStackTrace()
+            emit(emptyList())
         }.flowOn(Dispatchers.IO)
     }
 
@@ -140,38 +167,66 @@ class QuranRepositoryImpl(
     override fun getAllBookmarks(): Flow<List<Bookmark>> {
         return bookmarkDao.getAllBookmarks().map { list ->
             list.map { bEntity ->
-                val surah = surahDao.getSurahById(bEntity.surahId)
-                val ayah = ayahDao.getAyah(bEntity.surahId, bEntity.verseId)
+                val surah = try {
+                    surahDao.getSurahById(bEntity.surahId)
+                } catch (e: Throwable) {
+                    null
+                }
+                val ayah = try {
+                    ayahDao.getAyah(bEntity.surahId, bEntity.verseId)
+                } catch (e: Throwable) {
+                    null
+                }
                 bEntity.toDomain(
                     surahName = surah?.nameLatin ?: "Surah ${bEntity.surahId}",
                     textAr = ayah?.textAr ?: "",
                     textId = ayah?.textId ?: ""
                 )
             }
+        }.catch { e ->
+            e.printStackTrace()
+            emit(emptyList())
         }.flowOn(Dispatchers.IO)
     }
 
     override fun isBookmarked(surahId: Int, verseId: Int): Flow<Boolean> {
-        return bookmarkDao.isBookmarked(surahId, verseId).flowOn(Dispatchers.IO)
+        return bookmarkDao.isBookmarked(surahId, verseId)
+            .catch { e ->
+                e.printStackTrace()
+                emit(false)
+            }
+            .flowOn(Dispatchers.IO)
     }
 
     override suspend fun addBookmark(surahId: Int, verseId: Int, note: String): Unit = withContext(Dispatchers.IO) {
-        bookmarkDao.insertBookmark(
-            BookmarkEntity(
-                surahId = surahId,
-                verseId = verseId,
-                createdAt = System.currentTimeMillis(),
-                note = note
+        try {
+            bookmarkDao.insertBookmark(
+                BookmarkEntity(
+                    surahId = surahId,
+                    verseId = verseId,
+                    createdAt = System.currentTimeMillis(),
+                    note = note
+                )
             )
-        )
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        }
     }
 
     override suspend fun removeBookmark(surahId: Int, verseId: Int) = withContext(Dispatchers.IO) {
-        bookmarkDao.deleteBookmark(surahId, verseId)
+        try {
+            bookmarkDao.deleteBookmark(surahId, verseId)
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        }
     }
 
     override suspend fun removeBookmarkById(id: Long) = withContext(Dispatchers.IO) {
-        bookmarkDao.deleteBookmarkById(id)
+        try {
+            bookmarkDao.deleteBookmarkById(id)
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        }
     }
 
     override suspend fun search(query: String): List<SearchResult> = withContext(Dispatchers.IO) {
@@ -179,22 +234,29 @@ class QuranRepositoryImpl(
         if (trimmed.isBlank()) return@withContext emptyList()
 
         val results = mutableListOf<SearchResult>()
+        try {
+            // 1. Search surahs
+            val matchedSurahs = surahDao.searchSurahs(trimmed)
+            results.addAll(matchedSurahs.map { SearchResult.SurahMatch(it.toDomain()) })
 
-        // 1. Search surahs
-        val matchedSurahs = surahDao.searchSurahs(trimmed)
-        results.addAll(matchedSurahs.map { SearchResult.SurahMatch(it.toDomain()) })
-
-        // 2. Search ayahs
-        val matchedAyahs = ayahDao.searchAyahs(trimmed, limit = 50)
-        for (aEntity in matchedAyahs) {
-            val surah = surahDao.getSurahById(aEntity.surahId)
-            val isBookmarked = bookmarkDao.isBookmarkedSync(aEntity.surahId, aEntity.verseId)
-            results.add(
-                SearchResult.AyahMatch(
-                    ayah = aEntity.toDomain(isBookmarked = isBookmarked),
-                    surahNameLatin = surah?.nameLatin ?: "Surah ${aEntity.surahId}"
+            // 2. Search ayahs
+            val matchedAyahs = ayahDao.searchAyahs(trimmed, limit = 50)
+            for (aEntity in matchedAyahs) {
+                val surah = surahDao.getSurahById(aEntity.surahId)
+                val isBookmarked = try {
+                    bookmarkDao.isBookmarkedSync(aEntity.surahId, aEntity.verseId)
+                } catch (e: Throwable) {
+                    false
+                }
+                results.add(
+                    SearchResult.AyahMatch(
+                        ayah = aEntity.toDomain(isBookmarked = isBookmarked),
+                        surahNameLatin = surah?.nameLatin ?: "Surah ${aEntity.surahId}"
+                    )
                 )
-            )
+            }
+        } catch (e: Throwable) {
+            e.printStackTrace()
         }
 
         results
@@ -215,23 +277,40 @@ class QuranRepositoryImpl(
 
     override fun getAllHadiths(): Flow<List<Hadith>> {
         return hadithDao.getAllHadiths().map { list ->
-            val bookmarkedIds = hadithDao.getAllBookmarkedHadithIds().toHashSet()
+            val bookmarkedIds = try {
+                hadithDao.getAllBookmarkedHadithIds().toHashSet()
+            } catch (e: Throwable) {
+                emptySet<Int>()
+            }
             list.map { entity ->
                 entity.toDomain(isBookmarked = bookmarkedIds.contains(entity.id))
             }
+        }.catch { e ->
+            e.printStackTrace()
+            emit(emptyList())
         }.flowOn(Dispatchers.IO)
     }
 
     override suspend fun getHadithById(id: Int): Hadith? = withContext(Dispatchers.IO) {
-        val entity = hadithDao.getHadithById(id) ?: return@withContext null
-        val isBm = hadithDao.isBookmarked(entity.id)
-        entity.toDomain(isBookmarked = isBm)
+        try {
+            val entity = hadithDao.getHadithById(id) ?: return@withContext null
+            val isBm = try { hadithDao.isBookmarked(entity.id) } catch (e: Throwable) { false }
+            entity.toDomain(isBookmarked = isBm)
+        } catch (e: Throwable) {
+            e.printStackTrace()
+            null
+        }
     }
 
     override suspend fun getHadithByNumber(nomor: Int): Hadith? = withContext(Dispatchers.IO) {
-        val entity = hadithDao.getHadithByNumber(nomor) ?: return@withContext null
-        val isBm = hadithDao.isBookmarked(entity.id)
-        entity.toDomain(isBookmarked = isBm)
+        try {
+            val entity = hadithDao.getHadithByNumber(nomor) ?: return@withContext null
+            val isBm = try { hadithDao.isBookmarked(entity.id) } catch (e: Throwable) { false }
+            entity.toDomain(isBookmarked = isBm)
+        } catch (e: Throwable) {
+            e.printStackTrace()
+            null
+        }
     }
 
     override suspend fun getTodayHadith(): Hadith = withContext(Dispatchers.IO) {
@@ -243,7 +322,7 @@ class QuranRepositoryImpl(
             val entity = hadithDao.getHadithByNumber(targetNumber)
                 ?: hadithDao.getHadithById(1)
                 ?: return@withContext fallbackHadith
-            val isBm = hadithDao.isBookmarked(entity.id)
+            val isBm = try { hadithDao.isBookmarked(entity.id) } catch (e: Throwable) { false }
             entity.toDomain(isBookmarked = isBm)
         } catch (e: Exception) {
             fallbackHadith
@@ -253,28 +332,46 @@ class QuranRepositoryImpl(
     override suspend fun searchHadiths(query: String): List<Hadith> = withContext(Dispatchers.IO) {
         val trimmed = query.trim()
         if (trimmed.isBlank()) return@withContext emptyList()
-        val list = hadithDao.searchHadiths(trimmed)
-        val bookmarkedIds = hadithDao.getAllBookmarkedHadithIds().toHashSet()
-        list.map { entity ->
-            entity.toDomain(isBookmarked = bookmarkedIds.contains(entity.id))
+        try {
+            val list = hadithDao.searchHadiths(trimmed)
+            val bookmarkedIds = try {
+                hadithDao.getAllBookmarkedHadithIds().toHashSet()
+            } catch (e: Throwable) {
+                emptySet<Int>()
+            }
+            list.map { entity ->
+                entity.toDomain(isBookmarked = bookmarkedIds.contains(entity.id))
+            }
+        } catch (e: Throwable) {
+            e.printStackTrace()
+            emptyList()
         }
     }
 
     override suspend fun toggleHadithBookmark(hadithId: Int): Unit = withContext(Dispatchers.IO) {
-        if (hadithDao.isBookmarked(hadithId)) {
-            hadithDao.deleteBookmark(hadithId)
-        } else {
-            hadithDao.insertBookmark(
-                HadithBookmarkEntity(
-                    hadithId = hadithId,
-                    createdAt = System.currentTimeMillis()
+        try {
+            if (hadithDao.isBookmarked(hadithId)) {
+                hadithDao.deleteBookmark(hadithId)
+            } else {
+                hadithDao.insertBookmark(
+                    HadithBookmarkEntity(
+                        hadithId = hadithId,
+                        createdAt = System.currentTimeMillis()
+                    )
                 )
-            )
+            }
+        } catch (e: Throwable) {
+            e.printStackTrace()
         }
     }
 
     override fun isHadithBookmarked(hadithId: Int): Flow<Boolean> {
-        return hadithDao.isBookmarkedFlow(hadithId).flowOn(Dispatchers.IO)
+        return hadithDao.isBookmarkedFlow(hadithId)
+            .catch { e ->
+                e.printStackTrace()
+                emit(false)
+            }
+            .flowOn(Dispatchers.IO)
     }
 
     override val lastRead: Flow<LastRead> = preferencesRepository.lastRead

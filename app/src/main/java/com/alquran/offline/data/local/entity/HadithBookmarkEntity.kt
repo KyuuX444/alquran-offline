@@ -17,12 +17,12 @@ import androidx.room.PrimaryKey
         )
     ],
     indices = [
-        Index(value = ["hadith_id"])
+        Index(value = ["hadith_id"], name = "idx_hadith_bookmarks_hadith_id")
     ]
 )
 data class HadithBookmarkEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     @ColumnInfo(name = "hadith_id") val hadithId: Int,
     @ColumnInfo(name = "created_at") val createdAt: Long = System.currentTimeMillis(),
-    @ColumnInfo(name = "note") val note: String = ""
+    @ColumnInfo(name = "note", defaultValue = "''") val note: String = ""
 )
