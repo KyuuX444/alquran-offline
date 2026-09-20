@@ -2,7 +2,6 @@ package com.alquran.offline
 
 import com.alquran.offline.provenance.BuildOrigin
 import com.alquran.offline.provenance.ProjectInfo
-import org.json.JSONObject
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
@@ -43,18 +42,18 @@ class ProvenanceTest {
             "app/src/main/assets/provenance.json"
         ))
         assertTrue("provenance.json must exist in assets", file.exists())
-        val json = JSONObject(file.readText(Charsets.UTF_8))
+        val text = file.readText(Charsets.UTF_8)
 
-        assertEquals(ProjectInfo.NAME, json.getString("project_name"))
-        assertEquals(ProjectInfo.PROJECT_ID, json.getString("project_id"))
-        assertEquals(ProjectInfo.AUTHOR, json.getString("author"))
-        assertEquals(ProjectInfo.GITHUB, json.getString("github"))
-        assertEquals(ProjectInfo.COPYRIGHT, json.getString("copyright"))
-        assertEquals(ProjectInfo.VERSION_NAME, json.getString("version_name"))
-        assertEquals(ProjectInfo.VERSION_CODE, json.getInt("version_code"))
-        assertTrue(json.getBoolean("verified_offline"))
-        assertFalse(json.getBoolean("telemetry_enabled"))
-        assertFalse(json.getBoolean("internet_required"))
+        assertTrue(text.contains("\"project_name\": \"${ProjectInfo.NAME}\""))
+        assertTrue(text.contains("\"project_id\": \"${ProjectInfo.PROJECT_ID}\""))
+        assertTrue(text.contains("\"author\": \"${ProjectInfo.AUTHOR}\""))
+        assertTrue(text.contains("\"github\": \"${ProjectInfo.GITHUB}\""))
+        assertTrue(text.contains("\"copyright\": \"${ProjectInfo.COPYRIGHT}\""))
+        assertTrue(text.contains("\"version_name\": \"${ProjectInfo.VERSION_NAME}\""))
+        assertTrue(text.contains("\"version_code\": ${ProjectInfo.VERSION_CODE}"))
+        assertTrue(text.contains("\"verified_offline\": true"))
+        assertTrue(text.contains("\"telemetry_enabled\": false"))
+        assertTrue(text.contains("\"internet_required\": false"))
     }
 
     @Test
