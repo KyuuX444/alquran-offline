@@ -314,6 +314,48 @@ class QuranRepositoryImpl(
                 emit(emptyList())
             }
         }.flowOn(Dispatchers.IO)
+    override fun getHadithsByKitab(kitab: String): Flow<List<Hadith>> {
+        val flow = if (kitab.isBlank() || kitab == "Semua Kitab") {
+            hadithDao.getAllHadiths()
+        } else {
+            hadithDao.getHadithsByKitab(kitab)
+        }
+        return flow.map { list ->
+            val bookmarkedIds = try {
+                hadithDao.getAllBookmarkedHadithIds().toHashSet()
+            } catch (e: Throwable) {
+                emptySet<Int>()
+            }
+            list.map { entity ->
+                entity.toDomain(isBookmarked = bookmarkedIds.contains(entity.id))
+            }
+        }.catch { e ->
+            e.printStackTrace()
+            try {
+                val fallbackList = if (kitab.isBlank() || kitab == "Semua Kitab") {
+                    hadithDao.getAllHadithsList()
+                } else {
+                    hadithDao.getHadithsByKitabList(kitab)
+                }
+                emit(fallbackList.map { it.toDomain() })
+            } catch (fallbackError: Throwable) {
+                fallbackError.printStackTrace()
+                emit(emptyList())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    override fun getAvailableKitabs(): Flow<List<String>> {
+        return hadithDao.getAvailableKitabs()
+            .catch { e ->
+                e.printStackTrace()
+                try {
+                    emit(hadithDao.getAvailableKitabsList())
+                } catch (fallbackError: Throwable) {
+                    emit(emptyList())
+                }
+            }
+            .flowOn(Dispatchers.IO)
     }
 
     override suspend fun getHadithById(id: Int): Hadith? = withContext(Dispatchers.IO) {

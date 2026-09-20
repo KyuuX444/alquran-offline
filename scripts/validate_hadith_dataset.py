@@ -76,11 +76,16 @@ def validate():
         cursor = conn.cursor()
         cursor.execute("SELECT COUNT(*) FROM hadiths;")
         db_count = cursor.fetchone()[0]
-        if db_count != 42:
-            print(f"[FAIL] Database has {db_count} hadiths, expected 42")
+        if db_count != 38144:
+            print(f"[FAIL] Database has {db_count} hadiths, expected 38144")
+            sys.exit(1)
+        cursor.execute("SELECT COUNT(DISTINCT kitab) FROM hadiths;")
+        kitab_count = cursor.fetchone()[0]
+        if kitab_count != 10:
+            print(f"[FAIL] Expected 10 kitabs, got {kitab_count}")
             sys.exit(1)
         conn.close()
-        print("[PASS] Database 'hadiths' table contains 42 verified rows.")
+        print(f"[PASS] Database 'hadiths' table contains {db_count} verified rows across {kitab_count} kitabs.")
 
     print("==================================================")
     print(" [ALL CHECKS PASSED] HADITH DATASET IS 100% VALID ")

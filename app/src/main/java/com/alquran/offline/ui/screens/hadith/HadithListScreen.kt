@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -35,6 +36,8 @@ import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -77,6 +80,8 @@ fun HadithListScreen(
     val hadiths by viewModel.filteredHadiths.collectAsState()
     val searchQuery by viewModel.searchQuery.collectAsState()
     val selectedHadith by viewModel.selectedHadith.collectAsState()
+    val selectedKitab by viewModel.selectedKitab.collectAsState()
+    val availableKitabs by viewModel.availableKitabs.collectAsState()
 
     fun copyHadith(hadith: Hadith) {
         try {
@@ -139,7 +144,8 @@ fun HadithListScreen(
     Scaffold(
         topBar = {
             AppTopBar(
-                title = "Hadits Arba'in An-Nawawi",
+                title = "Koleksi Hadits",
+                subtitle = "$selectedKitab (${hadiths.size} hadits)",
                 onBackClick = onBackClick
             )
         },
@@ -151,14 +157,42 @@ fun HadithListScreen(
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
+            // Kitab selector chips
+            LazyRow(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp, bottom = 4.dp),
+                contentPadding = PaddingValues(horizontal = 16.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                items(items = availableKitabs, key = { it }) { kitab ->
+                    val isSelected = kitab == selectedKitab
+                    FilterChip(
+                        selected = isSelected,
+                        onClick = { viewModel.onKitabSelected(kitab) },
+                        label = {
+                            Text(
+                                text = kitab,
+                                style = MaterialTheme.typography.labelMedium,
+                                fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal
+                            )
+                        },
+                        colors = FilterChipDefaults.filterChipColors(
+                            selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                            selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
+                        )
+                    )
+                }
+            }
+
             // Search Input
             OutlinedTextField(
                 value = searchQuery,
                 onValueChange = viewModel::onSearchQueryChanged,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 8.dp),
-                placeholder = { Text("Cari hadits, nomor, perawi, atau isi...") },
+                    .padding(horizontal = 16.dp, vertical = 6.dp),
+                placeholder = { Text("Cari dalam $selectedKitab...") },
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Search,

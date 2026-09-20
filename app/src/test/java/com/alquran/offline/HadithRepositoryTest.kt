@@ -22,15 +22,20 @@ class HadithRepositoryTest {
     }
 
     @Test
-    fun testHadithDatasetContains42Hadiths() {
+    fun testHadithDatasetContainsTotalAndArbainHadiths() {
         val dbFile = getDbFile()
         val url = "jdbc:sqlite:${dbFile.absolutePath}"
         DriverManager.getConnection(url).use { conn ->
             val statement = conn.createStatement()
-            val rs = statement.executeQuery("SELECT COUNT(*) FROM hadiths")
-            assertTrue(rs.next())
-            val count = rs.getInt(1)
-            assertEquals("Total hadiths in Arba'in collection must be 42", 42, count)
+            val rs1 = statement.executeQuery("SELECT COUNT(*) FROM hadiths WHERE kitab = 'Hadits Arba''in An-Nawawi'")
+            assertTrue(rs1.next())
+            val arbainCount = rs1.getInt(1)
+            assertEquals("Total hadiths in Arba'in collection must be 42", 42, arbainCount)
+
+            val rs2 = statement.executeQuery("SELECT COUNT(*) FROM hadiths")
+            assertTrue(rs2.next())
+            val totalCount = rs2.getInt(1)
+            assertEquals("Total hadiths across all collections must be 38,144", 38144, totalCount)
         }
     }
 
@@ -40,7 +45,7 @@ class HadithRepositoryTest {
         val url = "jdbc:sqlite:${dbFile.absolutePath}"
         DriverManager.getConnection(url).use { conn ->
             val statement = conn.createStatement()
-            val rs = statement.executeQuery("SELECT id, nomor, judul, teks_ar, teks_id, sumber FROM hadiths ORDER BY nomor ASC")
+            val rs = statement.executeQuery("SELECT id, nomor, judul, teks_ar, teks_id, sumber FROM hadiths WHERE kitab = 'Hadits Arba''in An-Nawawi' ORDER BY nomor ASC")
             var expectedNumber = 1
             while (rs.next()) {
                 val id = rs.getInt("id")

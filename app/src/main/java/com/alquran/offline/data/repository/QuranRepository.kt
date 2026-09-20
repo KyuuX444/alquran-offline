@@ -34,6 +34,8 @@ interface QuranRepository {
 
     // Hadiths
     fun getAllHadiths(): Flow<List<Hadith>>
+    fun getHadithsByKitab(kitab: String): Flow<List<Hadith>>
+    fun getAvailableKitabs(): Flow<List<String>>
     suspend fun getHadithById(id: Int): Hadith?
     suspend fun getHadithByNumber(nomor: Int): Hadith?
     suspend fun getTodayHadith(): Hadith

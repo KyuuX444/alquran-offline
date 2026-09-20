@@ -18,9 +18,10 @@ Dataset Attributions & Licenses:
    - Source: Kementerian Agama Republik Indonesia (Kemenag RI)
    - Usage: Non-commercial public religious literature and education
 
-3. 42 Hadith Arba'in An-Nawawi
-   - Source: Matn al-Arba'in an-Nawawiyyah (Imam Yahya bin Sharaf an-Nawawi)
-   - Indonesian translation: Open verified educational Islamic literature
+3. 38,100+ Hadith Kutubut Tis'ah & Arba'in An-Nawawi
+   - Source: Kutubut Tis'ah (Shahih Bukhari, Shahih Muslim, Sunan Abu Daud, Sunan At-Tirmidzi,
+     Sunan An-Nasa'i, Sunan Ibnu Majah, Muwatha' Malik, Sunan Ad-Darimi, Musnad Ahmad, Arba'in Nawawi)
+   - Indonesian translation: Open verified educational Islamic literature (Kutubut Tis'ah Indonesian dataset)
 
 ========================================================================
 Open Source Distribution & Branding Notice:

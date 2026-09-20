@@ -181,7 +181,7 @@ fun HomeScreen(
                     )
                     HomeNavItem(
                         title = "Hadits",
-                        subtitle = "42 Arba'in An-Nawawi",
+                        subtitle = "38.100+ Hadits (Kutubut Tis'ah)",
                         icon = Icons.Default.FormatQuote,
                         onClick = onNavigateToHadith
                     )

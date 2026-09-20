@@ -27,7 +27,7 @@
 
 ## Deskripsi
 
-**Al-Qur'an Offline** adalah aplikasi Android open-source yang memuat seluruh mushaf Al-Qur'an (114 Surah, 30 Juz, 6.236 Ayat) serta 42 Hadits Arbain An-Nawawi secara mandiri di dalam perangkat.
+**Al-Qur'an Offline** adalah aplikasi Android open-source yang memuat seluruh mushaf Al-Qur'an (114 Surah, 30 Juz, 6.236 Ayat) serta perpustakaan hadits lengkap **38.100+ Hadits Kutubut Tis'ah** (Shahih Bukhari, Shahih Muslim, Abu Daud, Tirmidzi, Nasa'i, Ibnu Majah, Muwatha' Malik, Darimi, Musnad Ahmad) dan Arba'in An-Nawawi secara mandiri 100% di dalam perangkat.
 
 Aplikasi ini tidak memiliki izin akses jaringan (`android.permission.INTERNET`). Tidak ada server pengumpul data, tidak ada pelacakan analitik, dan tidak ada sistem login. Seluruh data teks, terjemahan, penanda baca (bookmark), dan preferensi tersimpan di penyimpanan lokal perangkat Anda.
 
@@ -36,9 +36,9 @@ Aplikasi ini tidak memiliki izin akses jaringan (`android.permission.INTERNET`).
 ## Features
 
 - 📖 **Al-Qur'an Lengkap** — 114 Surah dan 30 Juz (6.236 ayat) dengan teks Utsmani terverifikasi dan terjemahan bahasa Indonesia Kemenag RI.
-- 📚 **Hadits Offline** — 42 Hadits Arbain An-Nawawi lengkap dengan teks Arab, terjemahan, dan perawi.
-- 🔎 **Pencarian Lokal** — Temukan surah, potongan ayat Arab, maupun kata dalam terjemahan secara instan melalui indexing database internal.
-- 🔖 **Bookmark Ayat** — Simpan ayat-ayat penting ke daftar penanda lokal dengan sekali sentuh.
+- 📚 **Koleksi Hadits Lengkap (38.100+ Hadits)** — Kutubut Tis'ah (Shahih Bukhari, Shahih Muslim, Abu Daud, Tirmidzi, Nasa'i, Ibnu Majah, Malik, Darimi, Ahmad) dan Arba'in Nawawi dengan filter pemilih kitab, teks Arab berharakat, dan terjemahan bahasa Indonesia.
+- 🔎 **Pencarian Lokal** — Temukan surah, potongan ayat Arab, maupun kata dalam terjemahan dan hadits secara instan melalui indexing database internal.
+- 🔖 **Bookmark Ayat & Hadits** — Simpan ayat dan hadits penting ke daftar penanda lokal dengan sekali sentuh.
 - ↩️ **Lanjut Baca (Last Read)** — Melanjutkan tilawah langsung dari ayat dan surah terakhir yang dibuka.
 - 🌙 **Mode Tampilan** — Dukungan tema Terang (Warm Paper), Gelap (Warm Charcoal), serta mengikuti pengaturan sistem.
 - 🔔 **Hadits Harian** — Pengingat notifikasi hadits harian (Senin–Minggu) tanpa membutuhkan akses internet atau server push.
@@ -122,7 +122,7 @@ Tidak ada permintaan HTTP, socket, atau sinkronisasi background ke server pihak 
 
 ## Data Sources
 
-Dataset Al-Qur'an dan Hadits telah melalui pemeriksaan integritas otomatis (114 Surah, 6.236 Ayat, 42 Hadits) sebelum proses build:
+Dataset Al-Qur'an dan Hadits telah melalui pemeriksaan integritas otomatis (114 Surah, 6.236 Ayat, 38.144 Hadits) sebelum proses build:
 
 1. **Teks Al-Qur'an (Rasm Utsmani)**  
    Bersumber dari [Tanzil Project](https://tanzil.net), terverifikasi dengan standar mushaf Utsmani internasional.  
@@ -131,8 +131,8 @@ Dataset Al-Qur'an dan Hadits telah melalui pemeriksaan integritas otomatis (114 
 2. **Terjemahan Bahasa Indonesia**  
    Bersumber dari Kementerian Agama Republik Indonesia (Kemenag RI), digunakan untuk kepentingan literasi dan dakwah Islam secara terbuka.
 
-3. **Hadits Arbain An-Nawawi**  
-   Kompilasi 42 hadits pilihan karya Imam An-Nawawi dengan sanad, matan Arab, dan terjemahan bahasa Indonesia yang telah terverifikasi.
+3. **Koleksi Hadits Kutubut Tis'ah & Arba'in**  
+   Kompilasi 38.144 hadits dari 10 kitab utama (Shahih Bukhari, Shahih Muslim, Sunan Abu Daud, Sunan At-Tirmidzi, Sunan An-Nasa'i, Sunan Ibnu Majah, Muwatha' Malik, Sunan Ad-Darimi, Musnad Ahmad, dan Arba'in An-Nawawi) dengan matan Arab berharakat dan terjemahan bahasa Indonesia lengkap.
 
 ---
 

@@ -94,7 +94,7 @@ class DatasetIntegrityTest {
     }
 
     @Test
-    fun testHadithCountIs42() {
+    fun testHadithCountIs38144() {
         val dbFile = getDbFile()
         val url = "jdbc:sqlite:${dbFile.absolutePath}"
         DriverManager.getConnection(url).use { conn ->
@@ -102,7 +102,7 @@ class DatasetIntegrityTest {
             val rs = statement.executeQuery("SELECT COUNT(*) FROM hadiths")
             assertTrue(rs.next())
             val count = rs.getInt(1)
-            assertEquals("Total hadiths must be 42", 42, count)
+            assertEquals("Total hadiths must be 38,144", 38144, count)
         }
     }
 

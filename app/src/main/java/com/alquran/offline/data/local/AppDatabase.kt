@@ -137,13 +137,13 @@ abstract class AppDatabase : RoomDatabase() {
                         }
                     }
 
-                    // 3. Completeness verification (114 Surahs, 6236 Ayahs, 42 Hadiths)
+                    // 3. Completeness verification (114 Surahs, 6236 Ayahs, 38144 Hadiths)
                     if (!needsRecreation) {
                         try {
                             val surahCount = db.compileStatement("SELECT COUNT(*) FROM surahs").simpleQueryForLong()
                             val ayahCount = db.compileStatement("SELECT COUNT(*) FROM ayahs").simpleQueryForLong()
                             val hadithCount = db.compileStatement("SELECT COUNT(*) FROM hadiths").simpleQueryForLong()
-                            if (surahCount != 114L || ayahCount != 6236L || hadithCount != 42L) {
+                            if (surahCount != 114L || ayahCount != 6236L || hadithCount != 38144L) {
                                 needsRecreation = true
                             }
                         } catch (e: Throwable) {
@@ -308,6 +308,7 @@ abstract class AppDatabase : RoomDatabase() {
                 """.trimIndent())
 
                 // Ensure all expected indices exist
+                db.execSQL("CREATE INDEX IF NOT EXISTS idx_hadiths_kitab ON hadiths(kitab);")
                 db.execSQL("CREATE INDEX IF NOT EXISTS idx_hadiths_nomor ON hadiths(nomor);")
                 db.execSQL("CREATE INDEX IF NOT EXISTS idx_hadiths_judul ON hadiths(judul);")
                 db.execSQL("CREATE INDEX IF NOT EXISTS idx_hadith_bookmarks_hadith_id ON hadith_bookmarks(hadith_id);")
