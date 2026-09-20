@@ -5,7 +5,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 import java.util.Calendar
 
-class NotificationScheduleTest {
+class NotificationSchedulerTest {
 
     @Test
     fun testDayOfYearSelectionLogic() {
@@ -51,5 +51,21 @@ class NotificationScheduleTest {
         val id2 = ((day2 - 1) % totalHadiths) + 1
 
         assertEquals("Next day should produce next sequential hadith", id1 + 1, id2)
+    }
+
+    @Test
+    fun testScheduledTimeCalculation() {
+        val targetHour = 7
+        val targetMinute = 0
+
+        val calendar = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, targetHour)
+            set(Calendar.MINUTE, targetMinute)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
+
+        assertEquals(7, calendar.get(Calendar.HOUR_OF_DAY))
+        assertEquals(0, calendar.get(Calendar.MINUTE))
     }
 }

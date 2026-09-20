@@ -26,4 +26,10 @@ interface BookmarkDao {
 
     @Query("DELETE FROM bookmarks WHERE id = :id")
     suspend fun deleteBookmarkById(id: Long)
+
+    @Query("SELECT verse_id FROM bookmarks WHERE surah_id = :surahId")
+    suspend fun getBookmarkedVerseIdsForSurah(surahId: Int): List<Int>
+
+    @Query("SELECT surah_id || '_' || verse_id FROM bookmarks")
+    suspend fun getAllBookmarkKeys(): List<String>
 }

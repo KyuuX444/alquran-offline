@@ -52,6 +52,9 @@ interface HadithDao {
     @Query("DELETE FROM hadith_bookmarks WHERE hadith_id = :hadithId")
     suspend fun deleteBookmark(hadithId: Int)
 
+    @Query("SELECT hadith_id FROM hadith_bookmarks")
+    suspend fun getAllBookmarkedHadithIds(): List<Int>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(hadiths: List<HadithEntity>)
 }

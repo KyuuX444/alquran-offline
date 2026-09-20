@@ -11,14 +11,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.material.icons.outlined.ContentCopy
 import androidx.compose.material.icons.outlined.Share
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -46,132 +44,123 @@ fun AyahCard(
     onShareClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Card(
+    Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 14.dp, vertical = 6.dp),
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
-        ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
+            .padding(horizontal = 16.dp, vertical = 10.dp)
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
+        // Minimal Top Row: Small Verse Badge + Actions
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            // Header: Verse Number & Action Buttons
-            Row(
+            // Small circular verse number
+            Box(
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .size(28.dp)
                     .background(
-                        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
-                        shape = RoundedCornerShape(10.dp)
-                    )
-                    .padding(horizontal = 10.dp, vertical = 4.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
+                        color = MaterialTheme.colorScheme.primaryContainer,
+                        shape = CircleShape
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = ayah.verseId.toString(),
+                    style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer
+                )
+            }
+
+            // Minimal Actions
+            Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Verse badge
-                Box(
-                    modifier = Modifier
-                        .size(32.dp)
-                        .background(
-                            color = MaterialTheme.colorScheme.primary,
-                            shape = CircleShape
-                        ),
-                    contentAlignment = Alignment.Center
+                IconButton(
+                    onClick = onBookmarkClick,
+                    modifier = Modifier.size(36.dp)
                 ) {
-                    Text(
-                        text = ayah.verseId.toString(),
-                        style = MaterialTheme.typography.labelMedium,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onPrimary
+                    Icon(
+                        imageVector = if (ayah.isBookmarked) Icons.Filled.Bookmark else Icons.Outlined.BookmarkBorder,
+                        contentDescription = if (ayah.isBookmarked) "Hapus Bookmark" else "Simpan Bookmark",
+                        tint = if (ayah.isBookmarked) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
                     )
                 }
 
-                // Actions: Bookmark, Copy, Share
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
+                IconButton(
+                    onClick = onCopyClick,
+                    modifier = Modifier.size(36.dp)
                 ) {
-                    IconButton(
-                        onClick = onBookmarkClick,
-                        modifier = Modifier.size(36.dp)
-                    ) {
-                        Icon(
-                            imageVector = if (ayah.isBookmarked) Icons.Filled.Bookmark else Icons.Outlined.BookmarkBorder,
-                            contentDescription = if (ayah.isBookmarked) "Hapus Bookmark" else "Simpan Bookmark",
-                            tint = if (ayah.isBookmarked) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    }
+                    Icon(
+                        imageVector = Icons.Outlined.ContentCopy,
+                        contentDescription = "Salin Teks",
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+                    )
+                }
 
-                    IconButton(
-                        onClick = onCopyClick,
-                        modifier = Modifier.size(36.dp)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Outlined.ContentCopy,
-                            contentDescription = "Salin Teks",
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    }
-
-                    IconButton(
-                        onClick = onShareClick,
-                        modifier = Modifier.size(36.dp)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Outlined.Share,
-                            contentDescription = "Bagikan Ayat",
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    }
+                IconButton(
+                    onClick = onShareClick,
+                    modifier = Modifier.size(36.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Outlined.Share,
+                        contentDescription = "Bagikan Ayat",
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+                    )
                 }
             }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Arabic Text (Right-to-Left)
-            Text(
-                text = ayah.textAr,
-                modifier = Modifier.fillMaxWidth(),
-                fontFamily = FontFamily.Serif,
-                fontSize = arabicFontSize.sp,
-                lineHeight = (arabicFontSize * 1.9f).sp,
-                textAlign = TextAlign.End,
-                style = MaterialTheme.typography.bodyLarge.copy(
-                    textDirection = TextDirection.Rtl
-                ),
-                color = MaterialTheme.colorScheme.onSurface
-            )
-
-            // Transliteration
-            if (ayah.transliteration.isNotBlank()) {
-                Spacer(modifier = Modifier.height(10.dp))
-                Text(
-                    text = ayah.transliteration,
-                    style = MaterialTheme.typography.bodyMedium.copy(
-                        fontStyle = FontStyle.Italic,
-                        fontSize = (translationFontSize * 0.95f).sp,
-                        lineHeight = (translationFontSize * 1.4f).sp
-                    ),
-                    color = MaterialTheme.colorScheme.primary
-                )
-            }
-
-            // Indonesian Translation
-            if (showTranslation && ayah.textId.isNotBlank()) {
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = ayah.textId,
-                    style = MaterialTheme.typography.bodyMedium.copy(
-                        fontSize = translationFontSize.sp,
-                        lineHeight = (translationFontSize * 1.5f).sp
-                    ),
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
         }
+
+        Spacer(modifier = Modifier.height(14.dp))
+
+        // Arabic Text (Clear, Large, Comfortable Line Height)
+        Text(
+            text = ayah.textAr,
+            modifier = Modifier.fillMaxWidth(),
+            fontFamily = FontFamily.Serif,
+            fontSize = arabicFontSize.sp,
+            lineHeight = (arabicFontSize * 1.85f).sp,
+            textAlign = TextAlign.End,
+            style = MaterialTheme.typography.bodyLarge.copy(
+                textDirection = TextDirection.Rtl
+            ),
+            color = MaterialTheme.colorScheme.onSurface
+        )
+
+        // Transliteration
+        if (ayah.transliteration.isNotBlank()) {
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = ayah.transliteration,
+                style = MaterialTheme.typography.bodyMedium.copy(
+                    fontStyle = FontStyle.Italic,
+                    fontSize = (translationFontSize * 0.92f).sp,
+                    lineHeight = (translationFontSize * 1.35f).sp
+                ),
+                color = MaterialTheme.colorScheme.primary
+            )
+        }
+
+        // Indonesian Translation
+        if (showTranslation && ayah.textId.isNotBlank()) {
+            Spacer(modifier = Modifier.height(6.dp))
+            Text(
+                text = ayah.textId,
+                style = MaterialTheme.typography.bodyMedium.copy(
+                    fontSize = translationFontSize.sp,
+                    lineHeight = (translationFontSize * 1.45f).sp
+                ),
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        // Minimal separator divider
+        HorizontalDivider(
+            color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.35f),
+            thickness = 0.5.dp
+        )
     }
 }

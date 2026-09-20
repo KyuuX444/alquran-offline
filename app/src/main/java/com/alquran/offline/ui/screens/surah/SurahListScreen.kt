@@ -3,6 +3,7 @@ package com.alquran.offline.ui.screens.surah
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -12,6 +13,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -31,7 +34,8 @@ import com.alquran.offline.ui.components.SurahCard
 fun SurahListScreen(
     viewModel: SurahListViewModel,
     onBackClick: () -> Unit,
-    onSurahClick: (Int) -> Unit
+    onSurahClick: (Int) -> Unit,
+    onNavigateToJuz: (() -> Unit)? = null
 ) {
     val surahs by viewModel.filteredSurahs.collectAsState()
     val searchQuery by viewModel.searchQuery.collectAsState()
@@ -39,7 +43,7 @@ fun SurahListScreen(
     Scaffold(
         topBar = {
             AppTopBar(
-                title = "Daftar Surah (114)",
+                title = "Al-Qur'an 30 Juz",
                 onBackClick = onBackClick
             )
         },
@@ -50,13 +54,40 @@ fun SurahListScreen(
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
+            // Switcher Tab between Surah & Juz
+            if (onNavigateToJuz != null) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 6.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    FilterChip(
+                        selected = true,
+                        onClick = { },
+                        label = { Text("Surah (114)") },
+                        modifier = Modifier.weight(1f),
+                        colors = FilterChipDefaults.filterChipColors(
+                            selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                            selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
+                        )
+                    )
+                    FilterChip(
+                        selected = false,
+                        onClick = { onNavigateToJuz() },
+                        label = { Text("Juz (30)") },
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+            }
+
             // Search / Filter Input
             OutlinedTextField(
                 value = searchQuery,
                 onValueChange = viewModel::onSearchQueryChanged,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 8.dp),
+                    .padding(horizontal = 16.dp, vertical = 6.dp),
                 placeholder = { Text("Cari nama surah atau nomor...") },
                 leadingIcon = {
                     Icon(
@@ -74,7 +105,7 @@ fun SurahListScreen(
                         }
                     }
                 },
-                shape = RoundedCornerShape(14.dp),
+                shape = RoundedCornerShape(12.dp),
                 singleLine = true,
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = MaterialTheme.colorScheme.primary,
@@ -87,7 +118,7 @@ fun SurahListScreen(
             // Surah List
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 6.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 items(

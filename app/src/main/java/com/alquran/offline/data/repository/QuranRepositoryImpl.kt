@@ -41,18 +41,19 @@ class QuranRepositoryImpl(
 
     override fun getAyahsBySurah(surahId: Int): Flow<List<Ayah>> {
         return ayahDao.getAyahsBySurah(surahId).map { list ->
+            val bookmarkedSet = bookmarkDao.getBookmarkedVerseIdsForSurah(surahId).toHashSet()
             list.map { entity ->
-                val isBookmarked = bookmarkDao.isBookmarkedSync(entity.surahId, entity.verseId)
-                entity.toDomain(isBookmarked = isBookmarked)
+                entity.toDomain(isBookmarked = bookmarkedSet.contains(entity.verseId))
             }
         }.flowOn(Dispatchers.IO)
     }
 
     override fun getAyahsByJuz(juzId: Int): Flow<List<Ayah>> {
         return ayahDao.getAyahsByJuz(juzId).map { list ->
+            val bookmarkKeys = bookmarkDao.getAllBookmarkKeys().toHashSet()
             list.map { entity ->
-                val isBookmarked = bookmarkDao.isBookmarkedSync(entity.surahId, entity.verseId)
-                entity.toDomain(isBookmarked = isBookmarked)
+                val key = "${entity.surahId}_${entity.verseId}"
+                entity.toDomain(isBookmarked = bookmarkKeys.contains(key))
             }
         }.flowOn(Dispatchers.IO)
     }
@@ -200,11 +201,23 @@ class QuranRepositoryImpl(
     }
 
     // Hadiths
+    private val fallbackHadith = Hadith(
+        id = 1,
+        kitab = "Hadits Arba'in An-Nawawi",
+        nomor = 1,
+        judul = "Niat dan Ikhlas",
+        sumber = "HR. Bukhari dan Muslim",
+        teksAr = "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ",
+        teksId = "Sesungguhnya setiap amalan tergantung pada niatnya.",
+        tema = "Keikhlasan",
+        isBookmarked = false
+    )
+
     override fun getAllHadiths(): Flow<List<Hadith>> {
         return hadithDao.getAllHadiths().map { list ->
+            val bookmarkedIds = hadithDao.getAllBookmarkedHadithIds().toHashSet()
             list.map { entity ->
-                val isBm = hadithDao.isBookmarked(entity.id)
-                entity.toDomain(isBookmarked = isBm)
+                entity.toDomain(isBookmarked = bookmarkedIds.contains(entity.id))
             }
         }.flowOn(Dispatchers.IO)
     }
@@ -222,24 +235,28 @@ class QuranRepositoryImpl(
     }
 
     override suspend fun getTodayHadith(): Hadith = withContext(Dispatchers.IO) {
-        val count = hadithDao.getHadithCount()
-        val total = if (count > 0) count else 42
-        val dayOfYear = Calendar.getInstance().get(Calendar.DAY_OF_YEAR)
-        val targetNumber = (dayOfYear % total) + 1
-        val entity = hadithDao.getHadithByNumber(targetNumber)
-            ?: hadithDao.getHadithById(1)
-            ?: throw IllegalStateException("Hadith dataset not found")
-        val isBm = hadithDao.isBookmarked(entity.id)
-        entity.toDomain(isBookmarked = isBm)
+        try {
+            val count = hadithDao.getHadithCount()
+            val total = if (count > 0) count else 42
+            val dayOfYear = Calendar.getInstance().get(Calendar.DAY_OF_YEAR)
+            val targetNumber = ((dayOfYear - 1) % total) + 1
+            val entity = hadithDao.getHadithByNumber(targetNumber)
+                ?: hadithDao.getHadithById(1)
+                ?: return@withContext fallbackHadith
+            val isBm = hadithDao.isBookmarked(entity.id)
+            entity.toDomain(isBookmarked = isBm)
+        } catch (e: Exception) {
+            fallbackHadith
+        }
     }
 
     override suspend fun searchHadiths(query: String): List<Hadith> = withContext(Dispatchers.IO) {
         val trimmed = query.trim()
         if (trimmed.isBlank()) return@withContext emptyList()
         val list = hadithDao.searchHadiths(trimmed)
+        val bookmarkedIds = hadithDao.getAllBookmarkedHadithIds().toHashSet()
         list.map { entity ->
-            val isBm = hadithDao.isBookmarked(entity.id)
-            entity.toDomain(isBookmarked = isBm)
+            entity.toDomain(isBookmarked = bookmarkedIds.contains(entity.id))
         }
     }
 

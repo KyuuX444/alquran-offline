@@ -12,13 +12,14 @@ import kotlinx.coroutines.launch
 
 class BootReceiver : BroadcastReceiver() {
 
-    override fun onReceive(context: Context, intent: Intent) {
-        if (intent.action == Intent.ACTION_BOOT_COMPLETED ||
-            intent.action == Intent.ACTION_MY_PACKAGE_REPLACED
+    override fun onReceive(context: Context, intent: Intent?) {
+        val action = intent?.action ?: return
+        if (action == Intent.ACTION_BOOT_COMPLETED ||
+            action == Intent.ACTION_MY_PACKAGE_REPLACED
         ) {
-            val pendingResult = goAsync()
-            val app = context.applicationContext as QuranApplication
+            val app = context.applicationContext as? QuranApplication ?: return
             val repository = app.repository
+            val pendingResult = goAsync()
 
             CoroutineScope(Dispatchers.IO).launch {
                 try {
@@ -32,7 +33,10 @@ class BootReceiver : BroadcastReceiver() {
                 } catch (e: Exception) {
                     e.printStackTrace()
                 } finally {
-                    pendingResult.finish()
+                    try {
+                        pendingResult.finish()
+                    } catch (ignored: Exception) {
+                    }
                 }
             }
         }

@@ -69,6 +69,12 @@ fun NavGraph(
                 onBackClick = { navController.popBackStack() },
                 onSurahClick = { surahId ->
                     navController.navigate(Screen.Reader.createRoute(surahId, 1))
+                },
+                onNavigateToJuz = {
+                    navController.navigate(Screen.JuzList.route) {
+                        popUpTo(Screen.SurahList.route) { inclusive = true }
+                        launchSingleTop = true
+                    }
                 }
             )
         }
@@ -83,6 +89,12 @@ fun NavGraph(
                 onBackClick = { navController.popBackStack() },
                 onJuzClick = { surahId, verseId ->
                     navController.navigate(Screen.Reader.createRoute(surahId, verseId))
+                },
+                onNavigateToSurah = {
+                    navController.navigate(Screen.SurahList.route) {
+                        popUpTo(Screen.JuzList.route) { inclusive = true }
+                        launchSingleTop = true
+                    }
                 }
             )
         }

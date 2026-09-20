@@ -1,12 +1,16 @@
 package com.alquran.offline.receiver
 
+import android.Manifest
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import com.alquran.offline.QuranApplication
 import com.alquran.offline.R
 import com.alquran.offline.notification.NotificationScheduler
@@ -18,10 +22,10 @@ import kotlinx.coroutines.launch
 
 class HadithNotificationReceiver : BroadcastReceiver() {
 
-    override fun onReceive(context: Context, intent: Intent) {
-        val pendingResult = goAsync()
-        val app = context.applicationContext as QuranApplication
+    override fun onReceive(context: Context, intent: Intent?) {
+        val app = context.applicationContext as? QuranApplication ?: return
         val repository = app.repository
+        val pendingResult = goAsync()
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -38,7 +42,10 @@ class HadithNotificationReceiver : BroadcastReceiver() {
             } catch (e: Exception) {
                 e.printStackTrace()
             } finally {
-                pendingResult.finish()
+                try {
+                    pendingResult.finish()
+                } catch (ignored: Exception) {
+                }
             }
         }
     }
@@ -50,40 +57,56 @@ class HadithNotificationReceiver : BroadcastReceiver() {
         teksId: String,
         sumber: String
     ) {
-        NotificationScheduler.createNotificationChannel(context)
-
-        val clickIntent = Intent(context, MainActivity::class.java).apply {
-            action = Intent.ACTION_VIEW
-            data = Uri.parse("alquran://hadith?id=$hadithId")
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-        }
-
-        val pendingIntent = PendingIntent.getActivity(
-            context,
-            hadithId,
-            clickIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
-
-        val snippet = if (teksId.length > 150) "${teksId.take(150)}..." else teksId
-        val fullBody = "\"$snippet\"\n— $sumber"
-
-        val notification = NotificationCompat.Builder(context, NotificationScheduler.CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_quran)
-            .setContentTitle("📖 Hadits Hari Ini: $judul")
-            .setContentText(fullBody)
-            .setStyle(NotificationCompat.BigTextStyle().bigText("\"$teksId\"\n\n— $sumber"))
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setAutoCancel(true)
-            .setContentIntent(pendingIntent)
-            .build()
-
-        val notificationManager = NotificationManagerCompat.from(context)
         try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (ContextCompat.checkSelfPermission(
+                        context,
+                        Manifest.permission.POST_NOTIFICATIONS
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    return
+                }
+            }
+
+            NotificationScheduler.createNotificationChannel(context)
+
+            val clickIntent = Intent(context, MainActivity::class.java).apply {
+                action = Intent.ACTION_VIEW
+                data = Uri.parse("alquran://hadith?id=$hadithId")
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            }
+
+            val flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            } else {
+                PendingIntent.FLAG_UPDATE_CURRENT
+            }
+
+            val pendingIntent = PendingIntent.getActivity(
+                context,
+                hadithId,
+                clickIntent,
+                flags
+            )
+
+            val snippet = if (teksId.length > 150) "${teksId.take(150)}..." else teksId
+            val fullBody = "\"$snippet\"\n— $sumber"
+
+            val notification = NotificationCompat.Builder(context, NotificationScheduler.CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_quran)
+                .setContentTitle("📖 Hadits Hari Ini: $judul")
+                .setContentText(fullBody)
+                .setStyle(NotificationCompat.BigTextStyle().bigText("\"$teksId\"\n\n— $sumber"))
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setAutoCancel(true)
+                .setContentIntent(pendingIntent)
+                .build()
+
+            val notificationManager = NotificationManagerCompat.from(context)
             if (notificationManager.areNotificationsEnabled()) {
                 notificationManager.notify(NotificationScheduler.NOTIFICATION_ID, notification)
             }
-        } catch (e: SecurityException) {
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }

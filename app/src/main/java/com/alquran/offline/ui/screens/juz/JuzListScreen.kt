@@ -20,6 +20,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -35,36 +37,68 @@ import com.alquran.offline.ui.components.AppTopBar
 fun JuzListScreen(
     viewModel: JuzListViewModel,
     onBackClick: () -> Unit,
-    onJuzClick: (Int, Int) -> Unit
+    onJuzClick: (Int, Int) -> Unit,
+    onNavigateToSurah: (() -> Unit)? = null
 ) {
     val juzList = viewModel.allJuz
 
     Scaffold(
         topBar = {
             AppTopBar(
-                title = "Daftar 30 Juz",
+                title = "Al-Qur'an 30 Juz",
                 onBackClick = onBackClick
             )
         },
         containerColor = MaterialTheme.colorScheme.background
     ) { innerPadding ->
-        LazyColumn(
+        Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding),
-            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
-            verticalArrangement = Arrangement.spacedBy(10.dp)
+                .padding(innerPadding)
         ) {
-            items(
-                items = juzList,
-                key = { it.juzNumber }
-            ) { juz ->
-                JuzCard(
-                    juz = juz,
-                    onClick = {
-                        onJuzClick(juz.startSurahId, juz.startVerse)
-                    }
-                )
+            // Switcher Tab between Surah & Juz
+            if (onNavigateToSurah != null) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 6.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    FilterChip(
+                        selected = false,
+                        onClick = { onNavigateToSurah() },
+                        label = { Text("Surah (114)") },
+                        modifier = Modifier.weight(1f)
+                    )
+                    FilterChip(
+                        selected = true,
+                        onClick = { },
+                        label = { Text("Juz (30)") },
+                        modifier = Modifier.weight(1f),
+                        colors = FilterChipDefaults.filterChipColors(
+                            selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                            selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
+                        )
+                    )
+                }
+            }
+
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                items(
+                    items = juzList,
+                    key = { it.juzNumber }
+                ) { juz ->
+                    JuzCard(
+                        juz = juz,
+                        onClick = {
+                            onJuzClick(juz.startSurahId, juz.startVerseId)
+                        }
+                    )
+                }
             }
         }
     }
@@ -73,13 +107,14 @@ fun JuzListScreen(
 @Composable
 private fun JuzCard(
     juz: JuzInfo,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .clickable(onClick = onClick),
-        shape = RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(14.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
         ),
@@ -91,41 +126,40 @@ private fun JuzCard(
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
+            // Juz Number Badge
             Box(
                 modifier = Modifier
-                    .size(46.dp)
+                    .size(44.dp)
                     .background(
-                        color = MaterialTheme.colorScheme.secondaryContainer,
+                        color = MaterialTheme.colorScheme.primaryContainer,
                         shape = CircleShape
                     ),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "${juz.juzNumber}",
+                    text = juz.juzNumber.toString(),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSecondaryContainer
+                    color = MaterialTheme.colorScheme.onPrimaryContainer
                 )
             }
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            Column(modifier = Modifier.weight(1f)) {
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.Center
+            ) {
                 Text(
                     text = "Juz ${juz.juzNumber}",
                     style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
-                    text = "Mulai: ${juz.startSurahName} : Ayat ${juz.startVerse}",
+                    text = "${juz.startSurahName} (${juz.startVerseId}) — ${juz.endSurahName} (${juz.endVerseId})",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.primary
-                )
-                Text(
-                    text = "Sampai: ${juz.endSurahName} : Ayat ${juz.endVerse}",
-                    style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
