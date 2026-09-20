@@ -25,6 +25,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.alquran.offline.QuranApplication
+import com.alquran.offline.data.preferences.UserPreferencesRepository
 import com.alquran.offline.data.repository.QuranRepository
 import com.alquran.offline.model.ThemeMode
 import com.alquran.offline.ui.components.AppBottomBar
@@ -46,6 +47,8 @@ class MainActivity : ComponentActivity() {
 
         val app = application as QuranApplication
         val repository = app.repository
+        val prayerRepository = app.prayerRepository
+        val preferencesRepository = UserPreferencesRepository(this)
 
         setContent {
             val themeMode by repository.themeMode.collectAsState(initial = ThemeMode.SYSTEM)
@@ -105,6 +108,8 @@ class MainActivity : ComponentActivity() {
                         NavGraph(
                             navController = navController,
                             repository = repository,
+                            prayerRepository = prayerRepository,
+                            preferencesRepository = preferencesRepository,
                             modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding())
                         )
                     }
@@ -150,8 +155,19 @@ class MainActivity : ComponentActivity() {
                     }
                     "hadith" -> {
                         val rawId = uri.getQueryParameter("id")?.toIntOrNull() ?: 0
-                        val hadithId = rawId.coerceIn(0, 42)
-                        navController.navigateSafe(Screen.HadithList.createRoute(hadithId)) {
+                        val hadithId = rawId.coerceAtLeast(0)
+                        if (hadithId > 0) {
+                            navController.navigateSafe(Screen.HadithDetail.createRoute(hadithId)) {
+                                launchSingleTop = true
+                            }
+                        } else {
+                            navController.navigateSafe(Screen.HadithList.createRoute(0)) {
+                                launchSingleTop = true
+                            }
+                        }
+                    }
+                    "prayer", "bacaan_sholat" -> {
+                        navController.navigateSafe(Screen.PrayerList.route) {
                             launchSingleTop = true
                         }
                     }

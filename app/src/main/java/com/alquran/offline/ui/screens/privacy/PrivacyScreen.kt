@@ -31,7 +31,7 @@ fun PrivacyScreen(onBackClick: () -> Unit) {
     Scaffold(
         topBar = {
             AppTopBar(
-                title = "Kebijakan Privasi & Atribusi",
+                title = "Tentang & Kebijakan Privasi",
                 onBackClick = onBackClick
             )
         },
@@ -58,7 +58,7 @@ fun PrivacyScreen(onBackClick: () -> Unit) {
                     )
                     Spacer(modifier = Modifier.height(6.dp))
                     Text(
-                        text = "Aplikasi ini dirancang untuk beroperasi sepenuhnya tanpa koneksi internet. Tidak ada izin akses jaringan (INTERNET permission) yang diminta oleh aplikasi ini ke sistem operasi Android. Seluruh data teks Al-Qur'an dan Hadits telah disertakan langsung di dalam paket instalasi.",
+                        text = "Aplikasi ini dirancang untuk beroperasi sepenuhnya tanpa koneksi internet. Tidak ada izin akses jaringan (INTERNET permission) yang diminta oleh aplikasi ini ke sistem operasi Android. Seluruh data teks Al-Qur'an, Hadits, dan Bacaan Sholat telah disertakan langsung di dalam paket instalasi tanpa bergantung pada server luar.",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         lineHeight = 22.sp
@@ -88,19 +88,19 @@ fun PrivacyScreen(onBackClick: () -> Unit) {
                     )
                     PrivacyItem(
                         title = "Tanpa Akun & Registrasi",
-                        desc = "Aplikasi dapat langsung digunakan tanpa mendaftar atau login."
+                        desc = "Aplikasi dapat langsung digunakan tanpa perlu login, akun, atau nomor telepon."
                     )
                     PrivacyItem(
                         title = "Tanpa Pelacakan / Analytics",
-                        desc = "Tidak ada pelacakan penggunaan, pengumpulan data pribadi, maupun log aktivitas."
+                        desc = "Tidak ada pelacakan penggunaan, pengumpulan data pengguna, maupun log aktivitas apa pun."
                     )
                     PrivacyItem(
                         title = "Penyimpanan Lokal Sepenuhnya",
-                        desc = "Penanda baca (bookmark), riwayat terakhir dibaca, dan preferensi tampilan hanya tersimpan di perangkat Anda."
+                        desc = "Penanda baca (bookmark), riwayat terakhir dibaca, dan preferensi tampilan hanya tersimpan aman di penyimpanan internal perangkat Anda."
                     )
                     PrivacyItem(
                         title = "Tanpa Izin Sensitif",
-                        desc = "Aplikasi tidak mengakses kontak, lokasi, kamera, mikrofon, atau penyimpanan eksternal."
+                        desc = "Aplikasi tidak mengakses kontak, lokasi GPS, kamera, mikrofon, atau penyimpanan eksternal."
                     )
                 }
             }
@@ -116,10 +116,10 @@ fun PrivacyScreen(onBackClick: () -> Unit) {
             item {
                 Column(
                     modifier = Modifier.fillMaxWidth(),
-                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
                     Text(
-                        text = "SUMBER & ATRIBUSI DATASET",
+                        text = "SUMBER & ATRIBUSI DATASET RESMI",
                         style = MaterialTheme.typography.labelMedium,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.primary,
@@ -131,16 +131,20 @@ fun PrivacyScreen(onBackClick: () -> Unit) {
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         lineHeight = 22.sp
                     )
-                    Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "2. Terjemahan Bahasa Indonesia:\nBersumber dari Kementerian Agama Republik Indonesia (Kemenag RI), digunakan secara terbuka untuk kepentingan literasi dan dakwah.",
+                        text = "2. Terjemahan Al-Qur'an Bahasa Indonesia:\nBersumber dari Kementerian Agama Republik Indonesia (Kemenag RI), digunakan secara terbuka untuk kepentingan literasi dan dakwah Islam.",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         lineHeight = 22.sp
                     )
-                    Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "3. Hadits Arbain An-Nawawi:\n42 Hadits pilihan karya Imam An-Nawawi beserta terjemahan Bahasa Indonesia yang telah diverifikasi.",
+                        text = "3. Ensiklopedia Hadits (Kutubut Tis'ah & Arba'in):\nMemuat 38.100+ Hadits lengkap dengan teks Arab dan terjemahan dari 10 kitab rujukan utama: Shahih Bukhari, Shahih Muslim, Sunan Abu Daud, Sunan At-Tirmidzi, Sunan An-Nasa'i, Sunan Ibnu Majah, Musnad Ahmad, Muwatha' Malik, Sunan Ad-Darimi, serta Hadits Arba'in An-Nawawi.",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        lineHeight = 22.sp
+                    )
+                    Text(
+                        text = "4. Panduan & Bacaan Sholat Fardhu:\nDisusun secara sistematis dari takbiratul ihram hingga salam dan dzikir ba'da sholat, dengan dalil shahih dari Shahih Bukhari, Shahih Muslim, Sunan Abu Daud, Tirmidzi, dan An-Nasa'i.",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         lineHeight = 22.sp

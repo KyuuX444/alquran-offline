@@ -6,15 +6,21 @@ plugins {
 
 tasks.register<Exec>("validateHadithDataset") {
     group = "verification"
-    description = "Validates the integrity of the 42 Hadith dataset"
+    description = "Validates the integrity of the Hadith dataset"
     commandLine("python3", "${rootDir}/scripts/validate_hadith_dataset.py")
+}
+
+tasks.register<Exec>("validatePrayerDataset") {
+    group = "verification"
+    description = "Validates the integrity of the Bacaan Sholat dataset"
+    commandLine("python3", "${rootDir}/scripts/validate_prayer_dataset.py")
 }
 
 tasks.register<Exec>("validateDataset") {
     group = "verification"
     description = "Validates the integrity of the Al-Qur'an dataset (114 surahs, 6,236 ayahs, 30 juz)"
     commandLine("python3", "${rootDir}/scripts/validate_dataset.py")
-    dependsOn("validateHadithDataset")
+    dependsOn("validateHadithDataset", "validatePrayerDataset")
 }
 
 tasks.register("clean", Delete::class) {

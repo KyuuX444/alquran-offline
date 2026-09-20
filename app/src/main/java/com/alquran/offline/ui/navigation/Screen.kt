@@ -9,6 +9,19 @@ sealed class Screen(val route: String) {
     object Settings : Screen("settings")
     object Privacy : Screen("privacy")
     object About : Screen("about")
+    object PrayerList : Screen("prayer_list")
+
+    object PrayerDetail : Screen("prayer_detail/{prayerId}") {
+        fun createRoute(prayerId: Int): String {
+            return "prayer_detail/$prayerId"
+        }
+    }
+
+    object HadithDetail : Screen("hadith_detail/{hadithId}") {
+        fun createRoute(hadithId: Int): String {
+            return "hadith_detail/$hadithId"
+        }
+    }
 
     object HadithList : Screen("hadith_list?initialId={initialId}") {
         fun createRoute(initialId: Int = 0): String {

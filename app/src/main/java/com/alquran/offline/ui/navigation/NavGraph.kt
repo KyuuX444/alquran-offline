@@ -9,15 +9,23 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.alquran.offline.data.preferences.UserPreferencesRepository
+import com.alquran.offline.data.repository.PrayerRepository
 import com.alquran.offline.data.repository.QuranRepository
 import com.alquran.offline.ui.screens.bookmark.BookmarkScreen
 import com.alquran.offline.ui.screens.bookmark.BookmarkViewModel
+import com.alquran.offline.ui.screens.hadith.HadithDetailScreen
+import com.alquran.offline.ui.screens.hadith.HadithDetailViewModel
 import com.alquran.offline.ui.screens.hadith.HadithListScreen
 import com.alquran.offline.ui.screens.hadith.HadithListViewModel
 import com.alquran.offline.ui.screens.home.HomeScreen
 import com.alquran.offline.ui.screens.home.HomeViewModel
 import com.alquran.offline.ui.screens.juz.JuzListScreen
 import com.alquran.offline.ui.screens.juz.JuzListViewModel
+import com.alquran.offline.ui.screens.prayer.PrayerDetailScreen
+import com.alquran.offline.ui.screens.prayer.PrayerDetailViewModel
+import com.alquran.offline.ui.screens.prayer.PrayerListScreen
+import com.alquran.offline.ui.screens.prayer.PrayerListViewModel
 import com.alquran.offline.ui.screens.privacy.PrivacyScreen
 import com.alquran.offline.ui.screens.reader.ReaderScreen
 import com.alquran.offline.ui.screens.reader.ReaderViewModel
@@ -32,6 +40,8 @@ import com.alquran.offline.ui.screens.surah.SurahListViewModel
 fun NavGraph(
     navController: NavHostController,
     repository: QuranRepository,
+    prayerRepository: PrayerRepository,
+    preferencesRepository: UserPreferencesRepository,
     modifier: Modifier = Modifier
 ) {
     NavHost(
@@ -39,7 +49,7 @@ fun NavGraph(
         startDestination = Screen.Home.route,
         modifier = modifier
     ) {
-        // Home
+        // Home Screen
         composable(Screen.Home.route) {
             val viewModel: HomeViewModel = viewModel(
                 factory = HomeViewModel.Factory(repository)
@@ -49,6 +59,10 @@ fun NavGraph(
                 onNavigateToSurahList = { navController.navigateSafe(Screen.SurahList.route) },
                 onNavigateToJuzList = { navController.navigateSafe(Screen.JuzList.route) },
                 onNavigateToHadith = { navController.navigateSafe(Screen.HadithList.createRoute()) },
+                onNavigateToHadithDetail = { hadithId ->
+                    navController.navigateSafe(Screen.HadithDetail.createRoute(hadithId))
+                },
+                onNavigateToPrayerList = { navController.navigateSafe(Screen.PrayerList.route) },
                 onNavigateToBookmark = { navController.navigateSafe(Screen.Bookmark.route) },
                 onNavigateToSearch = { navController.navigateSafe(Screen.Search.route) },
                 onNavigateToSettings = { navController.navigateSafe(Screen.Settings.route) },
@@ -59,7 +73,7 @@ fun NavGraph(
             )
         }
 
-        // Surah List
+        // Surah List Screen
         composable(Screen.SurahList.route) {
             val viewModel: SurahListViewModel = viewModel(
                 factory = SurahListViewModel.Factory(repository)
@@ -79,7 +93,7 @@ fun NavGraph(
             )
         }
 
-        // Juz List
+        // Juz List Screen
         composable(Screen.JuzList.route) {
             val viewModel: JuzListViewModel = viewModel(
                 factory = JuzListViewModel.Factory(repository)
@@ -153,7 +167,7 @@ fun NavGraph(
             )
         }
 
-        // Hadith Screen
+        // Hadith List Screen
         composable(
             route = Screen.HadithList.route,
             arguments = listOf(
@@ -164,12 +178,70 @@ fun NavGraph(
             )
         ) { backStackEntry ->
             val rawInitialId = backStackEntry.arguments?.getInt("initialId") ?: 0
-            val initialId = rawInitialId.coerceIn(0, 42)
+            val initialId = rawInitialId.coerceAtLeast(0)
             val viewModel: HadithListViewModel = viewModel(
                 key = "hadith_$initialId",
                 factory = HadithListViewModel.Factory(repository, if (initialId > 0) initialId else null)
             )
             HadithListScreen(
+                viewModel = viewModel,
+                onBackClick = { navController.popBackStackSafe() }
+            )
+        }
+
+        // Hadith Detail Screen (Direct View from Daily Hadith or selection)
+        composable(
+            route = Screen.HadithDetail.route,
+            arguments = listOf(
+                navArgument("hadithId") {
+                    type = NavType.IntType
+                    defaultValue = 1
+                }
+            )
+        ) { backStackEntry ->
+            val rawHadithId = backStackEntry.arguments?.getInt("hadithId") ?: 1
+            val hadithId = rawHadithId.coerceAtLeast(1)
+            val viewModel: HadithDetailViewModel = viewModel(
+                key = "hadith_detail_$hadithId",
+                factory = HadithDetailViewModel.Factory(repository, hadithId)
+            )
+            HadithDetailScreen(
+                viewModel = viewModel,
+                onBackClick = { navController.popBackStackSafe() }
+            )
+        }
+
+        // Bacaan Sholat List Screen
+        composable(Screen.PrayerList.route) {
+            val viewModel: PrayerListViewModel = viewModel(
+                factory = PrayerListViewModel.Factory(prayerRepository)
+            )
+            PrayerListScreen(
+                viewModel = viewModel,
+                onBackClick = { navController.popBackStackSafe() },
+                onReadingClick = { prayerId ->
+                    navController.navigateSafe(Screen.PrayerDetail.createRoute(prayerId))
+                }
+            )
+        }
+
+        // Bacaan Sholat Detail Screen
+        composable(
+            route = Screen.PrayerDetail.route,
+            arguments = listOf(
+                navArgument("prayerId") {
+                    type = NavType.IntType
+                    defaultValue = 1
+                }
+            )
+        ) { backStackEntry ->
+            val rawPrayerId = backStackEntry.arguments?.getInt("prayerId") ?: 1
+            val prayerId = rawPrayerId.coerceAtLeast(1)
+            val viewModel: PrayerDetailViewModel = viewModel(
+                key = "prayer_$prayerId",
+                factory = PrayerDetailViewModel.Factory(prayerRepository, preferencesRepository, prayerId)
+            )
+            PrayerDetailScreen(
                 viewModel = viewModel,
                 onBackClick = { navController.popBackStackSafe() }
             )

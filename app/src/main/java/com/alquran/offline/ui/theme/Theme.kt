@@ -17,10 +17,14 @@ private val DarkColorScheme = darkColorScheme(
     onPrimary = EmeraldOnPrimaryDark,
     primaryContainer = EmeraldPrimaryContainerDark,
     onPrimaryContainer = EmeraldOnPrimaryContainerDark,
-    secondary = GoldAccentDark,
-    onSecondary = GoldAccentContainerDark,
-    secondaryContainer = GoldAccentContainerDark,
-    onSecondaryContainer = GoldOnAccentContainerDark,
+    secondary = TealSecondaryDark,
+    onSecondary = TealOnSecondaryDark,
+    secondaryContainer = TealSecondaryContainerDark,
+    onSecondaryContainer = TealOnSecondaryContainerDark,
+    tertiary = GoldAccentDark,
+    onTertiary = GoldAccentContainerDark,
+    tertiaryContainer = GoldAccentContainerDark,
+    onTertiaryContainer = GoldOnAccentContainerDark,
     background = BackgroundDark,
     surface = SurfaceDark,
     surfaceVariant = SurfaceVariantDark,
@@ -35,10 +39,14 @@ private val LightColorScheme = lightColorScheme(
     onPrimary = EmeraldOnPrimary,
     primaryContainer = EmeraldPrimaryContainer,
     onPrimaryContainer = EmeraldOnPrimaryContainer,
-    secondary = GoldAccent,
-    onSecondary = EmeraldOnPrimary,
-    secondaryContainer = GoldAccentContainer,
-    onSecondaryContainer = GoldOnAccentContainer,
+    secondary = TealSecondary,
+    onSecondary = TealOnSecondary,
+    secondaryContainer = TealSecondaryContainer,
+    onSecondaryContainer = TealOnSecondaryContainer,
+    tertiary = GoldAccent,
+    onTertiary = EmeraldOnPrimary,
+    tertiaryContainer = GoldAccentContainer,
+    onTertiaryContainer = GoldOnAccentContainer,
     background = BackgroundLight,
     surface = SurfaceLight,
     surfaceVariant = SurfaceVariantLight,
@@ -65,8 +73,10 @@ fun AlQuranOfflineTheme(
         SideEffect {
             val window = (view.context as? Activity)?.window
             if (window != null) {
-                window.statusBarColor = colorScheme.surface.toArgb()
+                window.statusBarColor = colorScheme.background.toArgb()
+                window.navigationBarColor = colorScheme.surface.toArgb()
                 WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
+                WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars = !darkTheme
             }
         }
     }

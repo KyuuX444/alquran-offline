@@ -386,9 +386,12 @@ class QuranRepositoryImpl(
         try {
             val count = hadithDao.getHadithCount()
             val total = if (count > 0) count else 42
-            val dayOfYear = Calendar.getInstance().get(Calendar.DAY_OF_YEAR)
-            val targetNumber = ((dayOfYear - 1) % total) + 1
-            val entity = hadithDao.getHadithByNumber(targetNumber)
+            val cal = Calendar.getInstance()
+            val dayOfYear = cal.get(Calendar.DAY_OF_YEAR)
+            val year = cal.get(Calendar.YEAR)
+            // Deterministic daily ID based on date
+            val targetId = (((dayOfYear * 31 + year) % total) + total) % total + 1
+            val entity = hadithDao.getHadithById(targetId)
                 ?: hadithDao.getHadithById(1)
                 ?: return@withContext fallbackHadith
             val isBm = try { hadithDao.isBookmarked(entity.id) } catch (e: Throwable) { false }

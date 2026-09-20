@@ -36,13 +36,14 @@ Aplikasi ini tidak memiliki izin akses jaringan (`android.permission.INTERNET`).
 ## Features
 
 - 📖 **Al-Qur'an Lengkap** — 114 Surah dan 30 Juz (6.236 ayat) dengan teks Utsmani terverifikasi dan terjemahan bahasa Indonesia Kemenag RI.
-- 📚 **Koleksi Hadits Lengkap (38.100+ Hadits)** — Kutubut Tis'ah (Shahih Bukhari, Shahih Muslim, Abu Daud, Tirmidzi, Nasa'i, Ibnu Majah, Malik, Darimi, Ahmad) dan Arba'in Nawawi dengan filter pemilih kitab, teks Arab berharakat, dan terjemahan bahasa Indonesia.
+- 📚 **Koleksi Hadits Lengkap (38.100+ Hadits)** — Kutubut Tis'ah (Shahih Bukhari, Shahih Muslim, Abu Daud, Tirmidzi, Nasa'i, Ibnu Majah, Malik, Darimi, Ahmad) dan Arba'in Nawawi dengan filter pemilih kitab, teks Arab berharakat, dan navigasi detail hadits langsung.
+- 🤲 **Panduan Bacaan Sholat Lengkap** — 15 bacaan sholat sahih step-by-step (Niat 5 waktu, Takbir, Iftitah, Ruku', I'tidal, Sujud, Duduk antara dua sujud, Tasyahud Awal, Tasyahud Akhir & Shalawat Ibrahimiyah, Salam, hingga Dzikir Ba'da Sholat) lengkap dengan dalil rujukan hadits shahih (HR. Bukhari, Muslim, Abu Daud, dll).
 - 🔎 **Pencarian Lokal** — Temukan surah, potongan ayat Arab, maupun kata dalam terjemahan dan hadits secara instan melalui indexing database internal.
 - 🔖 **Bookmark Ayat & Hadits** — Simpan ayat dan hadits penting ke daftar penanda lokal dengan sekali sentuh.
 - ↩️ **Lanjut Baca (Last Read)** — Melanjutkan tilawah langsung dari ayat dan surah terakhir yang dibuka.
-- 🌙 **Mode Tampilan** — Dukungan tema Terang (Warm Paper), Gelap (Warm Charcoal), serta mengikuti pengaturan sistem.
-- 🔔 **Hadits Harian** — Pengingat notifikasi hadits harian (Senin–Minggu) tanpa membutuhkan akses internet atau server push.
-- ⚡ **App Shortcuts** — Akses instan dari homescreen ke Lanjut Baca, Surah, Juz, dan Hadits.
+- 🌙 **Mode Tampilan & UI Modern** — Antarmuka bergaya Islami modern (*Islamic Emerald & Warm Gold*), kartu navigasi intuitif, rekomendasi surah populer, serta dukungan tema Terang & Gelap.
+- 🔔 **Hadits Harian Interaktif** — Hadits harian berganti otomatis setiap hari dengan kartu interaktif di beranda yang langsung membuka detail hadits terkait.
+- ⚡ **App Shortcuts** — Akses instan dari homescreen ke Lanjut Baca, Surah, Juz, Hadits, dan Bacaan Sholat.
 - 📡 **100% Offline** — Nol koneksi internet, tanpa API eksternal, dan hemat konsumsi daya.
 
 ---
@@ -122,7 +123,7 @@ Tidak ada permintaan HTTP, socket, atau sinkronisasi background ke server pihak 
 
 ## Data Sources
 
-Dataset Al-Qur'an dan Hadits telah melalui pemeriksaan integritas otomatis (114 Surah, 6.236 Ayat, 38.144 Hadits) sebelum proses build:
+Dataset Al-Qur'an, Hadits, dan Bacaan Sholat telah melalui pemeriksaan integritas otomatis (114 Surah, 6.236 Ayat, 38.144 Hadits, 15 Bacaan Sholat) sebelum proses build:
 
 1. **Teks Al-Qur'an (Rasm Utsmani)**  
    Bersumber dari [Tanzil Project](https://tanzil.net), terverifikasi dengan standar mushaf Utsmani internasional.  
@@ -133,6 +134,9 @@ Dataset Al-Qur'an dan Hadits telah melalui pemeriksaan integritas otomatis (114 
 
 3. **Koleksi Hadits Kutubut Tis'ah & Arba'in**  
    Kompilasi 38.144 hadits dari 10 kitab utama (Shahih Bukhari, Shahih Muslim, Sunan Abu Daud, Sunan At-Tirmidzi, Sunan An-Nasa'i, Sunan Ibnu Majah, Muwatha' Malik, Sunan Ad-Darimi, Musnad Ahmad, dan Arba'in An-Nawawi) dengan matan Arab berharakat dan terjemahan bahasa Indonesia lengkap.
+
+4. **Panduan Bacaan Sholat Sahih**  
+   Rangkaian 15 bacaan sholat fardhu (Niat, Takbiratul Ihram, Iftitah, Al-Fatihah, Ruku', I'tidal, Sujud, Duduk Antara Dua Sujud, Tasyahud Awal, Tasyahud Akhir & Shalawat Ibrahimiyah, Perlindungan Sebelum Salam, Salam, Dzikir Ba'da Sholat, Tasbih/Tahmid/Takbir 33x) bersumber dari rujukan hadits shahih (Shahih Bukhari, Shahih Muslim, Sunan Abu Daud, Sunan At-Tirmidzi, Sunan An-Nasa'i, Sunan Ibnu Majah) dan kitab *Shifat Shalat Nabi shallallahu 'alaihi wasallam*.
 
 ---
 
@@ -154,9 +158,10 @@ Jika Anda ingin mengompilasi aplikasi ini sendiri:
 git clone https://github.com/KyuuX444/alquran-offline.git
 cd alquran-offline
 
-# 2. Verifikasi integritas dataset
+# 2. Verifikasi integritas dataset (Al-Qur'an, Hadits, & Bacaan Sholat)
 python3 scripts/validate_dataset.py
 python3 scripts/validate_hadith_dataset.py
+python3 scripts/validate_prayer_dataset.py
 
 # 3. Jalankan unit test
 ./gradlew testDebugUnitTest
@@ -189,21 +194,25 @@ alquran-offline/
 │   ├── src/main/
 │   │   ├── AndroidManifest.xml          # Konfigurasi aplikasi (tanpa INTERNET)
 │   │   ├── assets/
-│   │   │   ├── quran.db                 # Database SQLite Al-Qur'an 30 Juz
-│   │   │   └── quran_metadata.json      # Metadata checksum & struktur surah
+│   │   │   ├── quran.db                 # Database SQLite Al-Qur'an 30 Juz & 38.144 Hadits
+│   │   │   ├── quran_metadata.json      # Metadata checksum & struktur surah
+│   │   │   └── prayer/
+│   │   │       ├── prayer_readings.json # Dataset 15 bacaan sholat sahih
+│   │   │       └── prayer_metadata.json # Checksum & verifikasi dataset sholat
 │   │   ├── java/com/alquran/offline/
-│   │   │   ├── data/                    # Room DB, Entity, DAO, Preferences
-│   │   │   ├── model/                   # Model domain Surah, Ayah, Hadith
+│   │   │   ├── data/                    # Room DB, Entity, DAO, Repository, Preferences
+│   │   │   ├── model/                   # Model domain Surah, Ayah, Hadith, PrayerReading
 │   │   │   ├── notification/            # Scheduler notifikasi lokal
 │   │   │   ├── receiver/                # AlarmReceiver & BootReceiver
-│   │   │   └── ui/                      # Jetpack Compose Screens & Components
+│   │   │   └── ui/                      # Jetpack Compose Screens, Navigation & Components
 │   │   └── res/                         # Asset visual, XML shortcuts, tema
-│   └── src/test/java/com/alquran/       # Unit tests (Room, Nav, Compatibility)
+│   └── src/test/java/com/alquran/       # Unit tests (Room, Nav, Prayer, CrashProofing)
 ├── scripts/
 │   ├── validate_dataset.py              # Validasi integritas Al-Qur'an
-│   └── validate_hadith_dataset.py       # Validasi integritas Hadits Arbain
-├── .github/workflows/                   # CI/CD Workflows
-└── build.gradle.kts                     # Konfigurasi root build
+│   ├── validate_hadith_dataset.py       # Validasi integritas Hadits
+│   └── validate_prayer_dataset.py       # Validasi integritas Bacaan Sholat
+├── .github/workflows/                   # CI/CD Workflows (Build & Signed Release)
+└── build.gradle.kts                     # Konfigurasi root build & tasks
 ```
 
 ---

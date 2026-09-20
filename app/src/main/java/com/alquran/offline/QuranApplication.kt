@@ -8,6 +8,8 @@ package com.alquran.offline
 import android.app.Application
 import com.alquran.offline.data.local.AppDatabase
 import com.alquran.offline.data.preferences.UserPreferencesRepository
+import com.alquran.offline.data.repository.PrayerRepository
+import com.alquran.offline.data.repository.PrayerRepositoryImpl
 import com.alquran.offline.data.repository.QuranRepository
 import com.alquran.offline.data.repository.QuranRepositoryImpl
 import kotlinx.coroutines.CoroutineScope
@@ -19,11 +21,15 @@ class QuranApplication : Application() {
     lateinit var repository: QuranRepository
         private set
 
+    lateinit var prayerRepository: PrayerRepository
+        private set
+
     override fun onCreate() {
         super.onCreate()
         val preferencesRepository = UserPreferencesRepository(this)
         val database = AppDatabase.getInstance(this)
         repository = QuranRepositoryImpl(database, preferencesRepository)
+        prayerRepository = PrayerRepositoryImpl(this)
 
         // Asynchronously pre-warm the database on Dispatchers.IO.
         // Room extracts and prepares the asset database in the background
