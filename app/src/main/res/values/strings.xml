@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Al-Qur\'an Offline</string>
+    <string name="sub_title">Baca Al-Qur\'an 30 Juz 100% Tanpa Internet</string>
+    
+    <!-- Home Navigation -->
+    <string name="lanjut_baca">Lanjut Baca</string>
+    <string name="terakhir_dibaca">Terakhir Dibaca</string>
+    <string name="menu_surah">Daftar Surah</string>
+    <string name="menu_juz">Daftar Juz</string>
+    <string name="menu_bookmark">Bookmark</string>
+    <string name="menu_pencarian">Pencarian</string>
+    <string name="menu_pengaturan">Pengaturan</string>
+    
+    <!-- Reader -->
+    <string name="basmalah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</string>
+    <string name="ayat">Ayat</string>
+    <string name="salin_ayat">Salin Ayat</string>
+    <string name="bagikan_ayat">Bagikan Ayat</string>
+    <string name="simpan_bookmark">Simpan Bookmark</string>
+    <string name="hapus_bookmark">Hapus Bookmark</string>
+    <string name="ayat_disalin">Ayat berhasil disalin ke papan klip</string>
+    <string name="bookmark_tersimpan">Ayat berhasil ditambahkan ke bookmark</string>
+    <string name="bookmark_terhapus">Bookmark dihapus</string>
+    
+    <!-- Search -->
+    <string name="cari_hint">Cari nama surah, juz, teks Arab, atau terjemahan...</string>
+    <string name="tidak_ada_hasil">Tidak ada hasil yang ditemukan.</string>
+    <string name="hasil_pencarian">Hasil Pencarian</string>
+
+    <!-- Settings -->
+    <string name="ukuran_font_arab">Ukuran Font Arab</string>
+    <string name="ukuran_font_terjemahan">Ukuran Font Terjemahan</string>
+    <string name="tampilkan_terjemahan">Tampilkan Terjemahan</string>
+    <string name="tema_aplikasi">Tema Tampilan</string>
+    <string name="tema_sistem">Ikuti Sistem</string>
+    <string name="tema_terang">Mode Terang</string>
+    <string name="tema_gelap">Mode Gelap</string>
+    <string name="reset_terakhir_dibaca">Reset Posisi Bacaan Terakhir</string>
+    <string name="tentang_aplikasi">Tentang Aplikasi</string>
+    <string name="kebijakan_privasi">Kebijakan Privasi</string>
+</resources>

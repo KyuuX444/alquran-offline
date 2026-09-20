@@ -1,0 +1,105 @@
+package com.alquran.offline.data.preferences
+
+import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.floatPreferencesKey
+import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.longPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
+import com.alquran.offline.model.LastRead
+import com.alquran.offline.model.ThemeMode
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user_preferences")
+
+class UserPreferencesRepository(private val context: Context) {
+
+    private object Keys {
+        val ARABIC_FONT_SIZE = floatPreferencesKey("arabic_font_size")
+        val TRANSLATION_FONT_SIZE = floatPreferencesKey("translation_font_size")
+        val SHOW_TRANSLATION = booleanPreferencesKey("show_translation")
+        val THEME_MODE = stringPreferencesKey("theme_mode")
+
+        val LAST_READ_SURAH_ID = intPreferencesKey("last_read_surah_id")
+        val LAST_READ_SURAH_NAME = stringPreferencesKey("last_read_surah_name")
+        val LAST_READ_VERSE_ID = intPreferencesKey("last_read_verse_id")
+        val LAST_READ_TIMESTAMP = longPreferencesKey("last_read_timestamp")
+    }
+
+    val arabicFontSize: Flow<Float> = context.dataStore.data.map { preferences ->
+        preferences[Keys.ARABIC_FONT_SIZE] ?: 28f
+    }
+
+    val translationFontSize: Flow<Float> = context.dataStore.data.map { preferences ->
+        preferences[Keys.TRANSLATION_FONT_SIZE] ?: 15f
+    }
+
+    val showTranslation: Flow<Boolean> = context.dataStore.data.map { preferences ->
+        preferences[Keys.SHOW_TRANSLATION] ?: true
+    }
+
+    val themeMode: Flow<ThemeMode> = context.dataStore.data.map { preferences ->
+        val mode = preferences[Keys.THEME_MODE] ?: ThemeMode.SYSTEM.name
+        try {
+            ThemeMode.valueOf(mode)
+        } catch (e: Exception) {
+            ThemeMode.SYSTEM
+        }
+    }
+
+    val lastRead: Flow<LastRead> = context.dataStore.data.map { preferences ->
+        LastRead(
+            surahId = preferences[Keys.LAST_READ_SURAH_ID] ?: 1,
+            surahNameLatin = preferences[Keys.LAST_READ_SURAH_NAME] ?: "Al-Fatihah",
+            verseId = preferences[Keys.LAST_READ_VERSE_ID] ?: 1,
+            timestamp = preferences[Keys.LAST_READ_TIMESTAMP] ?: 0L
+        )
+    }
+
+    suspend fun setArabicFontSize(size: Float) {
+        context.dataStore.edit { preferences ->
+            preferences[Keys.ARABIC_FONT_SIZE] = size
+        }
+    }
+
+    suspend fun setTranslationFontSize(size: Float) {
+        context.dataStore.edit { preferences ->
+            preferences[Keys.TRANSLATION_FONT_SIZE] = size
+        }
+    }
+
+    suspend fun setShowTranslation(show: Boolean) {
+        context.dataStore.edit { preferences ->
+            preferences[Keys.SHOW_TRANSLATION] = show
+        }
+    }
+
+    suspend fun setThemeMode(mode: ThemeMode) {
+        context.dataStore.edit { preferences ->
+            preferences[Keys.THEME_MODE] = mode.name
+        }
+    }
+
+    suspend fun saveLastRead(surahId: Int, surahName: String, verseId: Int) {
+        context.dataStore.edit { preferences ->
+            preferences[Keys.LAST_READ_SURAH_ID] = surahId
+            preferences[Keys.LAST_READ_SURAH_NAME] = surahName
+            preferences[Keys.LAST_READ_VERSE_ID] = verseId
+            preferences[Keys.LAST_READ_TIMESTAMP] = System.currentTimeMillis()
+        }
+    }
+
+    suspend fun resetLastRead() {
+        context.dataStore.edit { preferences ->
+            preferences[Keys.LAST_READ_SURAH_ID] = 1
+            preferences[Keys.LAST_READ_SURAH_NAME] = "Al-Fatihah"
+            preferences[Keys.LAST_READ_VERSE_ID] = 1
+            preferences[Keys.LAST_READ_TIMESTAMP] = 0L
+        }
+    }
+}

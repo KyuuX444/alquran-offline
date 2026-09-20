@@ -1,0 +1,64 @@
+name: Build Al-Qur'an Offline APK
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Validate Dataset & Build Debug APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Run Dataset Integrity Validation
+        run: |
+          chmod +x scripts/validate_dataset.py
+          python3 scripts/validate_dataset.py
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          cache-read-only: false
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Run Unit Tests
+        run: ./gradlew testDebugUnitTest --no-daemon --stacktrace
+
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: Prepare APK Artifact
+        run: |
+          mkdir -p artifacts
+          cp app/build/outputs/apk/debug/app-debug.apk artifacts/alquran-offline-debug.apk
+
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: alquran-offline-debug
+          path: artifacts/alquran-offline-debug.apk
+          if-no-files-found: error
+          retention-days: 30

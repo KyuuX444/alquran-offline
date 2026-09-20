@@ -1,0 +1,1425 @@
+{
+  "dataset_name": "Al-Qur'an 30 Juz & 114 Surah (Offline)",
+  "arabic_source": "Tanzil Project (Uthmani Text)",
+  "arabic_license": "Creative Commons Attribution 3.0",
+  "translation_source": "Kementerian Agama Republik Indonesia (Kemenag RI)",
+  "translation_language": "Bahasa Indonesia",
+  "total_surahs": 114,
+  "total_verses": 6236,
+  "total_juz": 30,
+  "sha256_checksum": "4e4a2000428fb86da51939a3f8050fc845ec659f5cb32e86b0fcfd6798d8f013",
+  "surahs": [
+    {
+      "id": 1,
+      "name_ar": "الفاتحة",
+      "name_latin": "Al-Fatihah",
+      "translation_id": "Pembukaan",
+      "type": "Makkiyah",
+      "total_verses": 7,
+      "juz_start": 1,
+      "juz_end": 1
+    },
+    {
+      "id": 2,
+      "name_ar": "البقرة",
+      "name_latin": "Al-Baqarah",
+      "translation_id": "Sapi Betina",
+      "type": "Madaniyah",
+      "total_verses": 286,
+      "juz_start": 1,
+      "juz_end": 3
+    },
+    {
+      "id": 3,
+      "name_ar": "آل عمران",
+      "name_latin": "Ali 'Imran",
+      "translation_id": "Keluarga Imran",
+      "type": "Madaniyah",
+      "total_verses": 200,
+      "juz_start": 3,
+      "juz_end": 4
+    },
+    {
+      "id": 4,
+      "name_ar": "النساء",
+      "name_latin": "An-Nisa",
+      "translation_id": "Wanita",
+      "type": "Madaniyah",
+      "total_verses": 176,
+      "juz_start": 4,
+      "juz_end": 6
+    },
+    {
+      "id": 5,
+      "name_ar": "المائدة",
+      "name_latin": "Al-Ma'idah",
+      "translation_id": "Jamuan (Hidangan Makanan)",
+      "type": "Madaniyah",
+      "total_verses": 120,
+      "juz_start": 6,
+      "juz_end": 7
+    },
+    {
+      "id": 6,
+      "name_ar": "الأنعام",
+      "name_latin": "Al-An'am",
+      "translation_id": "Binatang Ternak",
+      "type": "Makkiyah",
+      "total_verses": 165,
+      "juz_start": 7,
+      "juz_end": 8
+    },
+    {
+      "id": 7,
+      "name_ar": "الأعراف",
+      "name_latin": "Al-A'raf",
+      "translation_id": "Tempat-tempat Tinggi",
+      "type": "Makkiyah",
+      "total_verses": 206,
+      "juz_start": 8,
+      "juz_end": 9
+    },
+    {
+      "id": 8,
+      "name_ar": "الأنفال",
+      "name_latin": "Al-Anfal",
+      "translation_id": "Rampasan Perang",
+      "type": "Madaniyah",
+      "total_verses": 75,
+      "juz_start": 9,
+      "juz_end": 10
+    },
+    {
+      "id": 9,
+      "name_ar": "التوبة",
+      "name_latin": "At-Tawbah",
+      "translation_id": "Pengampunan",
+      "type": "Madaniyah",
+      "total_verses": 129,
+      "juz_start": 10,
+      "juz_end": 11
+    },
+    {
+      "id": 10,
+      "name_ar": "يونس",
+      "name_latin": "Yunus",
+      "translation_id": "Yunus",
+      "type": "Makkiyah",
+      "total_verses": 109,
+      "juz_start": 11,
+      "juz_end": 11
+    },
+    {
+      "id": 11,
+      "name_ar": "هود",
+      "name_latin": "Hud",
+      "translation_id": "Hud",
+      "type": "Makkiyah",
+      "total_verses": 123,
+      "juz_start": 11,
+      "juz_end": 12
+    },
+    {
+      "id": 12,
+      "name_ar": "يوسف",
+      "name_latin": "Yusuf",
+      "translation_id": "Yusuf",
+      "type": "Makkiyah",
+      "total_verses": 111,
+      "juz_start": 12,
+      "juz_end": 13
+    },
+    {
+      "id": 13,
+      "name_ar": "الرعد",
+      "name_latin": "Ar-Ra'd",
+      "translation_id": "Guruh (Petir)",
+      "type": "Madaniyah",
+      "total_verses": 43,
+      "juz_start": 13,
+      "juz_end": 13
+    },
+    {
+      "id": 14,
+      "name_ar": "ابراهيم",
+      "name_latin": "Ibrahim",
+      "translation_id": "Ibrahim",
+      "type": "Makkiyah",
+      "total_verses": 52,
+      "juz_start": 13,
+      "juz_end": 13
+    },
+    {
+      "id": 15,
+      "name_ar": "الحجر",
+      "name_latin": "Al-Hijr",
+      "translation_id": "Bukit",
+      "type": "Makkiyah",
+      "total_verses": 99,
+      "juz_start": 14,
+      "juz_end": 14
+    },
+    {
+      "id": 16,
+      "name_ar": "النحل",
+      "name_latin": "An-Nahl",
+      "translation_id": "Lebah Madu",
+      "type": "Makkiyah",
+      "total_verses": 128,
+      "juz_start": 14,
+      "juz_end": 14
+    },
+    {
+      "id": 17,
+      "name_ar": "الإسراء",
+      "name_latin": "Al-Isra",
+      "translation_id": "Perjalanan Malam",
+      "type": "Makkiyah",
+      "total_verses": 111,
+      "juz_start": 15,
+      "juz_end": 15
+    },
+    {
+      "id": 18,
+      "name_ar": "الكهف",
+      "name_latin": "Al-Kahf",
+      "translation_id": "Para Penghuni Gua",
+      "type": "Makkiyah",
+      "total_verses": 110,
+      "juz_start": 15,
+      "juz_end": 16
+    },
+    {
+      "id": 19,
+      "name_ar": "مريم",
+      "name_latin": "Maryam",
+      "translation_id": "Maryam",
+      "type": "Makkiyah",
+      "total_verses": 98,
+      "juz_start": 16,
+      "juz_end": 16
+    },
+    {
+      "id": 20,
+      "name_ar": "طه",
+      "name_latin": "Taha",
+      "translation_id": "Tha-Ha",
+      "type": "Makkiyah",
+      "total_verses": 135,
+      "juz_start": 16,
+      "juz_end": 16
+    },
+    {
+      "id": 21,
+      "name_ar": "الأنبياء",
+      "name_latin": "Al-Anbya",
+      "translation_id": "Para Nabi",
+      "type": "Makkiyah",
+      "total_verses": 112,
+      "juz_start": 17,
+      "juz_end": 17
+    },
+    {
+      "id": 22,
+      "name_ar": "الحج",
+      "name_latin": "Al-Hajj",
+      "translation_id": "Haji",
+      "type": "Madaniyah",
+      "total_verses": 78,
+      "juz_start": 17,
+      "juz_end": 17
+    },
+    {
+      "id": 23,
+      "name_ar": "المؤمنون",
+      "name_latin": "Al-Mu'minun",
+      "translation_id": "Orang-orang Mukmin",
+      "type": "Makkiyah",
+      "total_verses": 118,
+      "juz_start": 18,
+      "juz_end": 18
+    },
+    {
+      "id": 24,
+      "name_ar": "النور",
+      "name_latin": "An-Nur",
+      "translation_id": "Cahaya",
+      "type": "Madaniyah",
+      "total_verses": 64,
+      "juz_start": 18,
+      "juz_end": 18
+    },
+    {
+      "id": 25,
+      "name_ar": "الفرقان",
+      "name_latin": "Al-Furqan",
+      "translation_id": "Pembeda",
+      "type": "Makkiyah",
+      "total_verses": 77,
+      "juz_start": 18,
+      "juz_end": 19
+    },
+    {
+      "id": 26,
+      "name_ar": "الشعراء",
+      "name_latin": "Ash-Shu'ara",
+      "translation_id": "Penyair",
+      "type": "Makkiyah",
+      "total_verses": 227,
+      "juz_start": 19,
+      "juz_end": 19
+    },
+    {
+      "id": 27,
+      "name_ar": "النمل",
+      "name_latin": "An-Naml",
+      "translation_id": "Semut",
+      "type": "Makkiyah",
+      "total_verses": 93,
+      "juz_start": 19,
+      "juz_end": 20
+    },
+    {
+      "id": 28,
+      "name_ar": "القصص",
+      "name_latin": "Al-Qasas",
+      "translation_id": "Kisah-kisah",
+      "type": "Makkiyah",
+      "total_verses": 88,
+      "juz_start": 20,
+      "juz_end": 20
+    },
+    {
+      "id": 29,
+      "name_ar": "العنكبوت",
+      "name_latin": "Al-'Ankabut",
+      "translation_id": "Laba-laba",
+      "type": "Makkiyah",
+      "total_verses": 69,
+      "juz_start": 20,
+      "juz_end": 21
+    },
+    {
+      "id": 30,
+      "name_ar": "الروم",
+      "name_latin": "Ar-Rum",
+      "translation_id": "Bangsa Romawi",
+      "type": "Makkiyah",
+      "total_verses": 60,
+      "juz_start": 21,
+      "juz_end": 21
+    },
+    {
+      "id": 31,
+      "name_ar": "لقمان",
+      "name_latin": "Luqman",
+      "translation_id": "Luqman",
+      "type": "Makkiyah",
+      "total_verses": 34,
+      "juz_start": 21,
+      "juz_end": 21
+    },
+    {
+      "id": 32,
+      "name_ar": "السجدة",
+      "name_latin": "As-Sajdah",
+      "translation_id": "Sujud",
+      "type": "Makkiyah",
+      "total_verses": 30,
+      "juz_start": 21,
+      "juz_end": 21
+    },
+    {
+      "id": 33,
+      "name_ar": "الأحزاب",
+      "name_latin": "Al-Ahzab",
+      "translation_id": "Golongan yang Bersekutu",
+      "type": "Madaniyah",
+      "total_verses": 73,
+      "juz_start": 21,
+      "juz_end": 22
+    },
+    {
+      "id": 34,
+      "name_ar": "سبإ",
+      "name_latin": "Saba",
+      "translation_id": "Saba\\'",
+      "type": "Makkiyah",
+      "total_verses": 54,
+      "juz_start": 22,
+      "juz_end": 22
+    },
+    {
+      "id": 35,
+      "name_ar": "فاطر",
+      "name_latin": "Fatir",
+      "translation_id": "Pencipta",
+      "type": "Makkiyah",
+      "total_verses": 45,
+      "juz_start": 22,
+      "juz_end": 22
+    },
+    {
+      "id": 36,
+      "name_ar": "يس",
+      "name_latin": "Ya-Sin",
+      "translation_id": "Yas Sin",
+      "type": "Makkiyah",
+      "total_verses": 83,
+      "juz_start": 22,
+      "juz_end": 23
+    },
+    {
+      "id": 37,
+      "name_ar": "الصافات",
+      "name_latin": "As-Saffat",
+      "translation_id": "Barisan-barisan",
+      "type": "Makkiyah",
+      "total_verses": 182,
+      "juz_start": 23,
+      "juz_end": 23
+    },
+    {
+      "id": 38,
+      "name_ar": "ص",
+      "name_latin": "Sad",
+      "translation_id": "Shad",
+      "type": "Makkiyah",
+      "total_verses": 88,
+      "juz_start": 23,
+      "juz_end": 23
+    },
+    {
+      "id": 39,
+      "name_ar": "الزمر",
+      "name_latin": "Az-Zumar",
+      "translation_id": "Para Rombongan",
+      "type": "Makkiyah",
+      "total_verses": 75,
+      "juz_start": 23,
+      "juz_end": 24
+    },
+    {
+      "id": 40,
+      "name_ar": "غافر",
+      "name_latin": "Ghafir",
+      "translation_id": "Sang Maha Pengampun",
+      "type": "Makkiyah",
+      "total_verses": 85,
+      "juz_start": 24,
+      "juz_end": 24
+    },
+    {
+      "id": 41,
+      "name_ar": "فصلت",
+      "name_latin": "Fussilat",
+      "translation_id": "Yang Dijelaskan",
+      "type": "Makkiyah",
+      "total_verses": 54,
+      "juz_start": 24,
+      "juz_end": 25
+    },
+    {
+      "id": 42,
+      "name_ar": "الشورى",
+      "name_latin": "Ash-Shuraa",
+      "translation_id": "Musyawarah",
+      "type": "Makkiyah",
+      "total_verses": 53,
+      "juz_start": 25,
+      "juz_end": 25
+    },
+    {
+      "id": 43,
+      "name_ar": "الزخرف",
+      "name_latin": "Az-Zukhruf",
+      "translation_id": "Perhiasan",
+      "type": "Makkiyah",
+      "total_verses": 89,
+      "juz_start": 25,
+      "juz_end": 25
+    },
+    {
+      "id": 44,
+      "name_ar": "الدخان",
+      "name_latin": "Ad-Dukhan",
+      "translation_id": "Kabut",
+      "type": "Makkiyah",
+      "total_verses": 59,
+      "juz_start": 25,
+      "juz_end": 25
+    },
+    {
+      "id": 45,
+      "name_ar": "الجاثية",
+      "name_latin": "Al-Jathiyah",
+      "translation_id": "Yang Bertekuk Lutut",
+      "type": "Makkiyah",
+      "total_verses": 37,
+      "juz_start": 25,
+      "juz_end": 25
+    },
+    {
+      "id": 46,
+      "name_ar": "الأحقاف",
+      "name_latin": "Al-Ahqaf",
+      "translation_id": "Bukit-bukir Pasir",
+      "type": "Makkiyah",
+      "total_verses": 35,
+      "juz_start": 26,
+      "juz_end": 26
+    },
+    {
+      "id": 47,
+      "name_ar": "محمد",
+      "name_latin": "Muhammad",
+      "translation_id": "Muhammad",
+      "type": "Madaniyah",
+      "total_verses": 38,
+      "juz_start": 26,
+      "juz_end": 26
+    },
+    {
+      "id": 48,
+      "name_ar": "الفتح",
+      "name_latin": "Al-Fath",
+      "translation_id": "Kemenangan",
+      "type": "Madaniyah",
+      "total_verses": 29,
+      "juz_start": 26,
+      "juz_end": 26
+    },
+    {
+      "id": 49,
+      "name_ar": "الحجرات",
+      "name_latin": "Al-Hujurat",
+      "translation_id": "Kamar-kamar",
+      "type": "Madaniyah",
+      "total_verses": 18,
+      "juz_start": 26,
+      "juz_end": 26
+    },
+    {
+      "id": 50,
+      "name_ar": "ق",
+      "name_latin": "Qaf",
+      "translation_id": "Qaf",
+      "type": "Makkiyah",
+      "total_verses": 45,
+      "juz_start": 26,
+      "juz_end": 26
+    },
+    {
+      "id": 51,
+      "name_ar": "الذاريات",
+      "name_latin": "Adh-Dhariyat",
+      "translation_id": "Angin yang Menerbangkan",
+      "type": "Makkiyah",
+      "total_verses": 60,
+      "juz_start": 26,
+      "juz_end": 27
+    },
+    {
+      "id": 52,
+      "name_ar": "الطور",
+      "name_latin": "At-Tur",
+      "translation_id": "Bukit",
+      "type": "Makkiyah",
+      "total_verses": 49,
+      "juz_start": 27,
+      "juz_end": 27
+    },
+    {
+      "id": 53,
+      "name_ar": "النجم",
+      "name_latin": "An-Najm",
+      "translation_id": "Bintang",
+      "type": "Makkiyah",
+      "total_verses": 62,
+      "juz_start": 27,
+      "juz_end": 27
+    },
+    {
+      "id": 54,
+      "name_ar": "القمر",
+      "name_latin": "Al-Qamar",
+      "translation_id": "Bulan",
+      "type": "Makkiyah",
+      "total_verses": 55,
+      "juz_start": 27,
+      "juz_end": 27
+    },
+    {
+      "id": 55,
+      "name_ar": "الرحمن",
+      "name_latin": "Ar-Rahman",
+      "translation_id": "Yang Maha Pemurah",
+      "type": "Madaniyah",
+      "total_verses": 78,
+      "juz_start": 27,
+      "juz_end": 27
+    },
+    {
+      "id": 56,
+      "name_ar": "الواقعة",
+      "name_latin": "Al-Waqi'ah",
+      "translation_id": "Hari Kiamat",
+      "type": "Makkiyah",
+      "total_verses": 96,
+      "juz_start": 27,
+      "juz_end": 27
+    },
+    {
+      "id": 57,
+      "name_ar": "الحديد",
+      "name_latin": "Al-Hadid",
+      "translation_id": "Besi",
+      "type": "Madaniyah",
+      "total_verses": 29,
+      "juz_start": 27,
+      "juz_end": 27
+    },
+    {
+      "id": 58,
+      "name_ar": "المجادلة",
+      "name_latin": "Al-Mujadila",
+      "translation_id": "Wanita yang Menggugat",
+      "type": "Madaniyah",
+      "total_verses": 22,
+      "juz_start": 28,
+      "juz_end": 28
+    },
+    {
+      "id": 59,
+      "name_ar": "الحشر",
+      "name_latin": "Al-Hashr",
+      "translation_id": "Pengusiran",
+      "type": "Madaniyah",
+      "total_verses": 24,
+      "juz_start": 28,
+      "juz_end": 28
+    },
+    {
+      "id": 60,
+      "name_ar": "الممتحنة",
+      "name_latin": "Al-Mumtahanah",
+      "translation_id": "Wanita yang Diuji",
+      "type": "Madaniyah",
+      "total_verses": 13,
+      "juz_start": 28,
+      "juz_end": 28
+    },
+    {
+      "id": 61,
+      "name_ar": "الصف",
+      "name_latin": "As-Saf",
+      "translation_id": "Barisan",
+      "type": "Madaniyah",
+      "total_verses": 14,
+      "juz_start": 28,
+      "juz_end": 28
+    },
+    {
+      "id": 62,
+      "name_ar": "الجمعة",
+      "name_latin": "Al-Jumu'ah",
+      "translation_id": "Hari Jum\\'at",
+      "type": "Madaniyah",
+      "total_verses": 11,
+      "juz_start": 28,
+      "juz_end": 28
+    },
+    {
+      "id": 63,
+      "name_ar": "المنافقون",
+      "name_latin": "Al-Munafiqun",
+      "translation_id": "Kaum Munafik",
+      "type": "Madaniyah",
+      "total_verses": 11,
+      "juz_start": 28,
+      "juz_end": 28
+    },
+    {
+      "id": 64,
+      "name_ar": "التغابن",
+      "name_latin": "At-Taghabun",
+      "translation_id": "Hari Dinampakkan Kesalahan",
+      "type": "Madaniyah",
+      "total_verses": 18,
+      "juz_start": 28,
+      "juz_end": 28
+    },
+    {
+      "id": 65,
+      "name_ar": "الطلاق",
+      "name_latin": "At-Talaq",
+      "translation_id": "Perceraian",
+      "type": "Madaniyah",
+      "total_verses": 12,
+      "juz_start": 28,
+      "juz_end": 28
+    },
+    {
+      "id": 66,
+      "name_ar": "التحريم",
+      "name_latin": "At-Tahrim",
+      "translation_id": "Mengharamkan",
+      "type": "Madaniyah",
+      "total_verses": 12,
+      "juz_start": 28,
+      "juz_end": 28
+    },
+    {
+      "id": 67,
+      "name_ar": "الملك",
+      "name_latin": "Al-Mulk",
+      "translation_id": "Kerajaan",
+      "type": "Makkiyah",
+      "total_verses": 30,
+      "juz_start": 29,
+      "juz_end": 29
+    },
+    {
+      "id": 68,
+      "name_ar": "القلم",
+      "name_latin": "Al-Qalam",
+      "translation_id": "Pena",
+      "type": "Makkiyah",
+      "total_verses": 52,
+      "juz_start": 29,
+      "juz_end": 29
+    },
+    {
+      "id": 69,
+      "name_ar": "الحاقة",
+      "name_latin": "Al-Haqqah",
+      "translation_id": "Kenyataan (Hari Kiamat)",
+      "type": "Makkiyah",
+      "total_verses": 52,
+      "juz_start": 29,
+      "juz_end": 29
+    },
+    {
+      "id": 70,
+      "name_ar": "المعارج",
+      "name_latin": "Al-Ma'arij",
+      "translation_id": "Tempat yang Naik",
+      "type": "Makkiyah",
+      "total_verses": 44,
+      "juz_start": 29,
+      "juz_end": 29
+    },
+    {
+      "id": 71,
+      "name_ar": "نوح",
+      "name_latin": "Nuh",
+      "translation_id": "Nuh",
+      "type": "Makkiyah",
+      "total_verses": 28,
+      "juz_start": 29,
+      "juz_end": 29
+    },
+    {
+      "id": 72,
+      "name_ar": "الجن",
+      "name_latin": "Al-Jinn",
+      "translation_id": "Jin",
+      "type": "Makkiyah",
+      "total_verses": 28,
+      "juz_start": 29,
+      "juz_end": 29
+    },
+    {
+      "id": 73,
+      "name_ar": "المزمل",
+      "name_latin": "Al-Muzzammil",
+      "translation_id": "Orang yang Berselimut",
+      "type": "Makkiyah",
+      "total_verses": 20,
+      "juz_start": 29,
+      "juz_end": 29
+    },
+    {
+      "id": 74,
+      "name_ar": "المدثر",
+      "name_latin": "Al-Muddaththir",
+      "translation_id": "Orang yang Berkemul",
+      "type": "Makkiyah",
+      "total_verses": 56,
+      "juz_start": 29,
+      "juz_end": 29
+    },
+    {
+      "id": 75,
+      "name_ar": "القيامة",
+      "name_latin": "Al-Qiyamah",
+      "translation_id": "Hari Berbangkit",
+      "type": "Makkiyah",
+      "total_verses": 40,
+      "juz_start": 29,
+      "juz_end": 29
+    },
+    {
+      "id": 76,
+      "name_ar": "الانسان",
+      "name_latin": "Al-Insan",
+      "translation_id": "Manusia",
+      "type": "Madaniyah",
+      "total_verses": 31,
+      "juz_start": 29,
+      "juz_end": 29
+    },
+    {
+      "id": 77,
+      "name_ar": "المرسلات",
+      "name_latin": "Al-Mursalat",
+      "translation_id": "Malaikat-malaikan yang Diutus",
+      "type": "Makkiyah",
+      "total_verses": 50,
+      "juz_start": 29,
+      "juz_end": 29
+    },
+    {
+      "id": 78,
+      "name_ar": "النبإ",
+      "name_latin": "An-Naba",
+      "translation_id": "Berita Besar",
+      "type": "Makkiyah",
+      "total_verses": 40,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 79,
+      "name_ar": "النازعات",
+      "name_latin": "An-Nazi'at",
+      "translation_id": "Malaikat yang Mencabut",
+      "type": "Makkiyah",
+      "total_verses": 46,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 80,
+      "name_ar": "عبس",
+      "name_latin": "'Abasa",
+      "translation_id": "Ia Bermuka Masam",
+      "type": "Makkiyah",
+      "total_verses": 42,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 81,
+      "name_ar": "التكوير",
+      "name_latin": "At-Takwir",
+      "translation_id": "Menggulung",
+      "type": "Makkiyah",
+      "total_verses": 29,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 82,
+      "name_ar": "الإنفطار",
+      "name_latin": "Al-Infitar",
+      "translation_id": "Terbelah",
+      "type": "Makkiyah",
+      "total_verses": 19,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 83,
+      "name_ar": "المطففين",
+      "name_latin": "Al-Mutaffifin",
+      "translation_id": "Orang-orang Curang",
+      "type": "Makkiyah",
+      "total_verses": 36,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 84,
+      "name_ar": "الإنشقاق",
+      "name_latin": "Al-Inshiqaq",
+      "translation_id": "Terbelah",
+      "type": "Makkiyah",
+      "total_verses": 25,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 85,
+      "name_ar": "البروج",
+      "name_latin": "Al-Buruj",
+      "translation_id": "Gugusan Bintang",
+      "type": "Makkiyah",
+      "total_verses": 22,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 86,
+      "name_ar": "الطارق",
+      "name_latin": "At-Tariq",
+      "translation_id": "Yang Datang di Malam Hari",
+      "type": "Makkiyah",
+      "total_verses": 17,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 87,
+      "name_ar": "الأعلى",
+      "name_latin": "Al-A'la",
+      "translation_id": "Yang Paling Tinggi",
+      "type": "Makkiyah",
+      "total_verses": 19,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 88,
+      "name_ar": "الغاشية",
+      "name_latin": "Al-Ghashiyah",
+      "translation_id": "Hari Pembalasan",
+      "type": "Makkiyah",
+      "total_verses": 26,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 89,
+      "name_ar": "الفجر",
+      "name_latin": "Al-Fajr",
+      "translation_id": "Fajar",
+      "type": "Makkiyah",
+      "total_verses": 30,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 90,
+      "name_ar": "البلد",
+      "name_latin": "Al-Balad",
+      "translation_id": "Negeri",
+      "type": "Makkiyah",
+      "total_verses": 20,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 91,
+      "name_ar": "الشمس",
+      "name_latin": "Ash-Shams",
+      "translation_id": "Matahari",
+      "type": "Makkiyah",
+      "total_verses": 15,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 92,
+      "name_ar": "الليل",
+      "name_latin": "Al-Layl",
+      "translation_id": "Malam",
+      "type": "Makkiyah",
+      "total_verses": 21,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 93,
+      "name_ar": "الضحى",
+      "name_latin": "Ad-Duhaa",
+      "translation_id": "Waktu Dhuha",
+      "type": "Makkiyah",
+      "total_verses": 11,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 94,
+      "name_ar": "الشرح",
+      "name_latin": "Ash-Sharh",
+      "translation_id": "Melapangkan",
+      "type": "Makkiyah",
+      "total_verses": 8,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 95,
+      "name_ar": "التين",
+      "name_latin": "At-Tin",
+      "translation_id": "Buah Tin",
+      "type": "Makkiyah",
+      "total_verses": 8,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 96,
+      "name_ar": "العلق",
+      "name_latin": "Al-'Alaq",
+      "translation_id": "Segumpal Darah",
+      "type": "Makkiyah",
+      "total_verses": 19,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 97,
+      "name_ar": "القدر",
+      "name_latin": "Al-Qadr",
+      "translation_id": "Kemuliaan",
+      "type": "Makkiyah",
+      "total_verses": 5,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 98,
+      "name_ar": "البينة",
+      "name_latin": "Al-Bayyinah",
+      "translation_id": "Pembuktian",
+      "type": "Madaniyah",
+      "total_verses": 8,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 99,
+      "name_ar": "الزلزلة",
+      "name_latin": "Az-Zalzalah",
+      "translation_id": "Kegoncangan",
+      "type": "Madaniyah",
+      "total_verses": 8,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 100,
+      "name_ar": "العاديات",
+      "name_latin": "Al-'Adiyat",
+      "translation_id": "Berlari Kencang",
+      "type": "Makkiyah",
+      "total_verses": 11,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 101,
+      "name_ar": "القارعة",
+      "name_latin": "Al-Qari'ah",
+      "translation_id": "Hari Kiamat",
+      "type": "Makkiyah",
+      "total_verses": 11,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 102,
+      "name_ar": "التكاثر",
+      "name_latin": "At-Takathur",
+      "translation_id": "Bermegah-megahan",
+      "type": "Makkiyah",
+      "total_verses": 8,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 103,
+      "name_ar": "العصر",
+      "name_latin": "Al-'Asr",
+      "translation_id": "Waktu Sore",
+      "type": "Makkiyah",
+      "total_verses": 3,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 104,
+      "name_ar": "الهمزة",
+      "name_latin": "Al-Humazah",
+      "translation_id": "Pengumpat",
+      "type": "Makkiyah",
+      "total_verses": 9,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 105,
+      "name_ar": "الفيل",
+      "name_latin": "Al-Fil",
+      "translation_id": "Gajah",
+      "type": "Makkiyah",
+      "total_verses": 5,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 106,
+      "name_ar": "قريش",
+      "name_latin": "Quraysh",
+      "translation_id": "Suku Quraisy",
+      "type": "Makkiyah",
+      "total_verses": 4,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 107,
+      "name_ar": "الماعون",
+      "name_latin": "Al-Ma'un",
+      "translation_id": "Barang yang Berguna",
+      "type": "Makkiyah",
+      "total_verses": 7,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 108,
+      "name_ar": "الكوثر",
+      "name_latin": "Al-Kawthar",
+      "translation_id": "Nikmat Berlimpah",
+      "type": "Makkiyah",
+      "total_verses": 3,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 109,
+      "name_ar": "الكافرون",
+      "name_latin": "Al-Kafirun",
+      "translation_id": "Orang-orang Kafir",
+      "type": "Makkiyah",
+      "total_verses": 6,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 110,
+      "name_ar": "النصر",
+      "name_latin": "An-Nasr",
+      "translation_id": "Pertolongan",
+      "type": "Madaniyah",
+      "total_verses": 3,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 111,
+      "name_ar": "المسد",
+      "name_latin": "Al-Masad",
+      "translation_id": "Gejolak Api (Sabut)",
+      "type": "Makkiyah",
+      "total_verses": 5,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 112,
+      "name_ar": "الإخلاص",
+      "name_latin": "Al-Ikhlas",
+      "translation_id": "Ikhlash",
+      "type": "Makkiyah",
+      "total_verses": 4,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 113,
+      "name_ar": "الفلق",
+      "name_latin": "Al-Falaq",
+      "translation_id": "Waktu Shubuh",
+      "type": "Makkiyah",
+      "total_verses": 5,
+      "juz_start": 30,
+      "juz_end": 30
+    },
+    {
+      "id": 114,
+      "name_ar": "الناس",
+      "name_latin": "An-Nas",
+      "translation_id": "Umat Manusia",
+      "type": "Makkiyah",
+      "total_verses": 6,
+      "juz_start": 30,
+      "juz_end": 30
+    }
+  ],
+  "juz": [
+    {
+      "juz": 1,
+      "start_surah_id": 1,
+      "start_surah_name": "Al-Fatihah",
+      "start_verse": 1,
+      "end_surah_id": 2,
+      "end_surah_name": "Al-Baqarah",
+      "end_verse": 141
+    },
+    {
+      "juz": 2,
+      "start_surah_id": 2,
+      "start_surah_name": "Al-Baqarah",
+      "start_verse": 142,
+      "end_surah_id": 2,
+      "end_surah_name": "Al-Baqarah",
+      "end_verse": 252
+    },
+    {
+      "juz": 3,
+      "start_surah_id": 2,
+      "start_surah_name": "Al-Baqarah",
+      "start_verse": 253,
+      "end_surah_id": 3,
+      "end_surah_name": "Ali 'Imran",
+      "end_verse": 92
+    },
+    {
+      "juz": 4,
+      "start_surah_id": 3,
+      "start_surah_name": "Ali 'Imran",
+      "start_verse": 93,
+      "end_surah_id": 4,
+      "end_surah_name": "An-Nisa",
+      "end_verse": 23
+    },
+    {
+      "juz": 5,
+      "start_surah_id": 4,
+      "start_surah_name": "An-Nisa",
+      "start_verse": 24,
+      "end_surah_id": 4,
+      "end_surah_name": "An-Nisa",
+      "end_verse": 147
+    },
+    {
+      "juz": 6,
+      "start_surah_id": 4,
+      "start_surah_name": "An-Nisa",
+      "start_verse": 148,
+      "end_surah_id": 5,
+      "end_surah_name": "Al-Ma'idah",
+      "end_verse": 81
+    },
+    {
+      "juz": 7,
+      "start_surah_id": 5,
+      "start_surah_name": "Al-Ma'idah",
+      "start_verse": 82,
+      "end_surah_id": 6,
+      "end_surah_name": "Al-An'am",
+      "end_verse": 110
+    },
+    {
+      "juz": 8,
+      "start_surah_id": 6,
+      "start_surah_name": "Al-An'am",
+      "start_verse": 111,
+      "end_surah_id": 7,
+      "end_surah_name": "Al-A'raf",
+      "end_verse": 87
+    },
+    {
+      "juz": 9,
+      "start_surah_id": 7,
+      "start_surah_name": "Al-A'raf",
+      "start_verse": 88,
+      "end_surah_id": 8,
+      "end_surah_name": "Al-Anfal",
+      "end_verse": 40
+    },
+    {
+      "juz": 10,
+      "start_surah_id": 8,
+      "start_surah_name": "Al-Anfal",
+      "start_verse": 41,
+      "end_surah_id": 9,
+      "end_surah_name": "At-Tawbah",
+      "end_verse": 92
+    },
+    {
+      "juz": 11,
+      "start_surah_id": 9,
+      "start_surah_name": "At-Tawbah",
+      "start_verse": 93,
+      "end_surah_id": 11,
+      "end_surah_name": "Hud",
+      "end_verse": 5
+    },
+    {
+      "juz": 12,
+      "start_surah_id": 11,
+      "start_surah_name": "Hud",
+      "start_verse": 6,
+      "end_surah_id": 12,
+      "end_surah_name": "Yusuf",
+      "end_verse": 52
+    },
+    {
+      "juz": 13,
+      "start_surah_id": 12,
+      "start_surah_name": "Yusuf",
+      "start_verse": 53,
+      "end_surah_id": 14,
+      "end_surah_name": "Ibrahim",
+      "end_verse": 52
+    },
+    {
+      "juz": 14,
+      "start_surah_id": 15,
+      "start_surah_name": "Al-Hijr",
+      "start_verse": 1,
+      "end_surah_id": 16,
+      "end_surah_name": "An-Nahl",
+      "end_verse": 128
+    },
+    {
+      "juz": 15,
+      "start_surah_id": 17,
+      "start_surah_name": "Al-Isra",
+      "start_verse": 1,
+      "end_surah_id": 18,
+      "end_surah_name": "Al-Kahf",
+      "end_verse": 74
+    },
+    {
+      "juz": 16,
+      "start_surah_id": 18,
+      "start_surah_name": "Al-Kahf",
+      "start_verse": 75,
+      "end_surah_id": 20,
+      "end_surah_name": "Taha",
+      "end_verse": 135
+    },
+    {
+      "juz": 17,
+      "start_surah_id": 21,
+      "start_surah_name": "Al-Anbya",
+      "start_verse": 1,
+      "end_surah_id": 22,
+      "end_surah_name": "Al-Hajj",
+      "end_verse": 78
+    },
+    {
+      "juz": 18,
+      "start_surah_id": 23,
+      "start_surah_name": "Al-Mu'minun",
+      "start_verse": 1,
+      "end_surah_id": 25,
+      "end_surah_name": "Al-Furqan",
+      "end_verse": 20
+    },
+    {
+      "juz": 19,
+      "start_surah_id": 25,
+      "start_surah_name": "Al-Furqan",
+      "start_verse": 21,
+      "end_surah_id": 27,
+      "end_surah_name": "An-Naml",
+      "end_verse": 55
+    },
+    {
+      "juz": 20,
+      "start_surah_id": 27,
+      "start_surah_name": "An-Naml",
+      "start_verse": 56,
+      "end_surah_id": 29,
+      "end_surah_name": "Al-'Ankabut",
+      "end_verse": 45
+    },
+    {
+      "juz": 21,
+      "start_surah_id": 29,
+      "start_surah_name": "Al-'Ankabut",
+      "start_verse": 46,
+      "end_surah_id": 33,
+      "end_surah_name": "Al-Ahzab",
+      "end_verse": 30
+    },
+    {
+      "juz": 22,
+      "start_surah_id": 33,
+      "start_surah_name": "Al-Ahzab",
+      "start_verse": 31,
+      "end_surah_id": 36,
+      "end_surah_name": "Ya-Sin",
+      "end_verse": 27
+    },
+    {
+      "juz": 23,
+      "start_surah_id": 36,
+      "start_surah_name": "Ya-Sin",
+      "start_verse": 28,
+      "end_surah_id": 39,
+      "end_surah_name": "Az-Zumar",
+      "end_verse": 31
+    },
+    {
+      "juz": 24,
+      "start_surah_id": 39,
+      "start_surah_name": "Az-Zumar",
+      "start_verse": 32,
+      "end_surah_id": 41,
+      "end_surah_name": "Fussilat",
+      "end_verse": 46
+    },
+    {
+      "juz": 25,
+      "start_surah_id": 41,
+      "start_surah_name": "Fussilat",
+      "start_verse": 47,
+      "end_surah_id": 45,
+      "end_surah_name": "Al-Jathiyah",
+      "end_verse": 37
+    },
+    {
+      "juz": 26,
+      "start_surah_id": 46,
+      "start_surah_name": "Al-Ahqaf",
+      "start_verse": 1,
+      "end_surah_id": 51,
+      "end_surah_name": "Adh-Dhariyat",
+      "end_verse": 30
+    },
+    {
+      "juz": 27,
+      "start_surah_id": 51,
+      "start_surah_name": "Adh-Dhariyat",
+      "start_verse": 31,
+      "end_surah_id": 57,
+      "end_surah_name": "Al-Hadid",
+      "end_verse": 29
+    },
+    {
+      "juz": 28,
+      "start_surah_id": 58,
+      "start_surah_name": "Al-Mujadila",
+      "start_verse": 1,
+      "end_surah_id": 66,
+      "end_surah_name": "At-Tahrim",
+      "end_verse": 12
+    },
+    {
+      "juz": 29,
+      "start_surah_id": 67,
+      "start_surah_name": "Al-Mulk",
+      "start_verse": 1,
+      "end_surah_id": 77,
+      "end_surah_name": "Al-Mursalat",
+      "end_verse": 50
+    },
+    {
+      "juz": 30,
+      "start_surah_id": 78,
+      "start_surah_name": "An-Naba",
+      "start_verse": 1,
+      "end_surah_id": 114,
+      "end_surah_name": "An-Nas",
+      "end_verse": 6
+    }
+  ]
+}
