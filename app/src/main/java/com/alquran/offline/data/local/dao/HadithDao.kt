@@ -22,10 +22,10 @@ interface HadithDao {
     @Query("SELECT * FROM hadiths WHERE kitab = :kitab ORDER BY nomor ASC")
     suspend fun getHadithsByKitabList(kitab: String): List<HadithEntity>
 
-    @Query("SELECT DISTINCT kitab FROM hadiths ORDER BY min(id) ASC")
+    @Query("SELECT kitab FROM hadiths GROUP BY kitab ORDER BY min(id) ASC")
     fun getAvailableKitabs(): Flow<List<String>>
 
-    @Query("SELECT DISTINCT kitab FROM hadiths ORDER BY min(id) ASC")
+    @Query("SELECT kitab FROM hadiths GROUP BY kitab ORDER BY min(id) ASC")
     suspend fun getAvailableKitabsList(): List<String>
 
     @Query("SELECT * FROM hadiths WHERE id = :id LIMIT 1")
