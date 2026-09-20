@@ -287,7 +287,7 @@ fun HadithListScreen(
 }
 
 @Composable
-private fun HadithItemCard(
+fun HadithItemCard(
     hadith: Hadith,
     onClick: () -> Unit,
     onBookmarkClick: () -> Unit

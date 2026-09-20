@@ -95,7 +95,7 @@ fun JuzListScreen(
                     JuzCard(
                         juz = juz,
                         onClick = {
-                            onJuzClick(juz.startSurahId, juz.startVerseId)
+                            onJuzClick(juz.startSurahId, juz.startVerse)
                         }
                     )
                 }
@@ -158,7 +158,7 @@ private fun JuzCard(
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
-                    text = "${juz.startSurahName} (${juz.startVerseId}) — ${juz.endSurahName} (${juz.endVerseId})",
+                    text = "${juz.startSurahName} (${juz.startVerse}) — ${juz.endSurahName} (${juz.endVerse})",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
