@@ -10,6 +10,9 @@ import com.alquran.offline.data.local.AppDatabase
 import com.alquran.offline.data.preferences.UserPreferencesRepository
 import com.alquran.offline.data.repository.QuranRepository
 import com.alquran.offline.data.repository.QuranRepositoryImpl
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class QuranApplication : Application() {
 
@@ -18,8 +21,19 @@ class QuranApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        val database = AppDatabase.getInstance(this)
         val preferencesRepository = UserPreferencesRepository(this)
+        val database = AppDatabase.getInstance(this)
         repository = QuranRepositoryImpl(database, preferencesRepository)
+
+        // Asynchronously pre-warm the database on Dispatchers.IO.
+        // Room extracts and prepares the asset database in the background
+        // without stalling the UI thread during cold start.
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                database.openHelper.writableDatabase
+            } catch (e: Throwable) {
+                e.printStackTrace()
+            }
+        }
     }
 }
