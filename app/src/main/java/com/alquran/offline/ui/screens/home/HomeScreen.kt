@@ -19,7 +19,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.MenuBook
-import androidx.compose.material.icons.filled.AutoStories
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.FormatListNumbered
 import androidx.compose.material.icons.filled.PlayArrow
@@ -112,7 +111,7 @@ fun HomeScreen(
                         MenuGridItem(
                             title = "Surah",
                             subtitle = "114 Surah",
-                            icon = Icons.AutoStories,
+                            icon = Icons.AutoMirrored.Filled.MenuBook,
                             modifier = Modifier.weight(1f),
                             onClick = onNavigateToSurahList
                         )

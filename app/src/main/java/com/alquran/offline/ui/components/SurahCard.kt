@@ -48,7 +48,7 @@ fun SurahCard(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertiling
+            verticalAlignment = Alignment.CenterVertically
         ) {
             // Surah number in circular badge
             Box(

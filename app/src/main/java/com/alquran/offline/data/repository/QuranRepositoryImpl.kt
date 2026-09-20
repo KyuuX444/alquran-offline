@@ -150,7 +150,7 @@ class QuranRepositoryImpl(
         return bookmarkDao.isBookmarked(surahId, verseId).flowOn(Dispatchers.IO)
     }
 
-    override suspend fun addBookmark(surahId: Int, verseId: Int, note: String) = withContext(Dispatchers.IO) {
+    override suspend fun addBookmark(surahId: Int, verseId: Int, note: String): Unit = withContext(Dispatchers.IO) {
         bookmarkDao.insertBookmark(
             BookmarkEntity(
                 surahId = surahId,
